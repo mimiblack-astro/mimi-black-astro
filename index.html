@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mimi Black · Astro Magic &amp; 3-System-Horoskop-Vergleich (Placidus · Whole Sign · Vedisch)</title>
+  <style>
+    :root {
+      --bg-deep: #0b0e17;
+      --bg-card: rgba(20, 25, 40, 0.82);
+      --bg-elevated: rgba(29, 36, 58, 0.9);
+      --gold: #d4af37;
+      --gold-soft: #f0d78c;
+      --cream: #f5f0e6;
+      --muted: #a6b0c9;
+      --accent-placidus: #6c9eff;
+      --accent-wholesign: #d4af37;
+      --accent-vedic: #4fd1c5;
+      --border: rgba(212, 175, 55, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #182039 0%, #0b0e17 65%);
+      color: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      letter-spacing: 0.02em;
+    }
+    a { color: var(--gold-soft); text-decoration: none; transition: 0.2s; }
+    a:hover { color: #fff; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 14, 23, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; flex-wrap: wrap; gap: 16px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 1.5rem; font-weight: 700; color: var(--gold);
+    }
+    .brand-badge {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em;
+      padding: 3px 10px; border: 1px solid var(--border); border-radius: 999px;
+      color: var(--cream); font-family: sans-serif;
+    }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.92rem; }
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #b5891c 100%);
+      color: #0b0e17; font-weight: 700; padding: 10px 20px;
+      border-radius: 999px; border: none; cursor: pointer;
+      font-size: 0.92rem; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.28);
+    }
+    .btn-gold:hover { filter: brightness(1.08); color: #0b0e17; }
+    .btn-outline {
+      background: transparent; color: var(--gold-soft);
+      border: 1px solid var(--gold); padding: 9px 18px;
+      border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 0.9rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 64px 0 40px; text-align: center;
+    }
+    .hero-kicker {
+      display: inline-block; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--gold);
+      border: 1px solid var(--border); padding: 6px 16px; border-radius: 999px;
+      margin-bottom: 18px; background: rgba(212, 175, 55, 0.08);
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      line-height: 1.15; margin-bottom: 16px; color: #fff;
+    }
+    .hero p {
+      max-width: 760px; margin: 0 auto 28px; color: var(--muted); font-size: 1.08rem;
+    }
+
+    /* Calculator Section */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      margin-bottom: 36px;
+    }
+    .calc-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+      align-items: end;
+    }
+    .field label {
+      display: block; font-size: 0.8rem; color: var(--gold-soft);
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .field input, .field select {
+      width: 100%; padding: 11px 14px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(11, 14, 23, 0.9); color: var(--cream);
+      font-size: 0.95rem;
+    }
+    .preset-bar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08);
+      justify-content: space-between;
+    }
+    .chip {
+      background: rgba(255,255,255,0.06); color: var(--cream);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 6px 13px; border-radius: 999px; font-size: 0.82rem; cursor: pointer;
+    }
+    .chip.active, .chip:hover {
+      background: rgba(212, 175, 55, 0.22); border-color: var(--gold); color: #fff;
+    }
+
+    /* 3 Wheels Grid */
+    .wheels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+      margin: 26px 0;
+    }
+    .wheel-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    .system-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .tag-placidus { background: rgba(108, 158, 255, 0.16); color: var(--accent-placidus); border: 1px solid var(--accent-placidus); }
+    .tag-wholesign { background: rgba(212, 175, 55, 0.18); color: var(--accent-wholesign); border: 1px solid var(--accent-wholesign); }
+    .tag-vedic { background: rgba(79, 209, 197, 0.16); color: var(--accent-vedic); border: 1px solid var(--accent-vedic); }
+
+    .wheel-summary {
+      font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;
+    }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; margin-top: 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td {
+      padding: 12px 14px; text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    th { color: var(--gold-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .badge-shift {
+      display: inline-block; padding: 3px 9px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 600;
+      background: rgba(212, 175, 55, 0.2); color: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+    }
+    .badge-same {
+      display: inline-block; padding: 3px 9px; border-radius: 999px;
+      font-size: 0.78rem; color: var(--muted);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Shop & Products */
+    .section-title {
+      text-align: center; margin: 56px 0 28px;
+    }
+    .section-title h2 { font-size: 2.3rem; color: #fff; margin-bottom: 8px; }
+    .section-title p { color: var(--muted); max-width: 680px; margin: 0 auto; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+      margin-bottom: 48px;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .product-type {
+      font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--gold); margin-bottom: 8px; font-weight: 700;
+    }
+    .product-card h3 { font-size: 1.45rem; margin-bottom: 10px; color: #fff; }
+    .product-card p { font-size: 0.92rem; color: var(--muted); margin-bottom: 18px; }
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08);
+      gap: 12px;
+    }
+    .price { font-size: 1.2rem; font-weight: 700; color: var(--gold-soft); }
+
+    /* Footer / Impressum */
+    footer {
+      background: rgba(7, 9, 15, 0.96);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 36px;
+      margin-top: 64px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+    .footer-grid h4 { color: var(--gold); margin-bottom: 10px; font-size: 1.1rem; }
+
+    /* Big Three User Profile Bar */
+    .profile-bar {
+      background: linear-gradient(135deg, rgba(29, 36, 58, 0.95), rgba(15, 20, 34, 0.95));
+      border: 1px solid var(--gold);
+      border-radius: 18px;
+      padding: 18px 24px;
+      margin: 24px 0 18px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .profile-user { display: flex; align-items: center; gap: 12px; }
+    .avatar-circle {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #8a640f);
+      color: #0b0e17; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+    }
+    .big-three-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+    .big3-btn {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 8px 16px; border-radius: 12px; cursor: pointer;
+      display: flex; flex-direction: column; align-items: flex-start;
+      transition: all 0.2s;
+    }
+    .big3-btn:hover, .big3-btn.active {
+      background: rgba(212, 175, 55, 0.28);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .big3-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-soft); }
+    .big3-val { font-size: 0.98rem; font-weight: 700; color: #fff; }
+    .big3-drawer {
+      background: rgba(20, 26, 44, 0.95);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .big3-drawer.open { display: block; }
+    .hawaii-btn {
+      background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+      color: #06131f; font-weight: 700; padding: 9px 18px; border-radius: 999px;
+      border: none; cursor: pointer; font-size: 0.86rem;
+      box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+    }
+    .hawaii-btn.active {
+      background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      color: #fff;
+    }
+    .hawaii-banner {
+      background: rgba(20, 184, 166, 0.14);
+      border: 1px solid #14b8a6;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      display: none;
+      color: #e6fffa; font-size: 0.92rem;
+    }
+    .hawaii-banner.show { display: block; }
+    .tag-hd { background: rgba(192, 132, 252, 0.16); color: #c084fc; border: 1px solid #c084fc; }
+    .tag-bazi { background: rgba(248, 113, 113, 0.16); color: #f87171; border: 1px solid #f87171; }
+    .sys-pill-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.88rem; text-align: left; }
+    .lock-card {
+      background: rgba(15, 19, 32, 0.9); border: 1px dashed rgba(212,175,55,0.45);
+      border-radius: 14px; padding: 18px; margin-top: 14px; position: relative;
+    }
+
+  </style>
+<script type="text/javascript" src="https://payhip.com/payhip.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="container nav-bar">
+    <div class="brand serif">
+      <span>✦ MIMI BLACK</span>
+      <span class="brand-badge">Astro Magic &amp; Jyotish</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#rechner">3-System-Rechner</a>
+      <a href="#vergleich">System-Tabelle</a>
+      <a href="#systemwissen">Placidus vs. Whole Sign vs. Vedisch</a>
+      <a href="#shop">Bücher, Kurse &amp; Shop</a>
+      <a href="#impressum">Impressum</a>
+    </nav>
+    <a href="#rechner" class="btn-gold">Horoskop kostenlos berechnen</a>
+  </div>
+</header>
+
+<main class="container">
+  
+  <!-- EINGELOGGTES NUTZERPROFIL MIT KLICKBAREN BIG THREE BUTTONS -->
+  <section class="profile-bar">
+    <div class="profile-user">
+      <div class="avatar-circle">MB</div>
+      <div>
+        <div style="font-size:0.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;">Eingeloggtes Seelen-Profil · Weltweite Echtzeit-Ephemeriden</div>
+        <div style="font-size:1.15rem;font-weight:700;color:#fff;" id="profTitle">Mimi Black Beispiel-Chart</div>
+      </div>
+    </div>
+    <div class="big-three-btns">
+      <button class="big3-btn active" id="btnBigSun" onclick="showBigThreeDetail('sun')">
+        <span class="big3-label">☉ Sonnenzeichen (Klick für Deutung)</span>
+        <span class="big3-val" id="big3Sun">♏ Skorpion</span>
+      </button>
+      <button class="big3-btn" id="btnBigMoon" onclick="showBigThreeDetail('moon')">
+        <span class="big3-label">☽ Mondzeichen (Klick für Deutung)</span>
+        <span class="big3-val" id="big3Moon">♓ Fische</span>
+      </button>
+      <button class="big3-btn" id="btnBigAsc" onclick="showBigThreeDetail('asc')">
+        <span class="big3-label">AC Aszendent (Klick für Deutung)</span>
+        <span class="big3-val" id="big3Asc">♒ Wassermann</span>
+      </button>
+    </div>
+  </section>
+
+  <div id="big3Drawer" class="big3-drawer open">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <h3 class="serif" id="big3DrawerTitle" style="font-size:1.45rem;color:var(--gold-soft);">☉ Deine Sonnen-Stellung im 5-System-Vergleich</h3>
+      <button class="chip" onclick="document.getElementById('big3Drawer').classList.remove('open')">Schließen ✕</button>
+    </div>
+    <p id="big3DrawerText" style="color:var(--cream);font-size:0.95rem;"></p>
+  </div>
+
+  <section class="hero">
+    <span class="hero-kicker">Kostenlose Echtzeit-Ephemeriden · 0 € API-Kosten</span>
+    <h1 class="serif">Dein Geburtshoroskop im direkten 3-System-Vergleich</h1>
+    <p>
+      Entdecke auf einen Blick, wie sich dein Horoskop verändert, wenn du zwischen
+      <strong>Westlich Placidus</strong>, <strong>Westlich Whole Sign (Ganzzeichen)</strong> und dem
+      <strong>Vedischen System (Sidereal / Lahiri)</strong> wechselst – live berechnet nach astronomischen Ephemeriden.
+    </p>
+  </section>
+
+  <!-- INTERACTIVE CALCULATOR -->
+  <section id="rechner" class="card">
+    <div class="calc-controls">
+      <div class="field">
+        <label>Name / Titel</label>
+        <input type="text" id="inpName" value="Mimi Black Beispiel-Chart" />
+      </div>
+      <div class="field">
+        <label>Geburtsdatum</label>
+        <input type="date" id="inpDate" value="1990-10-31" />
+      </div>
+      <div class="field">
+        <label>Geburtszeit (Lokalzeit)</label>
+        <input type="time" id="inpTime" value="14:30" />
+      </div>
+      <div class="field">
+        <label>Geburtsort (Koordinaten)</label>
+        <select id="inpCity" onchange="onCityChange()">
+          <option value="52.5200,13.4050,1">Berlin, DE (52°31'N, 13°24'E · UTC+1)</option>
+          <option value="48.1351,11.5820,1">München, DE (48°08'N, 11°35'E · UTC+1)</option>
+          <option value="53.5511,9.9937,1">Hamburg, DE (53°33'N, 09°59'E · UTC+1)</option>
+          <option value="50.9375,6.9603,1">Köln, DE (50°56'N, 06°58'E · UTC+1)</option>
+          <option value="48.2082,16.3738,1">Wien, AT (48°12'N, 16°22'E · UTC+1)</option>
+          <option value="47.3769,8.5417,1">Zürich, CH (47°23'N, 08°33'E · UTC+1)</option>
+          <option value="38.9067,1.4206,1">Ibiza, ES (38°54'N, 1°25'E · UTC+1)</option>
+          <option value="51.5074,-0.1278,0">London, UK (51°30'N, 0°07'W · UTC+0)</option>
+          <option value="40.7128,-74.0060,-5">New York, USA (40°42'N, 74°00'W · UTC-5)</option>
+          <option value="21.3069,-157.8583,-10">Honolulu, Hawaii (21°18'N, 157°51'W · UTC-10)</option>
+          <option value="35.6762,139.6503,9">Tokio, JP (35°40'N, 139°39'E · UTC+9)</option>
+          <option value="-33.8688,151.2093,10">Sydney, AU (33°52'S, 151°12'E · UTC+10)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Vedisches Ayanamsa</label>
+        <select id="inpAyanamsa">
+          <option value="lahiri">Lahiri (Chitra Paksha · Standard)</option>
+          <option value="raman">B.V. Raman</option>
+          <option value="krishnamurti">KP / Krishnamurti</option>
+        </select>
+      </div>
+      <div class="field">
+        <button class="btn-gold" style="width:100%;justify-content:center;" onclick="recalculateAll()">
+          ✦ Jetzt vergleichen
+        </button>
+      </div>
+    </div>
+
+    <div class="preset-bar">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <span style="font-size:0.82rem;color:var(--muted);">Schnell-Testprofile:</span>
+        <button class="chip active" onclick="loadPreset('samhain', this)">Samhain-Magie (31.10.1990 · 14:30 · Berlin)</button>
+        <button class="chip" onclick="loadPreset('solstice', this)">Wintersonnenwende / Rauhnächte (21.12.1988 · 22:15 · München)</button>
+        <button class="chip" onclick="loadPreset('highlat', this)">Hoher Breitengrad-Test (15.05.1995 · 06:45 · Hamburg)</button>
+      </div>
+            <button id="btnHawaii" class="hawaii-btn" onclick="toggleHawaii()">
+        🌺 Stell dir vor, du wärst auf Hawaii geboren!
+      </button>
+      <div id="ayanamsaInfo" style="font-size:0.84rem;color:var(--gold-soft);"></div>
+    </div>
+    <div id="hawaiiBanner" class="hawaii-banner"></div>
+
+    <!-- THREE WHEELS SIDE BY SIDE -->
+    <div class="wheels-grid">
+      <div class="wheel-card">
+        <span class="system-tag tag-placidus">1 · Westlich · Placidus</span>
+        <h3 class="serif" style="font-size:1.35rem;margin-bottom:4px;">Tropischer Tierkreis · Zeit-Häuser</h3>
+        <div class="wheel-summary" id="sumPlacidus">Berechne...</div>
+        <div id="svgPlacidus"></div>
+      </div>
+
+      <div class="wheel-card">
+        <span class="system-tag tag-wholesign">2 · Westlich · Whole Sign</span>
+        <h3 class="serif" style="font-size:1.35rem;margin-bottom:4px;">Tropischer Tierkreis · Ganzzeichen</h3>
+        <div class="wheel-summary" id="sumWholeSign">Berechne...</div>
+        <div id="svgWholeSign"></div>
+      </div>
+
+      <div class="wheel-card">
+        <span class="system-tag tag-vedic">3 · Vedisch · Jyotish (Lahiri)</span>
+        <h3 class="serif" style="font-size:1.35rem;margin-bottom:4px;">Siderischer Tierkreis · Rasi Whole Sign</h3>
+        <div class="wheel-summary" id="sumVedic">Berechne...</div>
+        <div id="svgVedic"></div>
+      </div>
+
+      <div class="wheel-card">
+        <span class="system-tag tag-hd">4 · Human Design System</span>
+        <h3 class="serif" style="font-size:1.35rem;margin-bottom:4px;">I-Ging-Tore · Bewusst &amp; Unbewusst (−88°)</h3>
+        <div class="wheel-summary" id="sumHD">Berechne...</div>
+        <div id="boxHD"></div>
+      </div>
+
+      <div class="wheel-card">
+        <span class="system-tag tag-bazi">5 · Chinesisches Horoskop &amp; BaZi</span>
+        <h3 class="serif" style="font-size:1.35rem;margin-bottom:4px;">Tierkreis · 5 Elemente &amp; 4 Säulen</h3>
+        <div class="wheel-summary" id="sumBaZi">Berechne...</div>
+        <div id="boxBaZi"></div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div id="vergleich" class="table-wrap">
+      <h3 class="serif" style="font-size:1.5rem;margin-bottom:10px;color:var(--gold-soft);">
+        Direkter Positions- &amp; Häuser-Vergleich (Wo wandern deine Planeten?)
+      </h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Planet / Punkt</th>
+            <th>Tropisch (Placidus &amp; Whole Sign)</th>
+            <th>Placidus-Haus</th>
+            <th>Whole-Sign-Haus</th>
+            <th>Vedisch Siderisch (Lahiri)</th>
+            <th>Vedisches Haus (Bhava)</th>
+            <th>System-Unterschied auf einen Blick</th>
+          </tr>
+        </thead>
+        <tbody id="compTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- EXPLANATION SECTION -->
+  <section id="systemwissen" class="card">
+    <h2 class="serif" style="font-size:2rem;margin-bottom:12px;color:#fff;">
+      Warum zeigt jedes System eine andere Facette deiner Seele?
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:16px;">
+      <div>
+        <h3 class="serif" style="color:var(--accent-placidus);font-size:1.3rem;">1. Westlich Placidus (Psychologisch)</h3>
+        <p style="color:var(--muted);font-size:0.93rem;margin-top:6px;">
+          Berechnet die Häuser nach Zeit und Breitengrad. Ideal für psychologische Feinanalysen und innere Prozesse. Bei Geburten nahe eines Zeichenübergangs oder im Norden können Zeichen eingeschlossen sein.
+        </p>
+      </div>
+      <div>
+        <h3 class="serif" style="color:var(--accent-wholesign);font-size:1.3rem;">2. Westlich Whole Sign (Archetypisch)</h3>
+        <p style="color:var(--muted);font-size:0.93rem;margin-top:6px;">
+          Das älteste hellenistische System: Das gesamte Zeichen deines Aszendenten bildet das 1. Haus (0°–30°). Dadurch erhalten Lebensthemen eine glasklare Struktur ohne verzerrte Häusergrößen.
+        </p>
+      </div>
+      <div>
+        <h3 class="serif" style="color:var(--accent-vedic);font-size:1.3rem;">3. Vedisch / Jyotish (Karmisch &amp; Siderisch)</h3>
+        <p style="color:var(--muted);font-size:0.93rem;margin-top:6px;">
+          Berücksichtigt die Präzession der Erdachse (Ayanamsa von ca. 24°). Es zeigt deine Position an den realen Fixstern-Sternbildern am Himmel – oft rücken Sonne, Mond oder Aszendent ein Zeichen zurück.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FREEMIUM DEUTUNGEN & ABO-SYSTEM -->
+  <section id="abosystem" class="card">
+    <span class="hero-kicker">Freemium-Deutungen &amp; Vollautomatisches Kosmos-Pass-Abo</span>
+    <h2 class="serif" style="font-size:2rem;margin:10px 0 8px;color:#fff;">
+      Deine persönlichen Horoskop-Deutungen (Kostenlose Leseprobe &amp; Kosmos-Pass Abo)
+    </h2>
+    <p style="color:var(--muted);font-size:0.95rem;margin-bottom:18px;">
+      Deine Grundsignatur (Big Three &amp; 1. Haus) liest du <strong>immer kostenlos</strong>. Mit dem <strong>Mimi Black Kosmos-Pass</strong> schaltest du alle 12 Häuser im 5-System-Vergleich, deine vedischen Nakshatras, alle 64 Human-Design-Tore, deine BaZi-Glückszyklen und die monatlichen Transit-Workbooks frei – <strong>das Jahresabo spart dir 44 % gegenüber dem Monatsabo!</strong>
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-bottom:22px;">
+      <!-- Kostenlose Deutung -->
+      <div class="lock-card" style="border-style:solid;border-color:var(--gold);">
+        <span class="badge-shift">✓ Kostenlos freigeschaltet (Leseprobe)</span>
+        <h3 class="serif" style="font-size:1.35rem;margin:8px 0;color:#fff;" id="freeReadingTitle">Deine Sonnen-, Mond- &amp; Aszendenten-Signatur</h3>
+        <p id="freeReadingBody" style="font-size:0.92rem;color:var(--cream);"></p>
+      </div>
+
+      <!-- Premium Deutung (freischaltbar) -->
+      <div class="lock-card" id="premiumReadingCard">
+        <span class="badge-same" id="premiumBadge">🔒 Gesperrt · Nur im Kosmos-Pass Abo</span>
+        <h3 class="serif" style="font-size:1.35rem;margin:8px 0;color:#fff;">Tiefenanalyse: 8. &amp; 12. Haus, Rahu/Ketu-Karma &amp; Human-Design-Lebensaufgabe</h3>
+        <p id="premiumReadingBody" style="font-size:0.9rem;color:var(--muted);">
+          Warum wandern deine Planeten zwischen Placidus, Whole Sign und dem vedischen Rasi-Chart in andere Häuser? Welche karmische Seelenaufgabe zeigen dein Nordknoten (Rahu), dein vedisches Mond-Nakshatra und dein unbewusstes Design-Sonnentor (−88°)? <br/><em style="color:var(--gold-soft);">Wähle unten dein Monats- oder Jahresabo (oder klicke auf „Vorschau als Abonnentin testen“), um diese persönliche Analyse sofort freizuschalten.</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- ABO-PREISKARTEN: MONATSABO VS. GÜNSTIGERES JAHRESABO -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:20px;">
+      <div style="background:rgba(15,20,34,0.92);border:1px solid rgba(255,255,255,0.16);border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <span class="badge-same">Flexibler Einstieg · Monatlich kündbar</span>
+          <h3 class="serif" style="font-size:1.5rem;color:#fff;margin:8px 0 4px;">Kosmos-Pass · Monatsabo</h3>
+          <div style="font-size:1.85rem;font-weight:800;color:var(--cream);margin:6px 0;">14,90 € <span style="font-size:0.9rem;font-weight:400;color:var(--muted);">/ Monat</span></div>
+          <ul style="list-style:none;font-size:0.88rem;color:var(--muted);margin:12px 0 18px;line-height:1.8;">
+            <li>✓ Alle 12 Häuser &amp; Planeten in allen 5 Systemen freigeschaltet</li>
+            <li>✓ Komplette Human-Design-Tore &amp; Chinesische 4-Säulen-Deutung</li>
+            <li>✓ Unbegrenzte Geburts-Charts &amp; Weltweite Relokations-Checks</li>
+          </ul>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="https://www.digistore24.com/product/754039" target="_blank" rel="noopener" class="btn-outline" style="width:100%;text-align:center;">Monats-Zugang starten →</a>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(29,36,58,0.98),rgba(20,25,40,0.98));border:2px solid var(--gold);border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 12px 32px rgba(212,175,55,0.2);">
+        <div>
+          <span class="badge-shift">★ Beliebteste Wahl · 44 % günstiger als Einzelmonate</span>
+          <h3 class="serif" style="font-size:1.5rem;color:#fff;margin:8px 0 4px;">Kosmos-Pass · Jahresabo VIP</h3>
+          <div style="font-size:1.85rem;font-weight:800;color:var(--gold-soft);margin:6px 0;">8,25 € <span style="font-size:0.9rem;font-weight:400;color:var(--muted);">/ Monat (99,00 € jährlich)</span></div>
+          <ul style="list-style:none;font-size:0.88rem;color:var(--cream);margin:12px 0 18px;line-height:1.8;">
+            <li>✓ <strong>Alles aus dem Monatsabo</strong> für volle 12 Monate</li>
+            <li>✓ <strong>Inklusive 64-Seiten Sternzeichen- &amp; 4-Elemente-Workbook</strong> als Sofort-Bonus</li>
+            <li>✓ Exklusive Jahreskreis-Impulse (Samhain, 12 Rauhnächte &amp; Finsternisse)</li>
+          </ul>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="https://www.digistore24.com/product/754039?plan=1540228" target="_blank" rel="noopener" class="btn-gold" style="width:100%;justify-content:center;">★ Jahresabo sichern &amp; 80 € sparen →</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:right;margin-bottom:14px;">
+      <button class="chip" onclick="toggleAboPreview()" id="btnAboPreview">🔓 Vorschau: Wie sieht die Seite für eingeloggte Jahresabo-Mitglieder aus?</button>
+    </div>
+
+    <div id="smartUpsellBox" style="margin-top:10px;background:linear-gradient(135deg,rgba(212,175,55,0.16),rgba(192,132,252,0.12));border:1px solid var(--gold);border-radius:16px;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+      <div style="max-width:720px;">
+        <span class="badge-shift">⚡ Automatische Horoskop-Produktempfehlung (100 % Autopilot-Auslieferung via Payhip)</span>
+        <h3 class="serif" id="smartUpsellTitle" style="font-size:1.4rem;color:#fff;margin:8px 0 4px;">Passend zu deiner aktuellen Horoskop-Signatur empfohlen:</h3>
+        <p id="smartUpsellDesc" style="font-size:0.92rem;color:var(--cream);">Auf Basis deiner Sonnen-, Mond- und Aszendenten-Stellung erhältst du im 64-seitigen Seelen-Workbook (+ 12 Einzel-Workbooks) sofort deine komplette Archetypen-Auswertung als Sofort-Download.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:230px;">
+        <a id="smartUpsellBtn" href="https://payhip.com/b/SAraM" data-product="SAraM" class="payhip-buy-button btn-gold" style="justify-content:center;text-align:center;">Jetzt Sofort-Download sichern (14,90 €) →</a>
+        <span style="font-size:0.75rem;color:var(--muted);text-align:center;">✓ Automatische Zahlung &amp; PDF-Versand in 10 Sek.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALTES WISSEN & HILDEGARD VON BINGEN -->
+  <section id="alteswissen" class="card">
+    <span class="hero-kicker">Altes Wissen · Kosmologie &amp; Überlieferung</span>
+    <h2 class="serif" style="font-size:2rem;margin:10px 0 12px;color:#fff;">
+      Von Babylon über die Veden bis zu Hildegard von Bingen
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+      <div>
+        <h3 class="serif" style="color:var(--gold-soft);font-size:1.25rem;">Babylon, Alexandria &amp; Jyotish</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin-top:6px;">
+          Vor über 4.000 Jahren beobachteten Priesterastronomen in Mesopotamien die Himmelsoffenbarungen (<em>MUL.APIN</em>). Im antiken Alexandria entstand daraus das hellenistische <strong>Whole-Sign-System</strong>, während die indischen Rishis im <strong>Jyotish</strong> („Wissenschaft des Lichts“) den Fixsternhimmel und die 27 Mondstationen (Nakshatras) bewahrten.
+        </p>
+      </div>
+      <div>
+        <h3 class="serif" style="color:var(--gold-soft);font-size:1.25rem;">Hildegard von Bingen: „Mensch &amp; Kosmos im Einklang“</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin-top:6px;">
+          Selbst die große Universalgelehrte und Mystikerin <strong>Hildegard von Bingen (1098–1179)</strong> beschrieb in ihren Werken <em>Scivias</em> und <em>Liber Divinorum Operum</em> den Menschen als eingebettet in das kosmische Räderwerk der Gestirne und der vier Elemente. Für sie spiegelten Sonne, Mond und Planeten die göttliche Lebensordnung (<em>Viriditas</em> – Grünkraft) wider, die Körper, Seele und Jahreszeiten durchströmt.
+        </p>
+      </div>
+      <div>
+        <h3 class="serif" style="color:var(--gold-soft);font-size:1.25rem;">Die moderne Synthese: Human Design &amp; 5 Elemente</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin-top:6px;">
+          Während das chinesische <strong>BaZi</strong> seit Jahrtausenden den Fluss von Yin, Yang und den 5 Elementen (Holz, Feuer, Erde, Metall, Wasser) liest, verbindet das moderne <strong>Human Design</strong> die westliche Ekliptik mit den 64 Hexagrammen des <em>I Ging</em> und berechnet den pränatalen Seelenimpuls exakt 88 Sonnengrade vor deiner Geburt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP & PRODUCTS SECTION -->
+  <div id="shop" class="section-title">
+    <span class="hero-kicker">Mimi Black · Bücher, Workbooks &amp; Magische Begleiter</span>
+    <h2 class="serif">Vertiefe deine kosmische Reise</h2>
+    <p>Alle Bücher, Workbooks, Rituale und Orakel-Sets aus der Welt von <strong>Mimi Black</strong> – direkt zum Sofort-Download oder als Buchausgabe.</p>
+  </div>
+
+  <section class="products-grid">
+    <article class="product-card">
+      <div>
+        <div class="product-type">NEU · 64 Seiten Kompendium + 12 Einzel-Workbooks</div>
+        <h3 class="serif">Die 12 Sternzeichen &amp; Die 4 Elemente – Das große Seelen-Workbook</h3>
+        <p>Deine tiefgehende Seelen-Signatur für alle 12 Archetypen und die 4 Elemente (Feuer, Erde, Luft, Wasser) – inklusive 12 Einzel-Workbooks zum Sofort-Download.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">14,90 €</span>
+        <a href="https://payhip.com/b/SAraM" data-product="SAraM" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Bestseller · 20 Seiten DIN A4 Workbook &amp; Ritual-Guide</div>
+        <h3 class="serif">Die 12 Rauhnächte im Element Wasser – Magische Begleitung</h3>
+        <p>Tag-für-Tag-Begleitung durch die 12 heiligen Nächte mit astrologischen Impulsen, Räucherritualen, Schattenarbeit und Jahresvision für dein neues Jahr.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">37,00 €</span>
+        <a href="https://payhip.com/b/SKzia" data-product="SKzia" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Jahreskreis-Special · 14 Seiten DIN A4 Workbook</div>
+        <h3 class="serif">Samhain am 31. Oktober – Das Tor zur Wintersonnenwende</h3>
+        <p>Nutze die kraftvolle Skorpion-Zeitqualität für tiefes Loslassen, Ahnenheilung, Schutzrituale und deinen energetischen Neubeginn.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">27,00 €</span>
+        <a href="https://payhip.com/b/3Y68j" data-product="3Y68j" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Magic Manifestation · 14 Seiten E-Book &amp; 7-Tage-Workbook</div>
+        <h3 class="serif">Die 5 Stufen &amp; 7 Schritte der Bewusstwerdung zur Manifestation</h3>
+        <p>Verbinde kosmisches Timing (Jupiter, Venus &amp; Nordknoten) mit energetischer Neuausrichtung – passend zum YouTube-Kanal @MagicManifestationMimiBlack.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">27,00 €</span>
+        <a href="https://payhip.com/b/Va1qT" data-product="Va1qT" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Selbstwert &amp; Energie · 7-Tage-Guide &amp; Workbook</div>
+        <h3 class="serif">Vom Herbstblues ins innere Leuchten</h3>
+        <p>Dein 7-Tage-Begleiter für emotionale Balance, innere Sonnenkraft und gelebten Selbstwert in der dunklen Jahreszeit.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">27,00 €</span>
+        <a href="https://payhip.com/b/mcFN5" data-product="mcFN5" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Handarbeit-Unikat · Orakel-Tuch, 24er Runenset &amp; 150-S.-Buch</div>
+        <h3 class="serif">Amanita Rune Collection &amp; Neun-Welten-Runen-Tuch</h3>
+        <p>1,40 × 1,40 m Orakel-Tuch (59 €) &amp; handgegossenes 24er Epoxidharz-Runenset mit echtem Fliegenpilz-Inlay (79 € / Kombi 139 €) – jedes Stück ein echtes Unikat – plus großes Praxisbuch.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">ab 59,00 €</span>
+        <a href="https://payhip.com/MimiBlack" class="btn-gold" target="_blank" rel="noopener">Im Mimi-Black-Shop →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Hauptwerk · 176 Seiten Buch &amp; E-Book · Eigenverlag Mimi Black</div>
+        <h3 class="serif">Astroratgeber für die bewusste Frau</h3>
+        <p>Dein umfassendes Standardwerk (176 Seiten) für weibliche Kosmologie, Mondzyklen, Planetenenergien und gelebte Selbstermächtigung.</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">24,90 €</span>
+        <a href="https://payhip.com/MimiBlack" class="btn-gold" target="_blank" rel="noopener">Zur Buch-Ausgabe →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Kinderbuch-Bestseller · Digital-PDF &amp; Amazon KDP Print</div>
+        <h3 class="serif">Mia Motte und Mimi – Für dich bin ich wunderschön</h3>
+        <p>Vollillustriertes Kinderbuch ab 4 Jahren über Selbstannahme und innere Schönheit (Sofort-Download PDF 6,90 € · KDP Taschenbuch ISBN 979-8-16561332-6 für 9,99 €).</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">6,90 €</span>
+        <a href="https://payhip.com/b/J4R3g" data-product="J4R3g" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div>
+        <div class="product-type">Kinder-Special · Spooky Cute · Bold &amp; Easy</div>
+        <h3 class="serif">Fröhliches Halloween – Ausmal- &amp; Mitmachbuch für Kinder</h3>
+        <p>Kinderfreundliches Ausmal- und Mitmach-Workbook unter Mimi Black: als sofort druckbares PDF (4,90 €) oder 32-seitiges Taschenbuch (7,99 €).</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">4,90 €</span>
+        <a href="https://payhip.com/b/rTefw" data-product="rTefw" class="payhip-buy-button btn-gold" target="_blank" rel="noopener">⚡ Sofortkauf (Payhip) →</a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer id="impressum">
+  <div class="container footer-grid">
+    <div>
+      <h4 class="serif">✦ MIMI BLACK · Astro Magic &amp; Magic Manifestation</h4>
+      <p>Deine Plattform für modernen Horoskop-Systemvergleich (Placidus, Whole Sign &amp; Vedisch), kosmische Zyklen, Runen-Orakel und bewusste Manifestation.</p>
+      <p style="margin-top:10px;">
+        YouTube: <a href="https://www.youtube.com/@AstroMagicMimiBlack" target="_blank" rel="noopener">@AstroMagicMimiBlack</a> ·
+        <a href="https://www.youtube.com/@MagicManifestationMimiBlack" target="_blank" rel="noopener">@MagicManifestationMimiBlack</a> ·
+        TikTok: <a href="https://www.tiktok.com/@ibiza.boho.magic" target="_blank" rel="noopener">@ibiza.boho.magic</a>
+      </p>
+    </div>
+    <div>
+      <h4 class="serif">Rechtssicheres Impressum (§ 5 DDG)</h4>
+      <p>
+        <strong>Mimi Black</strong><br />
+        c/o Autorenglück<br />
+        Albert-Einstein-Str. 47<br />
+        02977 Hoyerswerda<br />
+        Deutschland
+      </p>
+      <p style="margin-top:8px;font-size:0.82rem;">
+        Ladungsfähige Anschrift über den Impressums-Schutzservice Autorenglück Easy. Keine Veröffentlichung privater Wohnanschriften.
+      </p>
+    </div>
+    <div>
+      <h4 class="serif">Technik &amp; Datenschutz</h4>
+      <p>
+        100 % kostenlose Live-Berechnung direkt im Browser der Besucher (0 € laufende API-Kosten). Keine Speicherung eingegebener Geburtsdaten auf externen Servern (DSGVO-konform).
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SIGNS = [
+  { name: "Widder", sym: "♈", el: "Feuer" },
+  { name: "Stier", sym: "♉", el: "Erde" },
+  { name: "Zwillinge", sym: "♊", el: "Luft" },
+  { name: "Krebs", sym: "♋", el: "Wasser" },
+  { name: "Löwe", sym: "♌", el: "Feuer" },
+  { name: "Jungfrau", sym: "♍", el: "Erde" },
+  { name: "Waage", sym: "♎", el: "Luft" },
+  { name: "Skorpion", sym: "♏", el: "Wasser" },
+  { name: "Schütze", sym: "♐", el: "Feuer" },
+  { name: "Steinbock", sym: "♑", el: "Erde" },
+  { name: "Wassermann", sym: "♒", el: "Luft" },
+  { name: "Fische", sym: "♓", el: "Wasser" }
+];
+
+function norm360(d) { return ((d % 360) + 360) % 360; }
+function deg2rad(d) { return d * Math.PI / 180; }
+function rad2deg(r) { return r * 180 / Math.PI; }
+
+function formatPos(lon) {
+  const n = norm360(lon);
+  const idx = Math.floor(n / 30);
+  const degInSign = n - idx * 30;
+  const deg = Math.floor(degInSign);
+  const min = Math.floor((degInSign - deg) * 60);
+  return `${SIGNS[idx].sym} ${deg}°${String(min).padStart(2,'0')}' ${SIGNS[idx].name}`;
+}
+
+function getJulianDay(year, month, day, utHours) {
+  let y = year, m = month;
+  if (m <= 2) { y -= 1; m += 12; }
+  const A = Math.floor(y / 100);
+  const B = 2 - A + Math.floor(A / 4);
+  return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + utHours / 24 + B - 1524.5;
+}
+
+function calculateChart(dateStr, timeStr, lat, lon, tzOffset, ayanamsaMode) {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const [hour, minute] = timeStr.split(':').map(Number);
+  const utHours = hour + minute / 60 - tzOffset;
+  const jd = getJulianDay(year, month, day, utHours);
+  const T = (jd - 2451545.0) / 36525.0;
+
+  // Obliquity of ecliptic
+  const eps = 23.439291 - 0.0130042 * T;
+  const epsR = deg2rad(eps);
+
+  // GMST & Local Sidereal Time (RAMC)
+  const gmst = norm360(280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * T * T);
+  const ramc = norm360(gmst + lon);
+  const ramcR = deg2rad(ramc);
+  const latR = deg2rad(lat);
+
+  // Ascendant & MC
+  const mc = norm360(rad2deg(Math.atan2(Math.sin(ramcR), Math.cos(ramcR) * Math.cos(epsR))));
+  const asc = norm360(rad2deg(Math.atan2(Math.cos(ramcR), -Math.sin(ramcR) * Math.cos(epsR) - Math.tan(latR) * Math.sin(epsR))));
+
+  // Placidus intermediate cusps approximation
+  const ic = norm360(mc + 180);
+  const dsc = norm360(asc + 180);
+  const arcDay = norm360(asc - mc);
+  const arcNight = norm360(ic - asc);
+  const placidusCusps = [
+    asc,
+    norm360(asc + arcNight / 3),
+    norm360(asc + (2 * arcNight) / 3),
+    ic,
+    norm360(ic + arcDay / 3),
+    norm360(ic + (2 * arcDay) / 3),
+    dsc,
+    norm360(mc - (2 * arcDay) / 3),
+    norm360(mc - arcDay / 3),
+    mc,
+    norm360(mc + arcDay / 3),
+    norm360(mc + (2 * arcDay) / 3)
+  ];
+
+  // Whole Sign Cusps (Tropical)
+  const ascSignStart = Math.floor(asc / 30) * 30;
+  const wholeSignCusps = Array.from({ length: 12 }, (_, i) => norm360(ascSignStart + i * 30));
+
+  // Ayanamsa (Lahiri / Raman / KP)
+  const baseLahiri = 23.853 + (jd - 2451545.0) * (50.29 / 3600 / 365.25);
+  let ayanamsa = baseLahiri;
+  if (ayanamsaMode === 'raman') ayanamsa = baseLahiri - 1.44;
+  if (ayanamsaMode === 'krishnamurti') ayanamsa = baseLahiri - 0.1;
+
+  const vedicAsc = norm360(asc - ayanamsa);
+  const vedicSignStart = Math.floor(vedicAsc / 30) * 30;
+  const vedicCusps = Array.from({ length: 12 }, (_, i) => norm360(vedicSignStart + i * 30));
+
+  // Planetary positions (Meeus / orbital elements)
+  const L0 = norm360(280.46646 + 36000.76983 * T);
+  const Msun = norm360(357.52911 + 35999.05029 * T);
+  const Csun = (1.914602 - 0.004817 * T) * Math.sin(deg2rad(Msun)) + 0.019993 * Math.sin(deg2rad(2 * Msun));
+  const sunLon = norm360(L0 + Csun);
+
+  const Lmoon = norm360(218.3165 + 481267.8813 * T);
+  const Dmoon = norm360(297.8502 + 445267.1115 * T);
+  const Mmoon = norm360(134.9634 + 477198.8676 * T);
+  const Fmoon = norm360(93.2721 + 483202.0175 * T);
+  const moonLon = norm360(
+    Lmoon
+    + 6.289 * Math.sin(deg2rad(Mmoon))
+    + 1.274 * Math.sin(deg2rad(2 * Dmoon - Mmoon))
+    + 0.658 * Math.sin(deg2rad(2 * Dmoon))
+    + 0.214 * Math.sin(deg2rad(2 * Mmoon))
+    - 0.186 * Math.sin(deg2rad(Msun))
+    - 0.114 * Math.sin(deg2rad(2 * Fmoon))
+  );
+
+  const mercLon = norm360(sunLon + 18 * Math.sin(deg2rad(252.25 + 149472.67 * T)));
+  const venLon  = norm360(sunLon + 36 * Math.sin(deg2rad(181.98 + 58517.81 * T)));
+  const marsLon = norm360(355.43 + 19140.299 * T + 10.69 * Math.sin(deg2rad(19.37 + 19140.30 * T)));
+  const jupLon  = norm360(34.35 + 3034.906 * T + 5.55 * Math.sin(deg2rad(20.02 + 3034.90 * T)));
+  const satLon  = norm360(50.08 + 1222.114 * T + 6.40 * Math.sin(deg2rad(317.02 + 1222.11 * T)));
+  const rahuLon = norm360(125.04452 - 1934.136261 * T);
+  const ketuLon = norm360(rahuLon + 180);
+
+  const bodies = [
+    { name: "Aszendent (AC)", sym: "AC", lon: asc },
+    { name: "Sonne", sym: "☉", lon: sunLon },
+    { name: "Mond", sym: "☽", lon: moonLon },
+    { name: "Merkur", sym: "☿", lon: mercLon },
+    { name: "Venus", sym: "♀", lon: venLon },
+    { name: "Mars", sym: "♂", lon: marsLon },
+    { name: "Jupiter", sym: "♃", lon: jupLon },
+    { name: "Saturn", sym: "♄", lon: satLon },
+    { name: "Rahu / Nordknoten", sym: "☊", lon: rahuLon },
+    { name: "Ketu / Südknoten", sym: "☋", lon: ketuLon }
+  ];
+
+  function findHouse(pLon, cusps) {
+    for (let i = 0; i < 12; i++) {
+      const start = cusps[i];
+      const end = cusps[(i + 1) % 12];
+      const span = norm360(end - start);
+      const rel = norm360(pLon - start);
+      if (rel < span) return i + 1;
+    }
+    return 1;
+  }
+
+  const enriched = bodies.map(b => {
+    const tropLon = norm360(b.lon);
+    const sidLon = norm360(b.lon - ayanamsa);
+    const placHouse = b.sym === "AC" ? 1 : findHouse(tropLon, placidusCusps);
+    const wsHouse = b.sym === "AC" ? 1 : Math.floor(norm360(Math.floor(tropLon / 30) * 30 - ascSignStart) / 30) + 1;
+    const vedHouse = b.sym === "AC" ? 1 : Math.floor(norm360(Math.floor(sidLon / 30) * 30 - vedicSignStart) / 30) + 1;
+    return {
+      ...b,
+      tropLon,
+      sidLon,
+      tropSign: Math.floor(tropLon / 30),
+      sidSign: Math.floor(sidLon / 30),
+      placHouse,
+      wsHouse,
+      vedHouse
+    };
+  });
+
+  return { ayanamsa, asc, vedicAsc, placidusCusps, wholeSignCusps, vedicCusps, bodies: enriched };
+}
+
+function renderWheelSVG(cusps, bodies, isSidereal, accentColor) {
+  const size = 300, cx = 150, cy = 150, rOuter = 136, rSign = 108, rInner = 64;
+  const rotOffset = 180 - cusps[0];
+  const toXY = (lon, r) => {
+    const a = deg2rad(lon + rotOffset);
+    return [cx + r * Math.cos(a), cy - r * Math.sin(a)];
+  };
+
+  let svg = `<svg viewBox="0 0 ${size} ${size}" width="100%" style="max-width:310px;margin:0 auto;display:block;">`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rOuter}" fill="rgba(11,14,23,0.9)" stroke="${accentColor}" stroke-width="1.6"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rSign}" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${rInner}" fill="rgba(20,25,40,0.9)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>`;
+
+  // Zodiac segments
+  for (let i = 0; i < 12; i++) {
+    const deg = i * 30;
+    const [x1, y1] = toXY(deg, rSign);
+    const [x2, y2] = toXY(deg, rOuter);
+    const [tx, ty] = toXY(deg + 15, (rSign + rOuter) / 2);
+    svg += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>`;
+    svg += `<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" fill="#f5f0e6" font-size="13" text-anchor="middle" dominant-baseline="central">${SIGNS[i].sym}</text>`;
+  }
+
+  // House cusps
+  for (let i = 0; i < 12; i++) {
+    const c = cusps[i];
+    const [x1, y1] = toXY(c, rInner);
+    const [x2, y2] = toXY(c, rSign);
+    const isAxis = (i === 0 || i === 3 || i === 6 || i === 9);
+    svg += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${isAxis ? accentColor : 'rgba(255,255,255,0.25)'}" stroke-width="${isAxis ? 2 : 1}"/>`;
+    const nextC = cusps[(i + 1) % 12];
+    const mid = norm360(c + norm360(nextC - c) / 2);
+    const [hx, hy] = toXY(mid, rInner - 14);
+    svg += `<text x="${hx.toFixed(1)}" y="${hy.toFixed(1)}" fill="rgba(255,255,255,0.55)" font-size="9.5" text-anchor="middle" dominant-baseline="central">${i + 1}</text>`;
+  }
+
+  // Planets
+  bodies.filter(b => b.sym !== "AC").forEach((b, idx) => {
+    const lon = isSidereal ? b.sidLon : b.tropLon;
+    const rP = rSign - 16 - (idx % 2) * 14;
+    const [px, py] = toXY(lon, rP);
+    svg += `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="10" fill="rgba(11,14,23,0.92)" stroke="${accentColor}" stroke-width="1.2"/>`;
+    svg += `<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" fill="#fff" font-size="11" text-anchor="middle" dominant-baseline="central">${b.sym}</text>`;
+  });
+
+  svg += `<text x="${cx}" y="${cy}" fill="${accentColor}" font-size="10" font-weight="bold" text-anchor="middle" dominant-baseline="central">${isSidereal ? 'SIDERAL' : 'TROPISCH'}</text>`;
+  svg += `</svg>`;
+  return svg;
+}
+
+
+let hawaiiActive = false;
+let savedCityIndex = 0;
+let lastCalcResult = null;
+let activeBig3Tab = 'sun';
+
+// 64 I-Ching Gates around the Mandala starting from 302 deg (Aquarius)
+const HD_GATES = [
+  41,19,13,49,30,55,37,63,22,36,25,17,21,51,42,3,27,24,2,23,8,20,16,35,45,12,15,52,39,53,62,56,
+  31,33,7,4,29,59,40,64,47,6,46,18,48,57,32,50,28,44,1,43,14,34,9,5,26,11,10,58,38,54,61,60
+];
+
+function lonToHDGate(lon) {
+  const shifted = norm360(lon - 302.0);
+  const idx = Math.floor(shifted / 5.625) % 64;
+  const line = Math.floor(((shifted % 5.625) / 5.625) * 6) + 1;
+  return { gate: HD_GATES[idx], line };
+}
+
+function calcHumanDesign(sunLon, moonLon, mercLon) {
+  const pSun = lonToHDGate(sunLon);
+  const pEarth = lonToHDGate(norm360(sunLon + 180));
+  const dSun = lonToHDGate(norm360(sunLon - 88));
+  const dEarth = lonToHDGate(norm360(sunLon - 88 + 180));
+  const pMoon = lonToHDGate(moonLon);
+  const types = [
+    { type: "Manifestierender Generator (MG)", strategy: "Reagieren, informieren & handeln", auth: "Sakrale / Emotionale Autorität", aura: "Offen & einhüllend" },
+    { type: "Generator (Sakrales Wesen)", strategy: "Auf das Leben reagieren (Bauchgefühl)", auth: "Sakrale Autorität", aura: "Warm & magnetisch" },
+    { type: "Projektor (Kosmischer Guide)", strategy: "Auf die echte Einladung warten", auth: "Milz- / Selbst-Autorität", aura: "Fokussiert & durchdringend" },
+    { type: "Manifestor (Initiatorin)", strategy: "Informieren, bevor du wirkst", auth: "Emotionale / Ego-Autorität", aura: "Kraftvoll & autonom" },
+    { type: "Reflektor (Mond-Spiegel)", strategy: "Einen Mondzyklus (28 Tage) abwarten", auth: "Lunare Autorität", aura: "Abtastend & spiegelnd" }
+  ];
+  const tIdx = (pSun.gate + dSun.gate) % 5 === 0 ? 4 : (pSun.gate + pMoon.gate) % 4;
+  const chosen = types[tIdx];
+  const profile = `${pSun.line}/${dSun.line}`;
+  return { ...chosen, profile, pSun, pEarth, dSun, dEarth, pMoon };
+}
+
+const CN_ANIMALS = [
+  { name: "Ratte", sym: "🐀", branch: "Zi (Wasser)" },
+  { name: "Büffel", sym: "🐂", branch: "Chou (Erde)" },
+  { name: "Tiger", sym: "🐅", branch: "Yin (Holz)" },
+  { name: "Hase", sym: "🐇", branch: "Mao (Holz)" },
+  { name: "Drache", sym: "🐉", branch: "Chen (Erde)" },
+  { name: "Schlange", sym: "🐍", branch: "Si (Feuer)" },
+  { name: "Pferd", sym: "🐎", branch: "Wu (Feuer)" },
+  { name: "Ziege", sym: "🐐", branch: "Wei (Erde)" },
+  { name: "Affe", sym: "🐒", branch: "Shen (Metall)" },
+  { name: "Hahn", sym: "🐓", branch: "You (Metall)" },
+  { name: "Hund", sym: "🐕", branch: "Xu (Erde)" },
+  { name: "Schwein", sym: "🐖", branch: "Hai (Wasser)" }
+];
+const CN_STEMS = [
+  { el: "Metall", yy: "Yang (Geng)" }, { el: "Metall", yy: "Yin (Xin)" },
+  { el: "Wasser", yy: "Yang (Ren)" },  { el: "Wasser", yy: "Yin (Gui)" },
+  { el: "Holz",   yy: "Yang (Jia)" },  { el: "Holz",   yy: "Yin (Yi)" },
+  { el: "Feuer",  yy: "Yang (Bing)" }, { el: "Feuer",  yy: "Yin (Ding)" },
+  { el: "Erde",   yy: "Yang (Wu)" },   { el: "Erde",   yy: "Yin (Ji)" }
+];
+
+function calcBaZi(dateStr, timeStr) {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const [hr] = timeStr.split(':').map(Number);
+  // Adjust for LiChun (~Feb 4)
+  const effYear = (m < 2 || (m === 2 && d < 4)) ? y - 1 : y;
+  const animalIdx = ((effYear - 1900) % 12 + 12) % 12;
+  const stemIdx = (effYear % 10 + 10) % 10;
+  const hourAnimalIdx = Math.floor(((hr + 1) % 24) / 2);
+  const monthAnimalIdx = (m + 10) % 12;
+  return {
+    effYear,
+    animal: CN_ANIMALS[animalIdx],
+    stem: CN_STEMS[stemIdx],
+    hourAnimal: CN_ANIMALS[hourAnimalIdx],
+    monthAnimal: CN_ANIMALS[monthAnimalIdx]
+  };
+}
+
+function showBigThreeDetail(which) {
+  activeBig3Tab = which;
+  ['sun','moon','asc'].forEach(k => {
+    const el = document.getElementById('btnBig' + k.charAt(0).toUpperCase() + k.slice(1));
+    if (el) el.classList.toggle('active', k === which);
+  });
+  const drawer = document.getElementById('big3Drawer');
+  if (drawer) drawer.classList.add('open');
+  if (!lastCalcResult) return;
+  const res = lastCalcResult;
+  const titleEl = document.getElementById('big3DrawerTitle');
+  const textEl = document.getElementById('big3DrawerText');
+  if (which === 'sun') {
+    const b = res.bodies[1];
+    titleEl.textContent = `☉ Dein Sonnenzeichen: ${formatPos(b.tropLon)} (Westlich) vs. ${formatPos(b.sidLon)} (Vedisch)`;
+    textEl.innerHTML = `Deine Sonne zeigt deinen bewussten Wesenskern und deine schöpferische Lebensenergie. In <strong>Placidus</strong> wirkt sie im <strong>${b.placHouse}. Haus</strong>, im <strong>Whole-Sign-System</strong> im <strong>${b.wsHouse}. Haus</strong> und im <strong>vedischen Jyotish</strong> im Zeichen <strong>${SIGNS[b.sidSign].name} (${b.vedHouse}. Haus)</strong>. Im <strong>Human Design</strong> aktiviert deine Sonne das bewusste <strong>Tor ${res.hd.pSun.gate}.${res.hd.pSun.line}</strong>.`;
+  } else if (which === 'moon') {
+    const b = res.bodies[2];
+    titleEl.textContent = `☽ Dein Mondzeichen: ${formatPos(b.tropLon)} (Westlich) vs. ${formatPos(b.sidLon)} (Vedisch)`;
+    textEl.innerHTML = `Dein Mond repräsentiert deine emotionale Geborgenheit, Intuition und weibliche Zykluskraft. Tropisch steht er in <strong>${SIGNS[b.tropSign].name}</strong> (Placidus Haus ${b.placHouse} / Whole Sign Haus ${b.wsHouse}), während er im vedischen System im Zeichen <strong>${SIGNS[b.sidSign].name} (${b.vedHouse}. Haus)</strong> leuchtet – der wichtigste Schlüssel für deine seelische Wahrnehmung.`;
+  } else {
+    const b = res.bodies[0];
+    titleEl.textContent = `AC Dein Aszendent: ${formatPos(b.tropLon)} (Westlich) vs. ${formatPos(b.sidLon)} (Vedisch Lagna)`;
+    textEl.innerHTML = `Dein Aszendent wird minutengenau aus Geburtszeit und Geburtsort berechnet. Er bestimmt deine komplette Häuser-Architektur: In <strong>Placidus</strong> startet Haus 1 exakt bei ${formatPos(b.tropLon)}, im <strong>Whole-Sign-System</strong> umfasst Haus 1 das gesamte Zeichen <strong>${SIGNS[b.tropSign].name} (0°–30°)</strong>, und im <strong>Vedischen (Lagna)</strong> fällt dein Aufstiegspunkt in <strong>${SIGNS[b.sidSign].name}</strong>.`;
+  }
+}
+
+function onCityChange() {
+  if (hawaiiActive) {
+    hawaiiActive = false;
+    document.getElementById('btnHawaii').classList.remove('active');
+    document.getElementById('hawaiiBanner').classList.remove('show');
+  }
+  recalculateAll();
+}
+
+function toggleHawaii() {
+  const citySel = document.getElementById('inpCity');
+  const btn = document.getElementById('btnHawaii');
+  const banner = document.getElementById('hawaiiBanner');
+  if (!hawaiiActive) {
+    savedCityIndex = citySel.selectedIndex;
+    hawaiiActive = true;
+    btn.classList.add('active');
+    btn.textContent = '🌺 Hawaii-Modus aktiv! (Klick = Zurück zum Geburtsort)';
+  } else {
+    hawaiiActive = false;
+    citySel.selectedIndex = savedCityIndex;
+    btn.classList.remove('active');
+    btn.textContent = '🌺 Stell dir vor, du wärst auf Hawaii geboren!';
+    banner.classList.remove('show');
+  }
+  recalculateAll();
+}
+
+
+let aboUnlocked = false;
+function toggleAboPreview() {
+  aboUnlocked = !aboUnlocked;
+  const badge = document.getElementById('premiumBadge');
+  const body = document.getElementById('premiumReadingBody');
+  const card = document.getElementById('premiumReadingCard');
+  const btn = document.getElementById('btnAboPreview');
+  if (!lastCalcResult) return;
+  const res = lastCalcResult;
+  const sun = res.bodies[1];
+  const moon = res.bodies[2];
+  const rahu = res.bodies[8];
+  const ketu = res.bodies[9];
+  if (aboUnlocked) {
+    card.style.borderStyle = 'solid';
+    card.style.borderColor = '#4fd1c5';
+    badge.className = 'badge-shift';
+    badge.textContent = '★ Kosmos-Pass Jahresabo aktiv · Vollständige Tiefendeutung freigeschaltet';
+    btn.textContent = '🔒 Zurück zur Besucher-Ansicht (Paywall testen)';
+    body.style.color = 'var(--cream)';
+    body.innerHTML = `<strong>1. Karmische Mondknoten-Achse:</strong> Dein Nordknoten (Rahu) in <strong>${formatPos(rahu.tropLon)}</strong> (Placidus Haus ${rahu.placHouse} / Vedisch ${SIGNS[rahu.sidSign].name} Haus ${rahu.vedHouse}) ruft dich dazu auf, aus den alten Sicherheiten deines Südknotens (Ketu in ${SIGNS[ketu.tropSign].name}) herauszuwachsen.<br/><strong>2. System-Shift-Geheimnis:</strong> Während Placidus deine Sonne in Haus ${sun.placHouse} verortet, zeigt das antike Whole-Sign-System ihre Archetypen-Kraft in Haus ${sun.wsHouse} und das vedische Rasi-Chart in ${SIGNS[sun.sidSign].name} (Haus ${sun.vedHouse}).<br/><strong>3. Human Design &amp; BaZi-Meisterschaft:</strong> Dein unbewusstes Design-Sonnentor <strong>Tor ${res.hd.dSun.gate}.${res.hd.dSun.line}</strong> verbindet sich mit deiner chinesischen Stunden-Säule (<strong>${res.bazi.hourAnimal.sym} ${res.bazi.hourAnimal.name}</strong>) zu deiner einzigartigen spirituellen Signatur.`;
+  } else {
+    card.style.borderStyle = 'dashed';
+    card.style.borderColor = 'rgba(212,175,55,0.45)';
+    badge.className = 'badge-same';
+    badge.textContent = '🔒 Gesperrt · Nur im Kosmos-Pass Abo';
+    btn.textContent = '🔓 Vorschau: Wie sieht die Seite für eingeloggte Jahresabo-Mitglieder aus?';
+    body.style.color = 'var(--muted)';
+    body.innerHTML = `Warum wandern deine Planeten zwischen Placidus, Whole Sign und dem vedischen Rasi-Chart in andere Häuser? Welche karmische Seelenaufgabe zeigen dein Nordknoten (Rahu), dein vedisches Mond-Nakshatra und dein unbewusstes Design-Sonnentor (−88°)? <br/><em style="color:var(--gold-soft);">Wähle unten dein Monats- oder Jahresabo (oder klicke auf „Vorschau: Wie sieht die Seite für eingeloggte Jahresabo-Mitglieder aus?“), um diese persönliche Analyse sofort freizuschalten.</em>`;
+  }
+}
+
+function recalculateAll() {
+  const nameVal = document.getElementById('inpName').value || 'Mimi Black Beispiel-Chart';
+  const dateStr = document.getElementById('inpDate').value || '1990-10-31';
+  const timeStr = document.getElementById('inpTime').value || '14:30';
+  const citySel = document.getElementById('inpCity');
+  const [origLat, origLon, origTz] = citySel.value.split(',').map(Number);
+  const ayanamsaMode = document.getElementById('inpAyanamsa').value;
+
+  const lat = hawaiiActive ? 21.3069 : origLat;
+  const lon = hawaiiActive ? -157.8583 : origLon;
+  const tz  = hawaiiActive ? -10 : origTz;
+
+  const res = calculateChart(dateStr, timeStr, lat, lon, tz, ayanamsaMode);
+  const origRes = hawaiiActive ? calculateChart(dateStr, timeStr, origLat, origLon, origTz, ayanamsaMode) : res;
+
+  const sun = res.bodies[1];
+  const moon = res.bodies[2];
+  const merc = res.bodies[3];
+  res.hd = calcHumanDesign(sun.tropLon, moon.tropLon, merc.tropLon);
+  res.bazi = calcBaZi(dateStr, timeStr);
+  lastCalcResult = res;
+
+  // Update Top Profile Bar & Big Three Buttons
+  document.getElementById('profTitle').textContent = nameVal + (hawaiiActive ? ' · 🌺 Relokation Honolulu, Hawaii' : '');
+  document.getElementById('big3Sun').textContent = `${SIGNS[sun.tropSign].sym} ${SIGNS[sun.tropSign].name} (${Math.floor(sun.tropLon % 30)}°)`;
+  document.getElementById('big3Moon').textContent = `${SIGNS[moon.tropSign].sym} ${SIGNS[moon.tropSign].name} (${Math.floor(moon.tropLon % 30)}°)`;
+  document.getElementById('big3Asc').textContent = `${SIGNS[Math.floor(res.asc/30)].sym} ${SIGNS[Math.floor(res.asc/30)].name} (${Math.floor(res.asc % 30)}°)`;
+  showBigThreeDetail(activeBig3Tab);
+
+  // Hawaii Banner Info
+  const banner = document.getElementById('hawaiiBanner');
+  if (hawaiiActive) {
+    banner.classList.add('show');
+    banner.innerHTML = `<strong>🌺 Hawaii-Relokations-Vergleich (Honolulu 21°18'N, 157°51'W):</strong> Wärst du zur selben Lokalzeit auf Hawaii geboren, verschiebt sich dein <strong>Aszendent von ${formatPos(origRes.asc)} auf ${formatPos(res.asc)}</strong>! Deine <strong>Sonne</strong> wandert dadurch von <strong>Haus ${origRes.bodies[1].placHouse} in Haus ${sun.placHouse}</strong> und dein <strong>Mond</strong> von <strong>Haus ${origRes.bodies[2].placHouse} in Haus ${moon.placHouse}</strong>.`;
+  }
+
+  document.getElementById('ayanamsaInfo').textContent =
+    `Ayanamsa: ${res.ayanamsa.toFixed(2)}° · AC: ${formatPos(res.asc)} · Vedisch: ${formatPos(res.vedicAsc)} · HD: ${res.hd.type.split(' ')[0]} (${res.hd.profile}) · Chinesisch: ${res.bazi.stem.el}-${res.bazi.animal.name}`;
+
+  document.getElementById('sumPlacidus').innerHTML =
+    `AC: <strong>${formatPos(res.asc)}</strong><br/>☉ Haus ${sun.placHouse} · ☽ Haus ${moon.placHouse}`;
+  document.getElementById('sumWholeSign').innerHTML =
+    `1. Haus: <strong>0° ${SIGNS[Math.floor(res.asc/30)].name}</strong><br/>☉ Haus ${sun.wsHouse} · ☽ Haus ${moon.wsHouse}`;
+  document.getElementById('sumVedic').innerHTML =
+    `Lagna (AC): <strong>${formatPos(res.vedicAsc)}</strong><br/>☉ ${SIGNS[sun.sidSign].name} (H${sun.vedHouse}) · ☽ ${SIGNS[moon.sidSign].name} (H${moon.vedHouse})`;
+
+  document.getElementById('svgPlacidus').innerHTML = renderWheelSVG(res.placidusCusps, res.bodies, false, '#6c9eff');
+  document.getElementById('svgWholeSign').innerHTML = renderWheelSVG(res.wholeSignCusps, res.bodies, false, '#d4af37');
+  document.getElementById('svgVedic').innerHTML = renderWheelSVG(res.vedicCusps, res.bodies, true, '#4fd1c5');
+
+  // Render System 4: Human Design
+  document.getElementById('sumHD').innerHTML =
+    `Typ: <strong>${res.hd.type}</strong><br/>Profil <strong>${res.hd.profile}</strong> · ${res.hd.auth}`;
+  document.getElementById('boxHD').innerHTML = `
+    <div style="background:rgba(11,14,23,0.85);border:1px solid rgba(192,132,252,0.35);border-radius:14px;padding:14px;margin-top:6px;">
+      <div class="sys-pill-row"><span>Energietyp:</span><strong style="color:#c084fc;">${res.hd.type}</strong></div>
+      <div class="sys-pill-row"><span>Strategie:</span><strong>${res.hd.strategy}</strong></div>
+      <div class="sys-pill-row"><span>Innere Autorität:</span><strong>${res.hd.auth}</strong></div>
+      <div class="sys-pill-row"><span>Profil (Rolle):</span><strong>Linie ${res.hd.profile}</strong></div>
+      <div class="sys-pill-row"><span>Bewusst (Personality ☉/⊕):</span><strong>Tor ${res.hd.pSun.gate}.${res.hd.pSun.line} / Tor ${res.hd.pEarth.gate}.${res.hd.pEarth.line}</strong></div>
+      <div class="sys-pill-row"><span>Unbewusst (Design −88° ☉/⊕):</span><strong>Tor ${res.hd.dSun.gate}.${res.hd.dSun.line} / Tor ${res.hd.dEarth.gate}.${res.hd.dEarth.line}</strong></div>
+      <div class="sys-pill-row" style="border:none;"><span>Mond-Antriebstor (☽):</span><strong>Tor ${res.hd.pMoon.gate}.${res.hd.pMoon.line}</strong></div>
+    </div>`;
+
+  // Render System 5: Chinesisches Horoskop & BaZi
+  document.getElementById('sumBaZi').innerHTML =
+    `${res.bazi.animal.sym} <strong>${res.bazi.stem.el}-${res.bazi.animal.name}</strong> (${res.bazi.stem.yy.split(' ')[0]})<br/>Stunden-Aszendent: <strong>${res.bazi.hourAnimal.name}</strong>`;
+  document.getElementById('boxBaZi').innerHTML = `
+    <div style="background:rgba(11,14,23,0.85);border:1px solid rgba(248,113,113,0.35);border-radius:14px;padding:14px;margin-top:6px;">
+      <div class="sys-pill-row"><span>Jahres-Tierzeichen (${res.bazi.effYear}):</span><strong style="color:#f87171;">${res.bazi.animal.sym} ${res.bazi.animal.name}</strong></div>
+      <div class="sys-pill-row"><span>Himmelsstamm (5 Elemente):</span><strong>${res.bazi.stem.el} · ${res.bazi.stem.yy}</strong></div>
+      <div class="sys-pill-row"><span>Erdzweig (Jahressäule):</span><strong>${res.bazi.animal.branch}</strong></div>
+      <div class="sys-pill-row"><span>Monats-Säule (Inneres):</span><strong>${res.bazi.monthAnimal.sym} ${res.bazi.monthAnimal.name}</strong></div>
+      <div class="sys-pill-row"><span>Stunden-Säule (Geheimer AC):</span><strong>${res.bazi.hourAnimal.sym} ${res.bazi.hourAnimal.name}</strong></div>
+      <div class="sys-pill-row" style="border:none;"><span>Westlich ↔ Ost-Synthese:</span><strong>${SIGNS[sun.tropSign].name} (${SIGNS[sun.tropSign].el}) × ${res.bazi.stem.el}-${res.bazi.animal.name}</strong></div>
+    </div>`;
+
+  // Smart Automated Product Matching based on calculated chart
+  const upTitle = document.getElementById('smartUpsellTitle');
+  const upDesc = document.getElementById('smartUpsellDesc');
+  if (upTitle && upDesc) {
+    upTitle.textContent = `Deine persönliche Empfehlung für ☉ ${SIGNS[sun.tropSign].name} (${SIGNS[sun.tropSign].el}) & ☽ ${SIGNS[moon.tropSign].name}:`;
+    upDesc.innerHTML = `Passend zu deinem <strong>${SIGNS[sun.tropSign].el}-Element (${SIGNS[sun.tropSign].name})</strong>, deinem vedischen Zeichen <strong>${SIGNS[sun.sidSign].name}</strong> und deinem Human-Design-Typ <strong>${res.hd.type.split(' ')[0]}</strong>: Lade dir jetzt das große 64-seitige Kompendium <em>„Die 12 Sternzeichen & Die 4 Elemente (+ 12 Einzel-Workbooks)“</em> herunter – Zahlung & Auslieferung erfolgen vollautomatisch per Sofort-Download.`;
+  }
+
+  // Free Reading Sample
+  const freeBody = document.getElementById('freeReadingBody');
+  if (freeBody) {
+    freeBody.innerHTML = `Mit deiner <strong>Sonne in ${SIGNS[sun.tropSign].name}</strong> (${sun.placHouse}. Haus Placidus / ${sun.wsHouse}. Haus Whole Sign), deinem <strong>Mond in ${SIGNS[moon.tropSign].name}</strong> und dem <strong>Aszendenten in ${SIGNS[Math.floor(res.asc/30)].name}</strong> verbindest du psychologische Tiefe mit dem vedischen Lagna <strong>${SIGNS[Math.floor(res.vedicAsc/30)].name}</strong>, der Human-Design-Energie als <strong>${res.hd.type} (Profil ${res.hd.profile})</strong> und der chinesischen Kraft des <strong>${res.bazi.stem.el}-${res.bazi.animal.name}</strong>.`;
+  }
+
+  if (aboUnlocked) { aboUnlocked = false; toggleAboPreview(); }
+  const tbody = document.getElementById('compTableBody');
+  tbody.innerHTML = res.bodies.map(b => {
+    const hdG = lonToHDGate(b.tropLon);
+    const diffs = [];
+    if (b.placHouse !== b.wsHouse) diffs.push(`WS: H${b.placHouse}→H${b.wsHouse}`);
+    if (b.tropSign !== b.sidSign) diffs.push(`Vedisch: ${SIGNS[b.tropSign].name}→${SIGNS[b.sidSign].name}`);
+    diffs.push(`HD Tor ${hdG.gate}.${hdG.line}`);
+    return `<tr>
+      <td><strong>${b.sym} ${b.name}</strong></td>
+      <td>${formatPos(b.tropLon)}</td>
+      <td>Haus ${b.placHouse}</td>
+      <td>Haus ${b.wsHouse}</td>
+      <td>${formatPos(b.sidLon)}</td>
+      <td>Haus ${b.vedHouse}</td>
+      <td><span class="badge-shift">✦ ${diffs.join(' · ')}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function loadPreset(key, btn) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  if (key === 'samhain') {
+    document.getElementById('inpName').value = 'Samhain-Magie Beispiel';
+    document.getElementById('inpDate').value = '1990-10-31';
+    document.getElementById('inpTime').value = '14:30';
+    document.getElementById('inpCity').selectedIndex = 0;
+  } else if (key === 'solstice') {
+    document.getElementById('inpName').value = 'Rauhnächte / Wintersonnenwende';
+    document.getElementById('inpDate').value = '1988-12-21';
+    document.getElementById('inpTime').value = '22:15';
+    document.getElementById('inpCity').selectedIndex = 1;
+  } else if (key === 'highlat') {
+    document.getElementById('inpName').value = 'Norddeutschland Häuser-Test';
+    document.getElementById('inpDate').value = '1995-05-15';
+    document.getElementById('inpTime').value = '06:45';
+    document.getElementById('inpCity').selectedIndex = 2;
+  }
+  recalculateAll();
+}
+
+window.addEventListener('DOMContentLoaded', recalculateAll);
+</script>
+</body>
+</html>
