@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mimiblack-astro.github.io/mimi-black-astro/sitemap.xml
