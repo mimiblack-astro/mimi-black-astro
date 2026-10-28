@@ -162,8 +162,8 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
 </style>
 <script id="mimi-black-multi-checkout">
   window.MIMI_BLACK_SHOPS = {
-    digistore24_std: "https://www.digistore24.com/product/754039",
-    digistore24_vip: "https://www.digistore24.com/product/754039?plan=1540228",
+    digistore24_std: "https://www.checkout-ds24.com/product/756314",
+    digistore24_vip: "https://www.checkout-ds24.com/product/756315",
     payhip_store:    "https://payhip.com/MimiBlack",
     gumroad_store:   "https://mimiblack.gumroad.com",
     tentary_store:   "https://mimiblack.tentary.com",
@@ -180,7 +180,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
       shopLink.innerHTML = "Alle Bücher &amp; Kurse (Shop)";
       topInner.appendChild(shopLink);
     }
-    document.querySelectorAll("a[href*='digistore24.com/product/754039']").forEach(function(btn) {
+    document.querySelectorAll("a[href*='checkout-ds24.com/product/756314']").forEach(function(btn) {
       var isVip = btn.getAttribute("href").indexOf("plan=1540228") !== -1;
       var dsUrl = isVip ? s.digistore24_vip : s.digistore24_std;
       if (qs) dsUrl += (dsUrl.indexOf("?") === -1 ? "?" : "&") + qs;
