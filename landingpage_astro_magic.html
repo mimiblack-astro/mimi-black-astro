@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Astro Magic · Samhain, Wintersonnenwende &amp; Die 12 Rauhnächte im Element Wasser · Mimi Black</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #080616;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --gold: #E9C46A;
+  --amber: #F29F58;
+  --accent: #8B7CFF;
+  --text: #F4F0FF;
+  --muted: #C4BBE3;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Lora', serif;
+  background: radial-gradient(circle at 50% 0%, #1E1545 0%, #0B081E 45%, #060410 100%);
+  color: var(--text);
+  line-height: 1.65;
+}
+.container { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+header.top-bar {
+  border-bottom: 1px solid rgba(233,196,106,0.22);
+  background: #080616;
+}
+.top-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; max-width: 1020px; margin: 0 auto; }
+.brand { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.step-pills { display: flex; gap: 10px; font-family: 'Montserrat', sans-serif; font-size: 11px; }
+.step-pill { padding: 5px 12px; border-radius: 99px; border: 1px solid rgba(233,196,106,0.35); color: var(--muted); text-decoration: none; }
+.step-pill.active { background: rgba(233,196,106,0.14); color: var(--gold); font-weight: 600; }
+section { padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.kicker {
+  display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  background: rgba(233,196,106,0.1); border: 1px solid rgba(233,196,106,0.35);
+  padding: 6px 14px; border-radius: 99px; margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 700; line-height: 1.15; color: #fff; }
+h1 { font-size: 46px; margin-bottom: 18px; }
+h2 { font-size: 34px; margin-bottom: 14px; }
+h3 { font-size: 23px; margin-bottom: 10px; }
+.gold { color: var(--gold); }
+.amber { color: var(--amber); }
+.accent { color: var(--accent); }
+.lead { font-size: 18.5px; color: #E2DCFA; max-width: 820px; margin: 0 auto 26px; }
+.btn {
+  display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 14.5px; font-weight: 700;
+  letter-spacing: 0.04em; text-decoration: none; color: #0B081E;
+  background: linear-gradient(135deg, #F4D58D 0%, #E9C46A 55%, #D4A843 100%);
+  padding: 16px 32px; border-radius: 10px; box-shadow: 0 10px 28px rgba(233,196,106,0.28);
+}
+.btn-outline {
+  background: rgba(139,124,255,0.14); color: #fff; border: 1.5px solid var(--accent);
+  box-shadow: 0 10px 28px rgba(139,124,255,0.18);
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 26px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 26px; }
+.card {
+  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 26px;
+}
+.card-gold {
+  background: rgba(233,196,106,0.07); border: 1.5px solid rgba(233,196,106,0.42);
+  border-radius: 14px; padding: 28px;
+}
+.card-amber {
+  background: rgba(217,119,54,0.09); border: 1.5px solid rgba(217,119,54,0.45);
+  border-radius: 14px; padding: 28px;
+}
+.card-accent {
+  background: rgba(139,124,255,0.08); border: 1.5px solid rgba(139,124,255,0.42);
+  border-radius: 14px; padding: 28px;
+}
+.roadmap-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  background: rgba(15,12,34,0.9); border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 99px; padding: 12px 20px; margin-bottom: 12px;
+}
+.roadmap-left { display: flex; align-items: center; gap: 14px; font-family: 'Montserrat', sans-serif; font-size: 13.5px; font-weight: 600; }
+.num-circle {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.day-pill {
+  background: linear-gradient(135deg, #5B6CFF, #8B7CFF); color: #fff; font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 99px; white-space: nowrap;
+}
+.price-tag { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1; margin: 12px 0 6px; }
+ul.check-list { list-style: none; margin: 16px 0; }
+ul.check-list li { margin-bottom: 9px; padding-left: 24px; position: relative; font-size: 15px; }
+ul.check-list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
+.legal-box { font-size: 12.5px; color: var(--muted); background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin-top: 22px; }
+footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-inner">
+      <div class="brand">✦ ASTRO MAGIC · MIMI BLACK</div>
+      <div class="step-pills">
+        <a href="#schritt1" class="step-pill active">Schritt 1: Ursprung</a>
+        <a href="#schritt2" class="step-pill">Schritt 2: Samhain &amp; Rauhnächte</a>
+        <a href="#schritt3" class="step-pill">Schritt 3: Workbooks &amp; Kurs sichern</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="schritt1" style="text-align:center; padding-top:68px;">
+    <div class="container">
+      <div class="kicker">SCHRITT 1 · DEIN WINTER-ZYKLUS MIT MIMI BLACK (SAMHAIN 31.10. · YULE 21.12. · RAUHNÄCHTE 24.12.–06.01.)</div>
+      <h1>Die 12 Rauhnächte im Element <span class="gold">Wasser</span> &amp; das <span class="amber">Samhain</span>-Schwellenritual</h1>
+      <p class="lead">Warum 90 % aller Neujahrsvorsätze schon Mitte Januar verpuffen – und wie du den Bogen vom keltischen Neujahr an <b>Samhain (31. Oktober)</b> über die <b>Wintersonnenwende (21. Dezember)</b> bis in die <b>12 Rauhnächte</b> nutzt, um dein Jahr 2027 von innen heraus zu gestalten.</p>
+      <div style="margin: 26px 0;">
+        <a href="#schritt3" class="btn">Jetzt Begleit-Workbooks &amp; Winter-Reise sichern ✦</a>
+      </div>
+      <p style="font-size:13.5px; color:var(--muted);">Sofort-Download als PDF-Workbooks (20 Seiten Rauhnächte + 14 Seiten Samhain-Ritual) · 14 Tage Rückgaberecht über Digistore24</p>
+    </div>
+  </section>
+
+  <section id="schritt2">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="kicker">SCHRITT 2 · SOFORT-MEHRWERT: WIE SAMHAIN &amp; DIE RAUHNÄCHTE ZUSAMMENWIRKEN</div>
+        <h2>Kein komplizierter Pflicht-Marathon, sondern gelebte Jahreskreis-Magie</h2>
+        <p class="lead">Mit <b>Mimi Black</b> verbindest du altes Wissen aus Kosmologie, Jahreskreisfesten und der Fünf-Elemente-Lehre der TCM mit tiefer Psychologie:</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card-amber">
+          <div class="kicker">1. Auftakt am 31. Oktober</div>
+          <h3>Samhain &amp; Ahnenkraft</h3>
+          <p>Am 31. Oktober schließt du im Feuer-Bannritual ab, was aus 2026 gehen darf, klärst deine Wurzeln und versiegelst deinen geheimen Winter-Samen bis zur Wintersonnenwende am 21. Dezember.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">2. Astronomie &amp; TCM</div>
+          <h3>Die 12 Nächte im Element Wasser</h3>
+          <p>Zwischen Sonnenjahr (365 Tage) und Mondjahr (354 Tage) liegen genau <b>11 Tage und 12 Nächte</b>. Im Element Wasser steht jede Rauhnacht vom 24.12. bis 06.01. für einen Monat deines neuen Jahres 2027.</p>
+        </div>
+        <div class="card-gold">
+          <div class="kicker">3. Das 13-Wünsche-Ritual</div>
+          <h3>Vertrauen &amp; Umsetzung</h3>
+          <p>Vor dem 24.12. formulierst du 13 Herzenswünsche für 2027. 12 Wünsche übergibst du in den 12 Rauhnächten dem Feuer – für den <b>13. Wunsch</b> übernimmst du im neuen Jahr selbst die Verantwortung.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:38px;">
+        <h3 style="text-align:center; margin-bottom:20px;">Dein roter Faden durch die dunkle Jahreshälfte:</h3>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle" style="background:#D97736;">01</span><span><b>Samhain-Ritual (31. Oktober):</b> Schutzkreis, Ahnenklärung, Feuer-Bannritual &amp; versiegelter Winter-Samen</span></div>
+          <span class="day-pill" style="background:#D97736;">31. Oktober · Samhain</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">02</span><span><b>Wintersonnenwende (21. Dezember):</b> Öffnen deines Samhain-Samens &amp; Vorbereitung deiner 13 Wünsche</span></div>
+          <span class="day-pill">21. Dezember · Yule</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">03</span><span><b>1. bis 4. Rauhnacht:</b> Verwurzelung im Element Wasser &amp; klarer Frühlingskeim im Element Holz</span></div>
+          <span class="day-pill">Januar bis April 2027</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">04</span><span><b>5. bis 9. Rauhnacht:</b> Herzenswärme im Element Feuer &amp; tragende Alltagsmitte im Element Erde</span></div>
+          <span class="day-pill">Mai bis September 2027</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">05</span><span><b>10. bis 12. Rauhnacht &amp; 6. Januar:</b> Klarheit im Element Metall, Rückkehr ins Wasser &amp; dein 13. Wunsch</span></div>
+          <span class="day-pill">Oktober bis Dezember 2027</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schritt3">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="kicker">SCHRITT 3 · WÄHLE DEINE EDITION VON MIMI BLACK</div>
+        <h2>Starte jetzt mit den Begleit-Workbooks oder dem kompletten Videokurs</h2>
+        <p class="lead">Sofortiger PDF-Download nach deiner Bestellung über Digistore24.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card-gold" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="kicker">EDITION 1 · WORKBOOK-SET &amp; E-MAIL-BEGLEITUNG</div>
+            <h3>12 Rauhnächte im Element Wasser + Samhain-Ritual-Workbook</h3>
+            <div class="price-tag">37,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Kein Abo · Sofortiger PDF-Download nach dem Kauf</p>
+            <ul class="check-list">
+              <li><b>20-seitiges Rauhnächte-E-Book &amp; Begleit-Workbook (PDF, DIN A4):</b> Grundlagen, Vorbereitungs-Checkliste, Räucher-Guide, 13-Wünsche-Ritual &amp; 12 gestaltete Rauhnächte-Journalseiten.</li>
+              <li><b>INKLUSIVE: 14-seitiges Samhain-Ritual-Workbook (PDF, DIN A4)</b> für den 31. Oktober und den Übergang zur Wintersonnenwende am 21. Dezember.</li>
+              <li><b>12 tägliche Begleit-Impulse per E-Mail</b> vom 24.12.2026 bis 06.01.2027.</li>
+              <li><b>5-Elemente-Jahreskompass &amp; Monats-Rückspiegel für ganz 2027.</b></li>
+            </ul>
+          </div>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="https://payhip.com/b/SKzia" class="btn" style="width:100%;">Jetzt Standard-Paket für 37,00 € sichern</a>
+          </div>
+        </div>
+
+        <div class="card-accent" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="kicker" style="color:#D6C6FF; border-color:#8B7CFF; background:rgba(139,124,255,0.18);">EDITION 2 · VIP-KOMPLETTPAKET INKL. BEIDEN VIDEOKURSEN</div>
+            <h3>VIP-Winter-Reise: Samhain-Kurs + 12-Rauhnächte-Videokurs &amp; Workbooks</h3>
+            <div class="price-tag" style="color:#D6C6FF;">97,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Kein Abo · Beide Workbooks + alle 20 Video-/Audio-Module mit Mimi Black</p>
+            <ul class="check-list">
+              <li><b>Alles aus dem Standard-Paket enthalten:</b> Das 20-seitige Rauhnächte-Workbook + das 14-seitige Samhain-Ritual-Workbook (PDF) + alle 12 E-Mail-Impulse.</li>
+              <li><b>PLUS: Der komplette 5-teilige Samhain-Videokurs &amp; das geführte Abendritual</b> für den 31. Oktober.</li>
+              <li><b>PLUS: Der komplette 15-teilige Rauhnächte-Videokurs &amp; Audio-Guide von Mimi Black</b> für jede einzelne Rauhnacht vom 24. Dezember bis 6. Januar.</li>
+            </ul>
+          </div>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="https://payhip.com/b/t0Sr9" class="btn btn-outline" style="width:100%;">Jetzt VIP-Kurs-Paket für 97,00 € sichern</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:26px; text-align:center;">
+        <h3>🔒 14 Tage Rückgaberecht &amp; sichere Kaufabwicklung über Digistore24</h3>
+        <p style="font-size:14px; color:var(--muted); max-width:800px; margin:8px auto 0;">Für deine Bestellung gilt das gesetzliche 14-tägige Rückgaberecht über unseren Zahlungsanbieter Digistore24 GmbH (St.-Godehard-Straße 32, 31139 Hildesheim).</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="legal-box">
+        <b>Wichtiger Hinweis (Kein Heilversprechen / Haftungsausschluss):</b><br/>
+        Dieses digitale Produkt dient ausschließlich der kulturellen Inspiration, Selbstreflexion, Persönlichkeitsentwicklung und allgemeinen Selbstfürsorge. Es stellt keine medizinische, psychologische oder heilkundliche Diagnose dar, beinhaltet keine Heilversprechen und ersetzt keine ärztliche, psychotherapeutische oder heilpraktische Behandlung.<br/><br/>
+        <b>Hinweis zur Verkaufsabwicklung:</b> Die Abbuchung und Rechnungsstellung erfolgt über die Digistore24 GmbH, St.-Godehard-Straße 32, 31139 Hildesheim.
+      </div>
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="legal-box" style="margin-top:0;">
+          <b>Impressum (Angaben gemäß § 5 DDG &amp; § 18 Abs. 2 MStV):</b><br/>
+          Astro Magic · Mimi Black (Astro Magic &amp; Magic Manifestation)<br/>
+          Herausgeberin: Mimi Black · c/o Autorenglück, Albert-Einstein-Str. 47 · 02977 Hoyerswerda · Deutschland<br/>
+          E-Mail: yourconsciouslife@gmx.de
+        </div>
+        <div class="legal-box" style="margin-top:0;">
+          <b>Datenschutzhinweis (DSGVO):</b><br/>
+          Verantwortlich: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda (yourconsciouslife@gmx.de). Bestellabwicklung über Digistore24 GmbH (Art. 6 Abs. 1 lit. b DSGVO).
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:24px;">© 2026 Astro Magic · Mimi Black · Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+
+
+
+
+<style>
+  .checkout-bar {
+    margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(233,196,106,0.35);
+    text-align: center; font-family: 'Montserrat', sans-serif;
+  }
+  .checkout-bar-title {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #E9C46A; margin-bottom: 8px;
+  }
+  .checkout-links {
+    display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
+  }
+  .checkout-chip {
+    font-size: 11.5px; font-weight: 600; padding: 6px 12px; border-radius: 6px;
+    text-decoration: none; color: #F4F0FF; background: rgba(139,124,255,0.18);
+    border: 1px solid rgba(139,124,255,0.45); transition: all 0.15s ease;
+  }
+  .checkout-chip.primary-chip {
+    background: rgba(233,196,106,0.22); border-color: #E9C46A; color: #FFF8E7; font-weight: 700;
+  }
+  .checkout-chip:hover {
+    background: rgba(233,196,106,0.32); border-color: #E9C46A; color: #fff;
+  }
+  .top-store-link {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+    color: #E9C46A; text-decoration: none; padding: 5px 12px; border-radius: 99px;
+    border: 1px solid rgba(233,196,106,0.45); background: rgba(233,196,106,0.08);
+  }
+</style>
+<script id="mimi-black-multi-checkout">
+  window.MIMI_BLACK_SHOPS = {
+    payhip_product:  "https://payhip.com/b/SKzia",
+    payhip_vip:      "https://payhip.com/b/t0Sr9",
+    payhip_store:    "https://payhip.com/MimiBlack",
+    gumroad_store:   "https://mimiblackmagic.gumroad.com",
+    digistore24_std: "https://www.checkout-ds24.com/product/754039/",
+    digistore24_vip: "https://www.checkout-ds24.com/product/754039/?plan=1540228"
+  };
+  document.addEventListener("DOMContentLoaded", function() {
+    var s = window.MIMI_BLACK_SHOPS;
+    var qs = window.location.search ? window.location.search.substring(1) : "";
+    var topInner = document.querySelector(".top-inner");
+    if (topInner && !document.querySelector(".top-store-link")) {
+      var shopLink = document.createElement("a");
+      shopLink.href = "https://payhip.com/MimiBlack";
+      shopLink.target = "_blank";
+      shopLink.className = "top-store-link";
+      shopLink.innerHTML = "✦ Mimi Black Shop (Payhip)";
+      topInner.appendChild(shopLink);
+    }
+    document.querySelectorAll("a.btn").forEach(function(btn) {
+      var href = btn.getAttribute("href") || "";
+      if (href.indexOf("#") === 0 || btn.hasAttribute("download")) return;
+      var isVip = href.indexOf("plan=1540228") !== -1 || href.indexOf("b/t0Sr9") !== -1 || btn.classList.contains("btn-outline");
+      // Primary button goes directly to live Payhip product page for Standard, or Digistore24 VIP plan for VIP
+      var primaryUrl = isVip ? (s.payhip_vip || "https://payhip.com/b/t0Sr9") : s.payhip_product;
+      if (qs) primaryUrl += (primaryUrl.indexOf("?") === -1 ? "?" : "&") + qs;
+      btn.setAttribute("href", primaryUrl);
+      var parent = btn.parentElement;
+      if (parent && !parent.querySelector(".checkout-bar")) {
+        var bar = document.createElement("div");
+        bar.className = "checkout-bar";
+        bar.innerHTML =
+          '<div class="checkout-bar-title">Sofort-Download – Wähle deinen bevorzugten Checkout:</div>' +
+          '<div class="checkout-links">' +
+            '<a class="checkout-chip primary-chip" href="' + (isVip ? (s.payhip_vip || "https://payhip.com/b/t0Sr9") : s.payhip_product) + '" target="_blank" rel="noopener">⚡ Sofortkauf via Payhip (Live)</a>' +
+            '<a class="checkout-chip" href="' + s.gumroad_store + '" target="_blank" rel="noopener">Gumroad Shop</a>' +
+            '<a class="checkout-chip" href="' + (isVip ? s.digistore24_vip : s.digistore24_std) + '" target="_blank" rel="noopener">Digistore24</a>' +
+            '<a class="checkout-chip" href="' + s.payhip_store + '" target="_blank" rel="noopener">Alle 4 Bücher im Shop</a>' +
+          '</div>';
+        parent.appendChild(bar);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

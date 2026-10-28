@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mimi Black · Official Store &amp; Academy · Astro Magic &amp; Magic Manifestation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+    :root {
+      --bg: #070512;
+      --gold: #E9C46A;
+      --amber: #F29F58;
+      --violet: #9B7CFF;
+      --text: #F5F0FF;
+      --muted: #C6BCE2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Lora', serif;
+      background: radial-gradient(circle at 50% 0%, #241542 0%, #0D081E 48%, #06040E 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    header {
+      border-bottom: 1px solid rgba(233,196,106,0.25);
+      background: rgba(7,5,18,0.92);
+      padding: 16px 0;
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 0 24px; flex-wrap: wrap; gap: 12px; }
+    .brand { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; font-size: 11.5px; }
+    .nav-links a { color: var(--muted); text-decoration: none; padding: 6px 13px; border-radius: 99px; border: 1px solid rgba(233,196,106,0.3); }
+    .nav-links a:hover { color: #fff; border-color: var(--gold); background: rgba(233,196,106,0.12); }
+    .hero { text-align: center; padding: 64px 0 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .kicker {
+      display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      background: rgba(233,196,106,0.1); border: 1px solid rgba(233,196,106,0.38);
+      padding: 6px 15px; border-radius: 99px; margin-bottom: 16px;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: #fff; line-height: 1.15; }
+    h1 { font-size: 48px; margin-bottom: 16px; }
+    h2 { font-size: 34px; margin-bottom: 12px; }
+    h3 { font-size: 24px; margin-bottom: 8px; }
+    .gold { color: var(--gold); }
+    .amber { color: var(--amber); }
+    .violet { color: #C5AEFF; }
+    .lead { font-size: 18.5px; color: #E4DDFA; max-width: 820px; margin: 0 auto 24px; }
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 36px 0 56px; }
+    .prod-card {
+      background: rgba(255,255,255,0.035); border: 1.5px solid rgba(233,196,106,0.35);
+      border-radius: 16px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .prod-card.featured-book {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(38,22,70,0.75) 0%, rgba(16,10,32,0.88) 100%);
+      border: 2px solid rgba(233,196,106,0.65);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+    }
+    .prod-card.featured-halloween {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(58,24,84,0.85) 0%, rgba(24,11,44,0.94) 100%);
+      border: 2px solid #FF9F38;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.6);
+    }
+    .prod-top { display: flex; gap: 20px; align-items: start; margin-bottom: 18px; }
+    .prod-cover { width: 135px; border-radius: 8px; border: 1px solid rgba(233,196,106,0.45); box-shadow: 0 10px 24px rgba(0,0,0,0.55); }
+    .prod-cover-lg { width: 185px; border-radius: 10px; border: 1.5px solid rgba(233,196,106,0.65); box-shadow: 0 14px 32px rgba(0,0,0,0.65); }
+    .price-row { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--gold); margin: 6px 0 8px; }
+    .price-row span { font-family: 'Lora', serif; font-size: 13px; color: var(--muted); font-weight: 400; }
+    ul.bullets { list-style: none; margin: 10px 0 16px; font-size: 14.5px; color: #EAE4FA; }
+    ul.bullets li { margin-bottom: 6px; padding-left: 20px; position: relative; }
+    ul.bullets li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
+    .btn-primary {
+      display: block; width: 100%; text-align: center; font-family: 'Montserrat', sans-serif;
+      font-size: 13.5px; font-weight: 700; text-decoration: none; color: #090614;
+      background: linear-gradient(135deg, #F6DA94 0%, #E9C46A 55%, #D4A843 100%);
+      padding: 13px 20px; border-radius: 9px; margin-bottom: 10px;
+    }
+    .btn-secondary {
+      display: block; width: 100%; text-align: center; font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px; font-weight: 600; text-decoration: none; color: #fff;
+      background: rgba(155,124,255,0.16); border: 1px solid rgba(155,124,255,0.48);
+      padding: 10px 16px; border-radius: 8px; margin-bottom: 10px;
+    }
+    .multi-bar {
+      display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+      padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);
+      font-family: 'Montserrat', sans-serif; font-size: 10.5px;
+    }
+    .multi-bar a {
+      color: var(--muted); text-decoration: none; padding: 4px 9px; border-radius: 5px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+    }
+    .multi-bar a:hover { color: var(--gold); border-color: var(--gold); }
+    .channels-sec { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    footer { padding: 40px 0 56px; font-size: 12.5px; color: var(--muted); }
+    .legal-box { background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px; margin-top: 16px; }
+    @media (max-width: 780px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .prod-top { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">✦ MIMI BLACK · OFFICIAL STORE &amp; ACADEMY</div>
+      <div class="nav-links">
+        <a href="sternzeichen-kompendium.html" style="border-color:#8B7CFF; color:#CFC6FF; font-weight:700;">✦ NEU: 12 Sternzeichen &amp; 4 Elemente (64 S. · 14,90 €)</a>
+        <a href="#mia-motte" style="border-color:#F7A8C8; color:#FFD3E4; font-weight:700;">🦋 NEU: Mia Motte und Mimi</a>
+        <a href="halloween-kinderbuch.html" style="border-color:#FF9F38; color:#FFD28A; font-weight:700;">🎃 NEU: Halloween-Kinderbuch (4,90 € / 7,99 €)</a>
+        <a href="#fotokalender-2027" style="border-color:#E9C46A; color:#FFE8A3; font-weight:700;">📸 NEU: 5 Fine-Art Fotokalender &amp; Planer 2027</a>
+        <a href="samhain.html">Samhain (31.10.)</a>
+        <a href="rauhnaechte.html">12 Rauhnächte (24.12.–06.01.)</a>
+        <a href="manifestation.html">5 &amp; 7 Schritte Manifestation</a>
+        <a href="herbstleuchten.html">Herbstleuchten &amp; Selbstwert</a>
+        <a href="astroratgeber.html" style="border-color:var(--gold); color:var(--gold);">Astroratgeber (176 S. Buch · Demnächst)</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="kicker">ASTRO MAGIC · MAGIC MANIFESTATION · KIDS EDITION · VON MIMI BLACK</div>
+      <h1>Digitale Workbooks, Rituale &amp; <span class="gold">Bücher</span></h1>
+      <p class="lead">Wähle dein Begleitbuch, das neue <b>Halloween-Ausmal- &amp; Mitmachbuch für Kinder (4,90 € Digital / 7,99 € Print)</b> oder dein Kurspaket zum sofortigen PDF-Download über <b>Payhip</b>, <b>Gumroad</b> und <b>Digistore24</b>.</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div style="margin:0 0 24px;padding:18px 22px;border:1px solid #E9C46A;border-radius:14px;background:rgba(233,196,106,0.10);text-align:center;">
+      🔮 <b>Mimi Black · Offizielles 5-System-Horoskop &amp; Shop-Portal:</b>
+      <a href="https://mimiblack-astro.github.io/mimi-black-astro/" target="_blank" rel="noopener" style="color:#E9C46A;font-weight:700;">mimiblack-astro.github.io/mimi-black-astro</a>
+    </div>
+    <div class="product-grid">
+
+      <!-- NEU: 12 STERNZEICHEN & 4 ELEMENTE KOMPENDIUM (ASTRO MAGIC) -->
+      <div class="prod-card featured-book" id="sternzeichen-kompendium" style="border-color:#8B7CFF;">
+        <div><div class="prod-top">
+          <div style="flex-shrink:0; display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
+            <img src="assets/Sternzeichen_Workbook_Cover_Front.jpg" alt="Die 12 Sternzeichen &amp; Die 4 Elemente Cover" class="prod-cover-lg">
+            <img src="assets/preview_v6_widder-14.jpg" alt="Innenseiten-Vorschau Sternzeichen-Kompendium" class="prod-cover-lg" style="width:210px;">
+          </div>
+          <div>
+            <div class="kicker" style="margin-bottom:8px;">✦ NEU · ASTRO MAGIC · 64 SEITEN</div>
+            <h3>„Die 12 Sternzeichen &amp; Die 4 Elemente – Das große Kompendium &amp; Seelen-Workbook“ (64 S.)</h3>
+            <div class="price-row">14,90 € <span>Digital-PDF (64 S.)</span></div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li><b>Die 4 Elemente</b> Feuer, Erde, Luft &amp; Wasser</li>
+              <li><b>Alle 12 Archetypen &amp; Göttinnen-Signaturen</b></li>
+              <li><b>Licht- &amp; Schatten-Integration · Karma &amp; Lebensaufgabe</b></li>
+              <li><b>Ritual- &amp; Reflexionsseiten + 12 Einzel-Sternzeichen-Tafeln</b></li>
+            </ul>
+          </div>
+        </div></div>
+        <div>
+          <a href="sternzeichen-kompendium.html" class="btn-primary">✦ Zur Kompendium-Seite &amp; Vorschau ✦</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/er7M2" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">5-Spalten-Familienplaner 2027 (14,90 €)</a>
+            <a href="https://payhip.com/b/VsBOy" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Hexen-Kalender &amp; Astro-Almanach 2027 DE (14,90 €)</a>
+            <a href="https://payhip.com/b/9SZiP" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">2027 Witches' Calendar &amp; Almanac EN (14,90 €)</a>
+
+            <a href="sternzeichen-kompendium.html">Landingpage &amp; Vorschau</a>
+            <a href="https://payhip.com/b/SAraM" target="_blank" rel="noopener">Payhip Sofortkauf (14,90 €)</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">Payhip Shop (Mimi Black)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEU: MIA MOTTE UND MIMI – KINDERBUCH -->
+      <div class="prod-card featured-book" id="mia-motte" style="border-color:#F7A8C8;">
+        <div><div class="prod-top">
+          <div style="flex-shrink:0;"><img src="assets/Mia-Motte-und-Mimi-Cover-Front.jpg" alt="Mia Motte und Mimi – Für dich bin ich wunderschön Cover" class="prod-cover-lg"></div>
+          <div>
+            <div class="kicker" style="margin-bottom:8px; border-color:#F7A8C8; color:#FFD3E4;">🦋 NEU · ILLUSTRIERTES KINDERBUCH AB 4 JAHREN</div>
+            <h3>Mia Motte und Mimi – Für dich bin ich wunderschön</h3>
+            <div class="price-row" style="color:#FFD3E4;">6,90 € <span>Digital-PDF</span> &nbsp;·&nbsp; 9,99 € <span>Amazon-Taschenbuch</span></div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>Liebevoll illustriertes Kinderbuch von <b>Mimi Black</b> über Selbstwert &amp; Freundschaft</li>
+              <li>Taschenbuch · ISBN 979-8-16561332-6</li>
+            </ul>
+          </div>
+        </div></div>
+        <div>
+          <a href="https://payhip.com/b/J4R3g" class="btn-primary" target="_blank" rel="noopener">🦋 Digital-PDF für 6,90 € sichern ✦</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/J4R3g" target="_blank" rel="noopener">Payhip (6,90 €)</a>
+            <a href="https://www.amazon.de/s?k=9798165613326" target="_blank" rel="noopener">Amazon-Taschenbuch (9,99 €)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEU & SOFORT VERFÜGBAR: HALLOWEEN AUSMAL- & MITMACHBUCH FÜR KINDER -->
+      <div class="prod-card featured-halloween" id="halloween-kinderbuch">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0; display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
+              <img src="assets/Halloween_Workbook_Cover_Front.jpg" alt="Fröhliches Halloween – Ausmal- &amp; Mitmachbuch für Kinder Cover" class="prod-cover-lg" style="border-color:#FF9F38;">
+              <img src="assets/Halloween_Innenseiten_Vorschau.png" alt="Innenseiten-Vorschau Halloween Ausmalbuch" class="prod-cover-lg" style="width:210px; border-color:rgba(255,255,255,0.3);">
+            </div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px; border-color:#FF9F38; color:#FFD28A; background:rgba(255,159,56,0.16);">🎃 NEU &amp; SOFORT LIEFERBAR (OHNE ISBN) · FÜR KINDER AB 4 JAHREN</div>
+              <h3>Fröhliches Halloween – Ausmal- &amp; Mitmachbuch für Kinder (Spooky Cute · Bold &amp; Easy)</h3>
+              <div class="price-row" style="color:#FFD28A;">4,90 € <span>Digital-PDF zum Ausdrucken (17 S.)</span> &nbsp;·&nbsp; 7,99 € <span>Taschenbuch (32 S. Print)</span></div>
+              <ul class="bullets" style="margin-top:10px;">
+                <li><b>15 liebevolle Ausmal- &amp; Rätselseiten im „Spooky Cute · Bold &amp; Easy“-Stil:</b> Extra dicke Konturen – perfekt für kleine Hände ab 4 Jahren (komplett ohne Gruseln!)</li>
+                <li><b>Fröhliche Figuren, die Kinder lieben:</b> Kürbis-König Kalle, das kleine Kicher-Gespenst, Zauberkätzchen Luna, Zauberkessel, Fledermaus Finni, Eule Hedwig, Zauber-Welpe Bello &amp; Kuschel-Monster</li>
+                <li><b>Tolle Mitmach-Extras:</b> Eigenes Kürbisgesicht entwerfen, Lutscher &amp; Sterne zählen, großes Zähl-Rätsel und deine persönliche <b>Halloween-Künstler-Urkunde</b></li>
+                <li><b>Sofort verfügbar:</b> Digital-PDF (`4,90 €`) beliebig oft für die eigenen Kinder ausdruckbar · Taschenbuch (`7,99 €`) mit einseitigem Druck &amp; Schutz-Rückseiten</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/rTefw" target="_blank" rel="noopener" class="btn-primary" style="background:linear-gradient(135deg, #FFE082 0%, #FFB347 55%, #F28C28 100%);">🎃 Zur Kinderbuch-Seite, Innenseiten-Vorschau &amp; Sofort-Download (4,90 € Digital / 7,99 € Taschenbuch) ✦</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/rTefw" target="_blank" rel="noopener" style="color:#FFD28A;border-color:#FF9F38;font-weight:700;">Payhip Direktkauf (4,90 €)</a>
+            <a href="halloween-kinderbuch.html" style="color:#FFD28A;border-color:#FF9F38;font-weight:700;">Kinderbuch-Landingpage &amp; Vorschau</a>
+            <a href="https://www.checkout-ds24.com/product/756179" target="_blank" rel="noopener">Digistore24 (4,90 €)</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">Payhip Shop (Mimi Black)</a>
+            <a href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">Gumroad Shop</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- NEU: DIE 5 FINE-ART FOTOKALENDER & PLANER 2027 VON MIMI BLACK (100 % ECHTE FOTOGRAFIE · OHNE KI) -->
+      <div class="prod-card featured-book" id="fotokalender-2027" style="border-color:#E9C46A;">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+              <img src="assets/kalender-samtpfoten-katzen-cover.jpg" alt="Katzenkalender 2027 Samtpfoten & Seelenblicke" class="prod-cover-lg" style="width:195px;">
+              <img src="assets/kalender-bluetenzauber-cover.jpg" alt="Wandkalender 2027 Blütenzauber & Blumen" class="prod-cover-lg" style="width:195px;">
+              <img src="assets/kalender-wunderwerk-natur-cover.jpg" alt="Wandkalender 2027 Wunderwerk Natur" class="prod-cover-lg" style="width:195px;">
+            </div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">📸 NEU &amp; SOFORT VERFÜGBAR · 100 % ECHTE NATUR-, MAKRO- &amp; KATZENFOTOGRAFIE (OHNE KI) · VON MIMI BLACK</div>
+              <h3>Fine-Art Fotokalender-Kollektion 2027 &amp; Interaktiver Achtsamkeits-Planer (Print &amp; Sofort-Download)</h3>
+              <div class="price-row">ab 12,90 € <span>Digital/Printable PDF (300 DPI)</span> &nbsp;·&nbsp; ab 19,90 € <span>Print-Edition (DIN A4 / A3)</span></div>
+              <ul class="bullets" style="margin-top:10px;">
+                <li><b>1. Katzenkalender 2027 „Samtpfoten &amp; Seelenblicke“ (14 S. DIN A4/A3 Querformat):</b> 12 echte, gestochen scharfe Katzenfotografien durch die Jahreszeiten im unbeschnittenen Fine-Art-Passepartout (<b>14,90 €</b> Printable PDF / <b>21,90 €</b> Print) – <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:var(--gold);">Im 5er-Paket sichern (Payhip)</a></li>
+                <li><b>2. Wandkalender 2027 „Blütenzauber &amp; Blumen“ (14 S. DIN A4/A3 Querformat):</b> 12 farboptimierte echte Blüten- und Blumen-Aufnahmen mit Achtsamkeits-Impulsen (<b>14,90 €</b> Printable PDF / <b>21,90 €</b> Print) – <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:var(--gold);">Im 5er-Paket sichern (Payhip)</a></li>
+                <li><b>3. Wandkalender 2027 „Wunderwerk Natur – Insekten &amp; Blüten im Mikrokosmos“ (14 S. DIN A4/A3):</b> Echte Makro-Momente mit Bienen, Schmetterlingen &amp; Blüten (<b>14,90 €</b> Printable PDF / <b>21,90 €</b> Print) – <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:var(--gold);">Im 5er-Paket sichern (Payhip)</a></li>
+                <li><b>4. Immerwährender Geburtstagskalender „Blüten &amp; Insekten“ (13 S. DIN A4 Hochformat):</b> Jedes Jahr wiederverwendbar für alle Geburtstage &amp; Jahrestage (<b>12,90 €</b> Printable PDF / <b>19,90 €</b> Print) – <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:var(--gold);">Im 5er-Paket sichern (Payhip)</a></li>
+                <li><b>5. Interaktiver Digitalplaner 2027 „Natur &amp; Achtsamkeit“ (18 S. mit klickbaren Tabs):</b> Für iPad / GoodNotes / Notability &amp; zum Ausdrucken inkl. Jahres-, Monats-, Wochen- &amp; Tagesplaner (<b>19,90 €</b>) – <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:var(--gold);">Im 5er-Paket sichern (Payhip)</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/8D13B" class="btn-primary" target="_blank" rel="noopener">📸 Jetzt alle 5 Fine-Art Kalender &amp; Digitalplaner 2027 im Komplett-Paket sichern (44,00 € · Payhip) ✦</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/er7M2" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Katzen-Familienplaner 2027 (14,90 €)</a>
+            <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener">5er Kalender-Paket (44,00 € · Payhip)</a>
+            <a href="https://www.checkout-ds24.com/product/756178" target="_blank" rel="noopener">5er Paket via Digistore24 (44,00 €)</a>
+            <a href="https://www.checkout-ds24.com/product/756177" target="_blank" rel="noopener">Familienplaner via Digistore24 (14,90 €)</a>
+            <a href="https://payhip.com/b/X7yn3" target="_blank" rel="noopener">Krafttier-Kalender 2027 (19,90 €)</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">Payhip Shop</a>
+            <a href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">Gumroad Shop</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- NEU: DIE 4 NEUEN SAMHAIN-PRODUKTE (DE & EN · PRODUKTE 10 BIS 13) -->
+      <div class="prod-card featured-book" id="samhain-kollektion-2026" style="border-color:#F29F58;">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+              <img src="assets/Cover_10_Samhain_Sperrnaechte_Rauhnaechte_Mimi_Black.jpg" alt="Samhain Sperrnächte 13 Wünsche Workbook" class="prod-cover" style="width:118px;">
+              <img src="assets/Cover_11_Samhain_Ritual_Orakel_Kit_Mimi_Black.jpg" alt="Samhain Ritual und Orakel Kit Printables" class="prod-cover" style="width:118px;">
+              <img src="assets/Cover_12_Samhain_12_Sternzeichen_Schatten_Mimi_Black.jpg" alt="Samhain 12 Sternzeichen Schatten Workbook" class="prod-cover" style="width:118px;">
+              <img src="assets/Cover_13_Samhain_Through_The_Veil_Mimi_Black_EN.jpg" alt="Samhain Through The Veil English Edition" class="prod-cover" style="width:118px;">
+            </div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px; border-color:#F29F58; color:#FFD2A6;">🔥 NEU ZU SAMHAIN (31. OKTOBER) · 4 EXKLUSIVE WORKBOOKS &amp; PRINTABLE-KITS (DE &amp; EN)</div>
+              <h3>Die große Samhain-, Sperrnächte-, Orakel- &amp; 12-Sternzeichen-Kollektion von Mimi Black</h3>
+              <div class="price-row" style="color:#FFD2A6;">ab 12,90 € <span>Sofort-Download (DIN A4 PDF · Druckfertig &amp; Interaktiv)</span></div>
+              <ul class="bullets" style="margin-top:10px;">
+                <li><b>1. Von Samhain durch die 12 Sperrnächte in die Rauhnächte – Das große Loslass- &amp; 13-Wünsche-Workbook (24 S. · 19,90 €):</b> Inkl. 12 Sperrnächte-Seiten (8.–19.12.), 13 ausschneidbaren Wunschzettel-Streifen &amp; Bannbrief </li>
+                <li><b>2. Das magische Samhain-Ritual- &amp; Orakel-Kit zum Sofort-Ausdrucken (16 S. · 12,90 €):</b> 8 Printables inkl. 12 Samhain-Orakelkarten, 8 Feuer-Bannzetteln, Ahnenbrief, 3-Tore-Legeschablone &amp; 4 Schutz-Siegeln </li>
+                <li><b>3. Samhain &amp; Skorpion-Saison: Schatten- &amp; Loslass-Workbook für alle 12 Sternzeichen (28 S. · 14,90 €):</b> Je 2 Seiten für Widder bis Fische (Sonne, Mond &amp; Aszendent) inkl. 12 Pergament-Loslass-Blättern </li>
+                <li><b>4. 🇬🇧 SAMHAIN – Through the Veil: Portal to the Winter Solstice (14 Pages English Edition · 27,00 €):</b> Sacred Celtic New Year, Ancestor Healing &amp; Shadow Release Workbook (<a href="https://www.checkout-ds24.com/product/756165" target="_blank" rel="noopener" class="btn btn-outline" style="padding:12px 14px;font-size:12.5px;">💳 Digistore24</a>)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="samhain.html" class="btn-primary">🔥 Zur großen Samhain-Übersicht &amp; allen 4 Editionen (ab 12,90 €) ✦</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">10 · Sperrnächte &amp; 13 Wünsche (24 S. · 19,90 €)</a>
+            <a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">11 · Samhain Printable-Kit (16 S. · 12,90 €)</a>
+            <a href="https://payhip.com/b/SAraM" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">12 · Samhain 12 Sternzeichen (28 S. · 14,90 €)</a>
+            <a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">13 · Samhain English Edition (14 S. · 27,00 €)</a>
+            <a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener">Payhip Direktkauf</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">Payhip Shop (Mimi Black)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 1: SAMHAIN -->
+      <div class="prod-card">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="assets/astro-magic-samhain-cover.png" alt="Samhain Workbook Cover" class="prod-cover"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">ASTRO MAGIC · 31. OKTOBER</div>
+              <h3>Samhain am 31. Oktober: Das Tor zur Wintersonnenwende</h3>
+              <div class="price-row">27,00 € <span>inkl. MwSt. · 14 Seiten PDF + Kurs-Option</span></div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li>Das keltische Neujahrs- &amp; Schwellenritual zur Dunkelhälfte &amp; Wintersonnenwende (21.12.)</li>
+            <li>Altar-Checkliste, Räucher-Guide (mit &amp; ohne Rauch) &amp; magischer Schutzkreis</li>
+            <li>Ahnen-Achtung, großes Feuer-Bannritual im Kessel &amp; 3-Karten-/3-Runen-Orakel</li>
+            <li>Dein mit Wachs versiegelter Winter-Samen bis zum 21. Dezember + Traum-Tagebuch</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/3Y68j" class="btn-primary" target="_blank" rel="noopener">⚡ Jetzt Samhain-Workbook sofort kaufen (27,00 € · Payhip) ✦</a>
+          <a href="https://payhip.com/b/t0Sr9" target="_blank" rel="noopener" class="btn-secondary">VIP-Winter-Bundle (Samhain + 12 Rauhnächte Videokurs · 97 €)</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Payhip Direktkauf</a>
+            <a href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">Gumroad Shop</a>
+            <a href="https://www.checkout-ds24.com/product/754039/" target="_blank" rel="noopener">Digistore24</a>
+            <a href="samhain.html">Ausführliche Infos / Landingpage</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 2: 12 RAUHNÄCHTE -->
+      <div class="prod-card">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="assets/astro-magic-rauhnaechte-cover.png" alt="12 Rauhnächte Workbook Cover" class="prod-cover"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">ASTRO MAGIC · 24.12. BIS 06.01.</div>
+              <h3>Die 12 Rauhnächte im Element Wasser</h3>
+              <div class="price-row">37,00 € <span>inkl. MwSt. · 20 Seiten PDF + 12 Impulse</span></div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li>Wie die 12 Rauhnächte zwischen Sonnen- und Mondjahr wirklich funktionieren</li>
+            <li>Das Ritual der 13 Wünsche Schritt für Schritt + Räucher- &amp; Vorbereitungs-Guide</li>
+            <li>12 gestaltete Rauhnächte-Journalseiten für deine 12 Monate im Jahr 2027</li>
+            <li>Optional als 15-teiliger Video- &amp; Audio-Kurs mit Mimi Black (VIP-Edition 97 €)</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/SKzia" class="btn-primary" target="_blank" rel="noopener">⚡ Jetzt 12-Rauhnächte-Workbook sofort kaufen (37,00 € · Payhip) ✦</a>
+          <a href="https://payhip.com/b/t0Sr9" target="_blank" rel="noopener" class="btn-secondary">VIP-Komplettpaket inkl. 15-teiligem Videokurs (97 €)</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/SKzia" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Payhip Direktkauf</a>
+            <a href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">Gumroad Shop</a>
+            <a href="https://www.checkout-ds24.com/product/754039/" target="_blank" rel="noopener">Digistore24</a>
+            <a href="rauhnaechte.html">Ausführliche Infos / Landingpage</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEU: LAW OF ATTRACTION MASTER BUNDLE (MAGIC MANIFESTATION) -->
+      <div class="prod-card featured-book" id="loa-master-bundle" style="border-color:#E9C46A;">
+        <div><div class="prod-top">
+          <div style="flex-shrink:0; display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
+            <img src="assets/Mockup_3D_Law_of_Attraction_Bundle_Mimi_Black.jpg" alt="The Law of Attraction Master Bundle Mockup" class="prod-cover-lg">
+          </div>
+          <div>
+            <div class="kicker" style="margin-bottom:8px;">✨ NEU · MAGIC MANIFESTATION · KOMPLETT-PAKET</div>
+            <h3>The Law of Attraction Master Bundle – Buch, 21-Tage-Workbook, 111 Silent-Affirmationen &amp; 4 Frequenz-Audios</h3>
+            <div class="price-row">24,90 € <span>Sofort-Download · Buch + Journal + Audios</span></div>
+            <ul class="bullets" style="margin-top:10px;">
+              <li>44 S. Hauptbuch + 21-Tage Quantum-Scripting-Journal</li>
+              <li>111 Silent-Affirmationen</li>
+              <li>4 Frequenz-Audios: 528 Hz · 432 Hz · 888 Hz · Theta</li>
+            </ul>
+          </div>
+        </div></div>
+        <div>
+          <a href="https://payhip.com/b/m9t3V" class="btn-primary" target="_blank" rel="noopener">⚡ Jetzt Master Bundle sofort kaufen (24,90 € · Payhip) ✦</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/m9t3V" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Payhip Direktkauf</a>
+            <a href="loa-master-bundle.html">Ausführliche Infos / Landingpage</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 3: MAGIC MANIFESTATION 5 & 7 SCHRITTE -->
+      <div class="prod-card">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="assets/magic-manifestation-cover.png" alt="Magic Manifestation Cover" class="prod-cover"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">MAGIC MANIFESTATION · BESTSELLER</div>
+              <h3>Die 5 Stufen &amp; 7 Schritte der Bewusstwerdung</h3>
+              <div class="price-row">27,00 € <span>inkl. MwSt. · 14 Seiten E-Book &amp; Workbook</span></div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li>Warum klassische Affirmationen scheitern &amp; wie dein Nervensystem empfängt</li>
+            <li>Tag 1–2: Ehrliche Bestandsaufnahme &amp; Energielecks schließen</li>
+            <li>Tag 3–5: Die Identitäts-Weiche, Sicherheit im Körper &amp; beseeltes Handeln</li>
+            <li>Tag 6–7: Schwellen-Prüfung meistern, 5-Min-Morgenroutine &amp; 21-Tage-Tracker</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/Va1qT" class="btn-primary" target="_blank" rel="noopener">⚡ Jetzt 5-&amp;-7-Schritte-Workbook sofort kaufen (27,00 € · Payhip) ✦</a>
+          <a href="https://payhip.com/b/t0Sr9" target="_blank" rel="noopener" class="btn-secondary">VIP-Bundle inkl. 8-teiligem Videokurs (97 €)</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/Va1qT" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Payhip Direktkauf</a>
+            <a href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">Gumroad Shop</a>
+            <a href="https://www.checkout-ds24.com/product/754039/" target="_blank" rel="noopener">Digistore24</a>
+            <a href="manifestation.html">Ausführliche Infos / Landingpage</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 3B: MAGIC MANIFESTATION ENGLISH EDITION (5 STAGES & 7 SACRED STEPS) -->
+      <div class="prod-card" id="magic-manifestation-en" style="border-color:#E9C46A;">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="assets/magic-manifestation-cover-en.jpg" alt="Magic Manifestation English Cover" class="prod-cover"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">🇬🇧 NEW · INTERNATIONAL ENGLISH EDITION · BESTSELLER</div>
+              <h3>MAGIC MANIFESTATION: The 5 Stages &amp; 7 Sacred Steps of Conscious Creation</h3>
+              <div class="price-row">27,00 € <span>incl. VAT · 14-Page English E-Book &amp; 7-Day Embodiment Workbook (PDF)</span></div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li><b>100% English Bestseller Edition:</b> Subconscious Reprogramming, Nervous System Safety &amp; Five-Element Alchemy</li>
+            <li><b>The 5 Stages &amp; 5 Elements:</b> Radical Honesty (Water), Clearing (Metal), Identity (Wood), Coherence (Fire) &amp; Action (Earth)</li>
+            <li><b>7-Day Embodiment Challenge:</b> Daily 5-minute somatic exercises, journaling prompts &amp; micro-action check-ins</li>
+            <li><b>Includes 21-Day Embodiment Tracker &amp; 5-Element Imbalance Diagnostic Table</b></li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/Va1qT" class="btn-primary" target="_blank" rel="noopener">⚡ Buy English Edition Now (€27.00 · Payhip Instant Download) ✦</a>
+          <div class="multi-bar">
+            <a href="magic-manifestation-en.html" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">🇬🇧 English Sales Page</a>
+            <a href="https://www.checkout-ds24.com/product/756183" target="_blank" rel="noopener">Digistore24 (EN · 27,00 €)</a>
+            <a href="https://www.checkout-ds24.com/product/756183" target="_blank" rel="noopener">Digistore24 (EN · €27.00)</a>
+            <a href="https://payhip.com/b/Va1qT" target="_blank" rel="noopener">Payhip Checkout</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">Payhip Store (Mimi Black)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 4: VOM HERBSTBLUES INS INNERE LEUCHTEN -->
+      <div class="prod-card">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="assets/magic-manifestation-herbstleuchten-cover.png" alt="Herbstleuchten Cover" class="prod-cover"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">MAGIC MANIFESTATION · SELBSTWERT</div>
+              <h3>Vom Herbstblues ins innere Leuchten (7-Tage-Guide)</h3>
+              <div class="price-row">27,00 € <span>inkl. MwSt. · 14 Seiten PDF-Workbook</span></div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li>Dein Wegweiser aus Herbst-Melancholie &amp; Einsamkeit vor der Weihnachtszeit</li>
+            <li>Den ersten Schritt vor die Tür wagen &amp; Regen und Wind auf der Haut feiern</li>
+            <li>Wahrer Reichtum jenseits von Geld: Das Wunder deiner Gesundheit &amp; Schmerzfreiheit</li>
+            <li>Die Magie eines Lächelns im Alltag, Frieden mit dir selbst &amp; 5-Min-Notfall-Anker</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/mcFN5" class="btn-primary" target="_blank" rel="noopener">⚡ Jetzt Herbstleuchten-Workbook sofort kaufen (27,00 € · Payhip) ✦</a>
+          <a href="https://payhip.com/b/t0Sr9" target="_blank" rel="noopener" class="btn-secondary">VIP-Selbstwert-Paket inkl. 9 Audio-/Video-Modulen (97 €)</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/mcFN5" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Payhip Direktkauf</a>
+            <a href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">Gumroad Shop</a>
+            <a href="https://www.checkout-ds24.com/product/754039/" target="_blank" rel="noopener">Digistore24</a>
+            <a href="herbstleuchten.html">Ausführliche Infos / Landingpage</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 4B: AMANITA CHRISTMAS RUNE ORACLE & NEUN-WELTEN-RUNENTUCH -->
+      <div class="prod-card" id="runentuch" style="border-color:#E9C46A;">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="amanita-runentuch-design.jpg" alt="Amanita Christmas Rune Oracle – Neun-Welten-Runentuch für die Runenlegung" class="prod-cover"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">✨ NEU · ORAKEL-LEGETUCH FÜR DIE RUNENLEGUNG &amp; HANDGEGOSSENES 24ER RUNENSET</div>
+              <h3>Amanita Christmas Rune Oracle – Neun-Welten-Runentuch / Orakel-Legetuch für die Runenlegung (1,40 × 1,40 m mit 9 heiligen Wirkfeldern)</h3>
+              <div class="price-row">59,00 € <span>inkl. MwSt. · 1,40 × 1,40 m Rituelles Orakel-Legetuch (oder 125,25 € im 3er-Komplettset mit 25 % Ersparnis)</span></div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li><b>Neun-Welten-Runentuch / Orakel-Legetuch für die Runenlegung (1,40 × 1,40 m mit 9 heiligen Wirkfeldern):</b> Die 8 Dreiecksfelder (1 bis 8) für die Lebensbereiche und der zentrale Kreis (Feld 9) als Herz des Jahres</li>
+            <li><b>Entwickelt für präzise Orakel- &amp; Runenlegungen:</b> Mit dem Älteren Futhark zu Samhain, in den 12 Rauhnächten und an Silvester</li>
+            <li><b>Amanita Rune Collection (Unikat):</b> Handgegossenes 24er-Runenset mit echten, getrockneten Fliegenpilz-Inlays in glasklarem Epoxidharz (79,00 €)</li>
+            <li><b>169-seitiges Praxis- &amp; Begleitbuch:</b> „Das Geheimnis der Runen &amp; das Neun-Welten-Orakel“ (29,00 €) – einzeln oder im 3er-Komplettset mit 25 % Ersparnis (125,25 € statt 167,00 €)</li>
+          </ul>
+        </div>
+        <div>
+          <a href="https://payhip.com/b/UwPVF" class="btn-primary" target="_blank" rel="noopener">⚡ 3-teiliges Runen-Orakel-Komplettset sichern (125,25 € · 25 % Ersparnis) ✦</a>
+          <a href="https://payhip.com/b/ejz8I" target="_blank" rel="noopener" class="btn-secondary">Neun-Welten-Runentuch einzeln bestellen (59,00 € · Payhip)</a>
+          <div class="multi-bar">
+            <a href="https://payhip.com/b/ejz8I" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Runentuch (59 €)</a>
+            <a href="https://payhip.com/b/Hvl7E" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">24er Runenset (79 €)</a>
+            <a href="https://payhip.com/b/j2G6p" target="_blank" rel="noopener">169-S.-Begleitbuch (29 €)</a>
+            <a href="https://payhip.com/b/Fl56T" target="_blank" rel="noopener">2er-Wunsch-Set (-15 %)</a>
+            <a href="https://payhip.com/b/UwPVF" target="_blank" rel="noopener" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">3er-Komplettset (-25 %)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUKT 5: ASTRORATGEBER FÜR DIE BEWUSSTE FRAU (176 SEITEN HAUPTBUCH – DEMNÄCHST SOBALD ISBN EINGETRAGEN) -->
+      <div class="prod-card featured-book" id="astroratgeber">
+        <div>
+          <div class="prod-top">
+            <div style="flex-shrink:0"><img src="assets/astroratgeber-cover.jpg" alt="Astroratgeber für die bewusste Frau Cover" class="prod-cover-lg"></div>
+            <div>
+              <div class="kicker" style="margin-bottom:8px;">⏳ DEMNÄCHST / VORBESTELLUNG SOBALD ISBN EINGETRAGEN · DAS 176-SEITIGE HAUPTBUCH</div>
+              <h3>Astroratgeber für die bewusste Frau – Dein kosmischer Kompass für Astrologie, Mondkraft, Runen, Tarot &amp; gelebte Intuition (176 Seiten E-Book · PDF &amp; EPUB von Mimi Black)</h3>
+              <div class="price-row">24,90 € <span>inkl. MwSt. (geplanter Einführungspreis · 176 Seiten Buchblock PDF &amp; Kindle/EPUB · Vorbestellung sobald ISBN eingetragen)</span></div>
+              <ul class="bullets" style="margin-top:10px;">
+                <li><b>Erkenne deine wunden Punkte und löse sie auf:</b> 33 Kapitel in 6 Teilen – ein tiefgehender Leitfaden und Arbeitsbuch für Frauen, ganz ohne astrologisches Vorwissen</li>
+                <li><b>Alle 15 Schlüsselfaktoren im Geburtshoroskop:</b> Sonne, Mond, Merkur, Venus, Mars, Jupiter, Saturn, Uranus, Neptun, Pluto sowie <b>Chiron</b>, der <b>Black Moon Lilith</b> und die <b>Mondknoten</b></li>
+                <li><b>Mit integriertem Arbeitsbuch zu jedem Kapitel:</b> Reflexionsfragen, Horoskop-Tabellen, 90-Tage-Heilungsplan, Neumond- &amp; Vollmond-Arbeit, Journaling und Körperarbeit</li>
+                <li><b>Status:</b> Fertig gesetzt &amp; lektoriert (176 Seiten DIN A5 Druck-PDF + EPUB) – wird unmittelbar nach Eintreffen der offiziellen ISBN zur Bestellung freigeschaltet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="astroratgeber.html" class="btn-primary">📖 Zur Buch-Vorschau &amp; unverbindlichen Erscheinungs-Vormerkung (176 Seiten) ✦</a>
+          <div class="multi-bar">
+            <a href="astroratgeber.html" style="color:#E9C46A;border-color:#E9C46A;font-weight:700;">Buch-Details &amp; Kapitelübersicht</a>
+            <a href="mailto:yourconsciouslife@gmx.de?subject=Vormerkung%20Astroratgeber%20f%C3%BCr%20die%20bewusste%20Frau%20%28176%20Seiten%29">Per E-Mail vormerken (sobald ISBN aktiv)</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">Payhip Gesamt-Shop</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="channels-sec">
+    <div class="container">
+      <div class="kicker">OFFIZIELLE KANÄLE VON MIMI BLACK</div>
+      <h2>Folge den täglichen Impulsen auf YouTube &amp; Pinterest</h2>
+      <p style="color:var(--muted); max-width:700px; margin:8px auto 20px;">Tägliche Shorts, Rituale, 3-Sekunden-Bewusstseins-Tests und Begleitung durch die dunkle Jahreszeit:</p>
+      <div class="nav-links" style="justify-content:center;">
+        <a href="https://www.youtube.com/@AstroMagicMimiBlack" target="_blank" rel="noopener">▶ YouTube: Astro Magic (@AstroMagicMimiBlack)</a>
+        <a href="https://www.youtube.com/@MagicManifestationMimiBlack" target="_blank" rel="noopener">▶ YouTube: Magic Manifestation (@MagicManifestationMimiBlack)</a>
+      </div>
+    </div>
+  </section>
+
+  
+<!-- NEU: Kalender 09 Katzen-Familienplaner 2027 (5 freie Spalten, DE & EN) -->
+<div style="margin: 24px auto; max-width: 1040px; background: linear-gradient(145deg, #162B35, #0E1D24); border: 2px solid #E4BE72; border-radius: 16px; padding: 24px; color: #F9F6F0; box-shadow: 0 14px 36px rgba(0,0,0,0.5);">
+  <div style="display:flex; flex-wrap:wrap; gap:22px; align-items:center;">
+    <img src="assets/cover-katzen-familienplaner-2027.jpg" alt="Samtpfoten & Familienglück 2027" style="width:165px; border-radius:10px; border:2px solid #E4BE72;"/>
+    <div style="flex:1; min-width:260px;">
+      <div style="font-size:12px; letter-spacing:1.4px; text-transform:uppercase; color:#FFF3C4; font-weight:bold; margin-bottom:6px;">🐾 BESTSELLER-EDITION 2027 · 5 KOMPLETT FREIE SPALTEN (DE &amp; EN)</div>
+      <h3 style="font-size:24px; color:#FFFFFF; margin:0 0 8px;">Samtpfoten &amp; Familienglück 2027 · 5-Spalten-Katzen-Familienplaner</h3>
+      <p style="font-size:15px; color:#E2EEF2; margin:0 0 14px;">14-seitiger DIN-A4-Familienplaner (300 DPI) mit 5 komplett freien Schreibspalten, 13 exklusiven Jahreszeiten-Katzenmotiven, Feiertagen, KW, Mondphasen, Schulferien 2027 aller 16 Bundesländer &amp; Wochenstundenplan (Deutsch + Englisch inklusive).</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a href="katzen-familienplaner-2027.html" style="background:#E4BE72; color:#0E1D24; font-weight:800; padding:10px 18px; border-radius:8px; text-decoration:none; font-size:14px;">✨ Zur Produkt- &amp; Vorschauseite →</a>
+        <a href="https://payhip.com/b/er7M2" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.1); color:#FFF3C4; border:1px solid #E4BE72; font-weight:700; padding:10px 16px; border-radius:8px; text-decoration:none; font-size:14px;">⚡ Direktkauf Payhip (14,90 €)</a>
+        <a href="https://www.checkout-ds24.com/product/756177" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08); color:#FFF3C4; border:1px solid rgba(228,190,114,0.5); padding:10px 14px; border-radius:8px; text-decoration:none; font-size:13px;">💳 Digistore24 (14,90 €)</a>
+        <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08); color:#FFF3C4; border:1px solid rgba(228,190,114,0.5); padding:10px 14px; border-radius:8px; text-decoration:none; font-size:13px;">🎁 5er Kalender-Paket (44,00 €)</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- ENGLISH 64-PAGE ZODIAC COMPENDIUM CARD -->
+    <div style="max-width:1040px;margin:24px auto;padding:24px;background:linear-gradient(145deg,#1E1236,#110920);border:2px solid #E9C46A;border-radius:16px;display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;box-shadow:0 14px 36px rgba(0,0,0,0.55);">
+      <img src="assets/zodiac-workbook-cover-en.jpg" alt="THE 12 ZODIAC SIGNS & THE 4 SACRED ELEMENTS (64 Pages EN)" style="width:100%;max-width:160px;border-radius:8px;border:1.5px solid #E9C46A;"/>
+      <div>
+        <div style="display:inline-block;background:rgba(233,196,106,0.16);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px;">🇬🇧 NEW INTERNATIONAL ENGLISH EDITION · 64 PAGES DIN A4</div>
+        <h3 style="color:#FFFFFF;font-size:22px;margin:0 0 8px 0;font-family:Georgia,serif;">THE 12 ZODIAC SIGNS &amp; THE 4 SACRED ELEMENTS – Ultimate Astrological Compendium &amp; Grimoire</h3>
+        <p style="color:#E2D9F3;font-size:14.5px;margin:0 0 14px 0;line-height:1.55;">All 12 Zodiac Signs (4 full A4 pages each), the 4 Sacred Elements, 3 Modalities, 84-Year Uranus Life Cycle, 10 Ruling Planets, 12 Houses, Healing Crystals, Sacred Solstice Trees, Body Zones &amp; Musical Keys — By Mimi Black.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <a href="https://payhip.com/b/SAraM" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#E9C46A,#C89B3C);color:#140B24;font-family:sans-serif;font-weight:800;font-size:14px;padding:11px 20px;border-radius:8px;text-decoration:none;">⚡ Buy Now on Payhip (€14.90) →</a>
+          <a href="zodiac-compendium-en.html" style="background:rgba(255,255,255,0.08);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">🇬🇧 English Product Page</a>
+          <a href="https://www.checkout-ds24.com/product/756184" target="_blank" rel="noopener" style="color:#E9C46A;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:6px;">💳 Digistore24 (€14.90)</a>
+        </div>
+      </div>
+    </div>
+
+<div style="max-width:860px;margin:30px auto;padding:24px;border:1px solid #D4AF37;border-radius:14px;background:#171324;color:#FAF6EE;font-family:Georgia,serif"><h2 style="color:#D4AF37">NEU 2027: Karmische Beziehungsmuster &amp; Seelenpartner-Signatur</h2><p>14-Seiten-Workbook · 29,00 € · gratis 4-Elemente-Test inklusive</p><a href="seelenpartner-signatur.html" style="color:#D4AF37">Zur Seite →</a></div>
+
+    <!-- ENCHANTED FOREST & MYSTICAL WILDLIFE 2027 WALL CALENDAR CARD (DE + EN) -->
+    <div style="max-width:1040px;margin:24px auto;padding:24px;background:linear-gradient(145deg,#171128,#0D0918);border:2px solid #D4AF37;border-radius:16px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:0 14px 36px rgba(0,0,0,0.6);">
+      <img src="assets/cover-enchanted-forest-wildlife-2027.jpg" alt="Verzauberter Wald & Magische Krafttiere 2027 (Mimi Black)" style="width:100%;max-width:180px;border-radius:8px;border:1.5px solid #D4AF37;"/>
+      <div>
+        <div style="display:inline-block;background:rgba(212,175,55,0.18);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px;">🌲🦉 NEU 2027 · FINE-ART KRAFTTIER-WANDKALENDER (DEUTSCH + ENGLISCH · 14 SEITEN DIN A4)</div>
+        <h3 style="color:#FFFFFF;font-size:22px;margin:0 0 8px 0;font-family:Georgia,serif;">Verzauberter Wald &amp; Magische Krafttiere 2027 · Enchanted Forest &amp; Mystical Wildlife</h3>
+        <p style="color:#E2D9F3;font-size:14.5px;margin:0 0 14px 0;line-height:1.55;">13 exklusive Dark-Cottagecore- &amp; Krafttier-Illustrationen (Schleiereule, Polarwolf, Luchs, Feldhase, Rotfuchs, Königshirsch, Schwan, Eisvogel, Igel, Eichhörnchen, Rabe, Dachs &amp; Rotkehlchen) mit Vollmond, Neumond, Sonnenwenden &amp; Krafttier-Botschaften — By Mimi Black.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <a href="https://payhip.com/b/X7yn3" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#E9C46A,#C89B3C);color:#140B24;font-family:sans-serif;font-weight:800;font-size:14px;padding:11px 20px;border-radius:8px;text-decoration:none;">⚡ Direkt kaufen auf Payhip (19,90 €) →</a>
+          <a href="verzauberter-wald-krafttiere-2027.html" style="background:rgba(255,255,255,0.08);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">✨ Produktseite &amp; Vorschau</a>
+          <a href="https://www.checkout-ds24.com/product/756173" target="_blank" rel="noopener" style="color:#E9C46A;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:4px;">💳 Digistore24 (19,90 €)</a>
+          <a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:#E9C46A;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:4px;">🎁 5er-Paket (44,00 €)</a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  <!-- KOMPLETTE SOFORTKAUF-ÜBERSICHT (ALLE 20 PAYHIP & 18 DIGISTORE24 DIREKTLINKS) -->
+  <section style="max-width:1040px;margin:28px auto;padding:24px;background:rgba(20,14,36,0.92);border:1.5px solid rgba(233,196,106,0.45);border-radius:16px;color:#F5F0FF;font-family:sans-serif;">
+    <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#E9C46A;font-weight:700;margin-bottom:6px;">✦ OFFIZIELLES DIREKTKAUF-VERZEICHNIS · SOFORT-DOWNLOAD (PAYHIP &amp; DIGISTORE24)</div>
+    <h2 style="font-family:Georgia,serif;font-size:24px;color:#fff;margin:0 0 14px;">Alle 18 Digistore24- &amp; 20 Payhip-Direkt-Checkouts im Überblick</h2>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(233,196,106,0.35);color:#E9C46A;text-align:left;">
+            <th style="padding:8px;">Werk / Edition</th>
+            <th style="padding:8px;">Preis</th>
+            <th style="padding:8px;">Payhip Sofortkauf</th>
+            <th style="padding:8px;">Digistore24 Checkout</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Die 12 Rauhnächte im Element Wasser (20 S. Workbook / VIP-Kurs)</td><td style="padding:8px;">37,00 € / 97,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/SKzia" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/SKzia</a> · <a href="https://payhip.com/b/t0Sr9" target="_blank" rel="noopener" style="color:#E9C46A;">VIP (/b/t0Sr9)</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/754039" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #754039</a> · <a href="https://www.checkout-ds24.com/product/754039?plan=1540228" target="_blank" rel="noopener" style="color:#FFF3B0;">VIP #1540228</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Magic Manifestation – Die 5 Stufen &amp; 7 Schritte (DE)</td><td style="padding:8px;">27,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/Va1qT" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/Va1qT</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756164" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756164</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Samhain am 31. Oktober – Das Tor zur Wintersonnenwende</td><td style="padding:8px;">27,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/3Y68j</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756165" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756165</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Vom Herbstblues ins innere Leuchten (7-Tage-Guide)</td><td style="padding:8px;">27,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/mcFN5" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/mcFN5</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756166" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756166</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Die 12 Sternzeichen &amp; Die 4 Elemente (64 Seiten DE)</td><td style="padding:8px;">14,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/SAraM" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/SAraM</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756167" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756167</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Karmische Beziehungsmuster &amp; Seelenpartner-Signatur</td><td style="padding:8px;">29,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/8fGaT" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/8fGaT</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756169" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756169</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">The Law of Attraction Master Bundle (Buch + Journal + 4 Audios)</td><td style="padding:8px;">24,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/m9t3V" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/m9t3V</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756170" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756170</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Das Geheimnis der Runen &amp; Neun-Welten-Orakel (160 S. Buch)</td><td style="padding:8px;">29,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/j2G6p" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/j2G6p</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756172" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756172</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Verzauberter Wald &amp; Magische Krafttiere 2027 (DE + EN)</td><td style="padding:8px;">19,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/X7yn3" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/X7yn3</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756173" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756173</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Der große Hexen-Kalender &amp; Astro-Almanach 2027 (DE)</td><td style="padding:8px;">14,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/VsBOy" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/VsBOy</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756175" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756175</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">2027 Witches' Calendar &amp; Astrological Almanac (EN)</td><td style="padding:8px;">14,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/9SZiP" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/9SZiP</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756176" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756176</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">5-Spalten-Katzen-Familienplaner 2027 – Samtpfoten &amp; Familienglück (DE + EN)</td><td style="padding:8px;">14,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/er7M2" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/er7M2</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756177" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756177</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Fine-Art Fotokalender &amp; Digitalplaner Kollektion 2027 (5er-Paket)</td><td style="padding:8px;">44,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/8D13B" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/8D13B</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756178" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756178</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Fröhliches Halloween – Ausmal- &amp; Mitmachbuch für Kinder (17 S.)</td><td style="padding:8px;">4,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/rTefw" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/rTefw</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756179" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756179</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">Mia Motte und Mimi – Für dich bin ich wunderschön (14 S. Kinderbuch)</td><td style="padding:8px;">6,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/J4R3g" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/J4R3g</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756182" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756182</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">MAGIC MANIFESTATION – 5 Stages &amp; 7 Sacred Steps (English Edition)</td><td style="padding:8px;">27,00 €</td><td style="padding:8px;"><a href="https://payhip.com/b/Va1qT" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/Va1qT</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756183" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756183</a></td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px;">THE 12 ZODIAC SIGNS &amp; THE 4 SACRED ELEMENTS (64 Pages EN)</td><td style="padding:8px;">14,90 €</td><td style="padding:8px;"><a href="https://payhip.com/b/SAraM" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/b/SAraM</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756184" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756184</a></td></tr>
+          <tr><td style="padding:8px;">Souverän Grenzen setzen ohne Schuldgefühle (7-Tage-Workbook)</td><td style="padding:8px;">27,00 €</td><td style="padding:8px;"><a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener" style="color:#E9C46A;">payhip.com/MimiBlack</a></td><td style="padding:8px;"><a href="https://www.checkout-ds24.com/product/756185" target="_blank" rel="noopener" style="color:#FFF3B0;">DS24 #756185</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+<footer>
+    <div class="container">
+      <div class="legal-box">
+        <b>Impressum (§ 5 DDG &amp; § 18 Abs. 2 MStV):</b> Astro Magic &amp; Magic Manifestation · Mimi Black · Herausgeberin: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda · Deutschland · E-Mail: yourconsciouslife@gmx.de · Shop: <a href="https://payhip.com/MimiBlack" style="color:var(--gold);">https://payhip.com/MimiBlack</a><br/>
+        <b>Haftungsausschluss:</b> Alle digitalen Bücher, Workbooks und Kurse dienen der Selbstreflexion, Achtsamkeit und Inspiration und ersetzen keine ärztliche oder psychotherapeutische Behandlung.
+      </div>
+      <p style="text-align:center; margin-top:20px;">© 2026 Mimi Black · Astro Magic &amp; Magic Manifestation · Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+</body>
+</html>

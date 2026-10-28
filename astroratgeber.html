@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Astroratgeber für die bewusste Frau · 176 Seiten Buch &amp; E-Book · Mimi Black</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #080616;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --gold: #E9C46A;
+  --amber: #F29F58;
+  --accent: #9B7CFF;
+  --text: #F4F0FF;
+  --muted: #C4BBE3;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Lora', serif;
+  background: radial-gradient(circle at 50% 0%, #241445 0%, #0D081F 48%, #06040E 100%);
+  color: var(--text);
+  line-height: 1.65;
+}
+.container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+header.top-bar {
+  border-bottom: 1px solid rgba(233,196,106,0.22);
+  background: rgba(8,6,22,0.94);
+}
+.top-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; max-width: 1040px; margin: 0 auto; flex-wrap: wrap; gap: 10px; }
+.brand { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+.step-pills { display: flex; gap: 10px; font-family: 'Montserrat', sans-serif; font-size: 11px; flex-wrap: wrap; }
+.step-pill { padding: 5px 12px; border-radius: 99px; border: 1px solid rgba(233,196,106,0.35); color: var(--muted); text-decoration: none; }
+.step-pill.active { background: rgba(233,196,106,0.14); color: var(--gold); font-weight: 600; }
+section { padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.kicker {
+  display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  background: rgba(233,196,106,0.1); border: 1px solid rgba(233,196,106,0.38);
+  padding: 6px 14px; border-radius: 99px; margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 700; line-height: 1.15; color: #fff; }
+h1 { font-size: 46px; margin-bottom: 16px; }
+h2 { font-size: 34px; margin-bottom: 14px; }
+h3 { font-size: 23px; margin-bottom: 10px; }
+.gold { color: var(--gold); }
+.amber { color: var(--amber); }
+.accent { color: var(--accent); }
+.lead { font-size: 18.5px; color: #E2DCFA; max-width: 820px; margin: 0 auto 24px; }
+.hero-split { display: grid; grid-template-columns: 300px 1fr; gap: 38px; align-items: center; text-align: left; margin-top: 18px; }
+.hero-cover { width: 100%; border-radius: 12px; border: 1.5px solid rgba(233,196,106,0.55); box-shadow: 0 18px 44px rgba(0,0,0,0.7); }
+.btn {
+  display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: 0.04em; text-decoration: none; color: #0B081E;
+  background: linear-gradient(135deg, #F4D58D 0%, #E9C46A 55%, #D4A843 100%);
+  padding: 15px 28px; border-radius: 10px; box-shadow: 0 10px 28px rgba(233,196,106,0.28);
+}
+.btn-outline {
+  background: rgba(155,124,255,0.15); color: #fff; border: 1.5px solid var(--accent);
+  box-shadow: 0 10px 28px rgba(155,124,255,0.18);
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 26px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 26px; }
+.card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 26px; }
+.card-gold { background: rgba(233,196,106,0.07); border: 1.5px solid rgba(233,196,106,0.42); border-radius: 14px; padding: 28px; }
+.card-accent { background: rgba(155,124,255,0.08); border: 1.5px solid rgba(155,124,255,0.42); border-radius: 14px; padding: 28px; }
+.roadmap-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  background: rgba(15,12,34,0.9); border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 99px; padding: 12px 20px; margin-bottom: 12px;
+}
+.roadmap-left { display: flex; align-items: center; gap: 14px; font-family: 'Montserrat', sans-serif; font-size: 13.5px; font-weight: 600; }
+.num-circle {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.day-pill {
+  background: linear-gradient(135deg, #5B6CFF, #8B7CFF); color: #fff; font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 99px; white-space: nowrap;
+}
+.price-tag { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--gold); line-height: 1; margin: 12px 0 6px; }
+ul.check-list { list-style: none; margin: 16px 0; }
+ul.check-list li { margin-bottom: 9px; padding-left: 24px; position: relative; font-size: 15px; }
+ul.check-list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
+.legal-box { font-size: 12.5px; color: var(--muted); background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin-top: 22px; }
+footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
+@media (max-width: 780px) {
+  .hero-split, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-inner">
+      <a href="index.html" class="brand">✦ ASTRO MAGIC · MIMI BLACK</a>
+      <div class="step-pills">
+        <a href="index.html" class="step-pill">← Zurück zum Gesamt-Shop</a>
+        <a href="#inhalt" class="step-pill active">Buch-Aufbau (176 Seiten)</a>
+        <a href="#vorbestellung" class="step-pill">Demnächst / Vorbestellung</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-split">
+        <div>
+          <img src="assets/astroratgeber-cover.jpg" alt="Astroratgeber für die bewusste Frau – Cover Mimi Black" class="hero-cover">
+        </div>
+        <div>
+          <div class="kicker">DAS GROSSE HAUPTWERK VON MIMI BLACK · 176 SEITEN LEITFADEN &amp; ARBEITSBUCH</div>
+          <h1><span class="gold">Astroratgeber</span> für die bewusste Frau</h1>
+          <h3 style="color:#EAE2FF; font-weight:400; font-style:italic; margin-bottom:16px;">Erkenne deine wunden Punkte und löse sie auf – Dein kosmischer Kompass für Astrologie, Mondkraft, Runen, Tarot &amp; gelebte Intuition</h3>
+          <p style="font-size:16.5px; color:#E2DCFA; margin-bottom:20px;">
+            <i>„Warum passiert mir das immer wieder?“</i> Wenn du dir diese Frage in der Liebe und in deinen Beziehungen schon oft gestellt hast, ist dieses Buch für dich. Mimi Black zeigt dir auf <b>176 Seiten (33 Kapitel in 6 Teilen)</b>, wo in deinem Geburtshoroskop deine tiefsten wunden Punkte liegen – von Sonne, Mond, Venus und Saturn bis zu Chiron, Black Moon Lilith und den Mondknoten – und wie du sie Schritt für Schritt heilst.
+          </p>
+          <div style="background:rgba(233,196,106,0.1); border:1px solid rgba(233,196,106,0.45); border-radius:10px; padding:14px 18px; margin-bottom:20px;">
+            <div style="font-family:'Montserrat',sans-serif; font-size:11.5px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em;">⏳ Status: In Kürze erhältlich (ISBN-Zuteilung läuft)</div>
+            <p style="font-size:14px; color:#F4F0FF; margin-top:4px;">Buchblock (176 Seiten DIN A5) und E-Book (EPUB &amp; PDF) sind fertig lektoriert und gesetzt. Sobald die offizielle ISBN eingetragen ist, startet der Direkt-Download &amp; die Buchausgabe.</p>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="mailto:yourconsciouslife@gmx.de?subject=Vormerkung%20Astroratgeber%20f%C3%BCr%20die%20bewusste%20Frau%20%28Mimi%20Black%29&body=Hallo%20Mimi%20Black%2C%0A%0Abitte%20informiere%20mich%2C%20sobald%20das%20176-seitige%20Buch%20%E2%80%9EAstroratgeber%20f%C3%BCr%20die%20bewusste%20Frau%E2%80%9C%20%28PDF%20%2F%20EPUB%20%2F%20Taschenbuch%29%20mit%20ISBN%20zum%20Download%20bereitsteht." class="btn">Jetzt unverbindlich vormerken &amp; Leseprobe anfordern ✦</a>
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener" class="btn btn-outline">Die 4 sofort verfügbaren Workbooks im Shop ansehen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inhalt">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="kicker">BLICK INS BUCH · 33 KAPITEL AUF 176 SEITEN</div>
+        <h2>Was dich in den 6 Teilen des Buches erwartet</h2>
+        <p class="lead">Du brauchst keinerlei Vorwissen in Astrologie. Jedes Kapitel verbindet psychologische Tiefe mit klarer astrologischer Deutung und einem eigenen <b>Arbeitsbereich</b> zum Hineinschreiben.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card-gold">
+          <div class="kicker">Teil A &amp; B · S. 9–43</div>
+          <h3>Ankommen &amp; Verstehen</h3>
+          <p>Wie du dein Geburtshoroskop liest, die 12 Zeichen, Planeten und Häuser verstehst und erkennst, warum schwierige Beziehungspartner kein Zufall sind, sondern Spiegel ungelöster innerer Wunden.</p>
+        </div>
+        <div class="card-accent">
+          <div class="kicker">Teil C · S. 44–134</div>
+          <h3>Die 15 Faktoren &amp; Wunden</h3>
+          <p>Sonne, Mond, Merkur, Venus, Mars, Jupiter, Saturn, Uranus, Neptun, Pluto sowie <b>Chiron</b>, der <b>Black Moon Lilith</b>, die <b>Mondknoten</b>, Häuser und Signaturen – jeweils mit Wunde, Schatten, Heilungsweg &amp; Arbeitsbuch.</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Teil D, E &amp; F · S. 135–176</div>
+          <h3>Heilungsplan &amp; Mondkraft</h3>
+          <p>Aspekte und Transite verstehen, dein persönlicher <b>90-Tage-Heilungsplan</b>, Arbeiten mit Neumond &amp; Vollmond, Journaling, Meditation &amp; Körperarbeit, Heilungsprotokoll, Glossar &amp; Stichwortverzeichnis.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:38px;">
+        <h3 style="text-align:center; margin-bottom:20px;">Alle 6 Buchteile im Überblick:</h3>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle" style="background:#E9C46A; color:#080616;">A</span><span><b>Teil A – Ankommen (Kapitel 1–4):</b> Die Frage, die alles verändert · Das Horoskop lesen lernen · Zeichen, Planeten &amp; Häuser · Wunde Punkte verstehen</span></div>
+          <span class="day-pill">Grundlagen</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle" style="background:#9B7CFF;">B</span><span><b>Teil B – Verstehen (Kapitel 5–9):</b> Schatten und Licht · Wie Wunden entstehen · Beobachten statt urteilen · Der 4-Schritte-Heilungsweg</span></div>
+          <span class="day-pill">Psychologie</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle" style="background:#D97736;">C</span><span><b>Teil C – Erkennen (Kapitel 10–24):</b> Alle 10 Planeten + Chiron, Lilith &amp; Mondknoten mit eigenem Arbeitsbuch-Teil zu jedem Faktor</span></div>
+          <span class="day-pill" style="background:#D97736;">Herzstück (90 Seiten)</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle" style="background:#6C8CFF;">D</span><span><b>Teil D – Zusammenführen (Kapitel 25–27):</b> Aspekte lesen · Dein persönlicher 90-Tage-Heilungsweg · Transite als Wachstumschancen</span></div>
+          <span class="day-pill">Synthese</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle" style="background:#5FBF7A; color:#080616;">E–F</span><span><b>Teil E, F &amp; Anhang (Kapitel 28–33):</b> Mit dem Mond arbeiten · Journaling · Körperarbeit · Heilungsprotokoll · Brief an dein zukünftiges Ich</span></div>
+          <span class="day-pill" style="background:#2E7D32;">Integration</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vorbestellung">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="kicker">AUSGABEN &amp; ERSCHEINUNGSVORMERKUNG</div>
+        <h2>Sichere dir deinen Platz zum Erscheinungsstart</h2>
+        <p class="lead">Sobald die offizielle ISBN-Zuteilung abgeschlossen ist, erscheint „Astroratgeber für die bewusste Frau“ als E-Book-Bundle (PDF &amp; Kindle/EPUB) sowie als 176-seitiges Buch.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card-gold" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="kicker">EDITION 1 · DIGITALES KOMPLETT-BUNDLE (PDF &amp; EPUB)</div>
+            <h3>Astroratgeber für die bewusste Frau (176 Seiten E-Book + Arbeitsbuch)</h3>
+            <div class="price-tag">24,90 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Geplanter Einführungspreis</span></div>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Demnächst verfügbar · Vorbestellung &amp; Erscheinungs-Benachrichtigung</p>
+            <ul class="check-list">
+              <li><b>176 Seiten Original-Buchlayout (PDF, DIN A5)</b> inklusive aller astrologischen Übersichten, Tabellen und Schreiblinien nach jedem Kapitel.</li>
+              <li><b>Zusätzlich als E-Reader- &amp; Kindle-Ausgabe (EPUB)</b> für entspanntes Lesen auf Smartphone, Tablet, Kindle oder Tolino.</li>
+              <li><b>Alle 33 Kapitel &amp; 15 Horoskop-Arbeitsbereiche</b> (Sonne bis Pluto, Chiron, Lilith, Mondknoten, Häuser &amp; 90-Tage-Plan).</li>
+            </ul>
+          </div>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="mailto:yourconsciouslife@gmx.de?subject=Vormerkung%20Astroratgeber%20E-Book%20%2824%2C90%20EUR%29&body=Hallo%20Mimi%20Black%2C%0A%0Abitte%20benachrichtige%20mich%2C%20sobald%20das%20176-seitige%20E-Book%20%E2%80%9EAstroratgeber%20f%C3%BCr%20die%20bewusste%20Frau%E2%80%9C%20%28PDF%20%26%20EPUB%29%20live%20ist." class="btn" style="width:100%;">⏳ Jetzt für Erscheinungsstart vormerken (E-Mail)</a>
+          </div>
+        </div>
+
+        <div class="card-accent" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="kicker">SOFORT VERFÜGBAR · DIE 4 PRAXIS-WORKBOOKS IM SHOP</div>
+            <h3>Starte schon heute mit den 4 sofort verfügbaren Workbooks</h3>
+            <div class="price-tag">ab 27,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Sofort-Download via Payhip</span></div>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Bereits live freigeschaltet – sofortiger PDF-Download nach dem Kauf:</p>
+            <ul class="check-list">
+              <li><b>Samhain am 31. Oktober (27,00 €):</b> Das Schwellenritual zur Wintersonnenwende (<a href="https://payhip.com/b/3Y68j" target="_blank" rel="noopener" style="color:var(--gold);">Direkt zu Payhip</a>).</li>
+              <li><b>Die 12 Rauhnächte im Element Wasser (37,00 €):</b> 20 Seiten Guide &amp; 12 Journalseiten (<a href="https://payhip.com/b/SKzia" target="_blank" rel="noopener" style="color:var(--gold);">Direkt zu Payhip</a>).</li>
+              <li><b>Die 5 Stufen &amp; 7 Schritte der Manifestation (27,00 €):</b> Nervensystem &amp; 7-Tage-Workbook (<a href="https://payhip.com/b/Va1qT" target="_blank" rel="noopener" style="color:var(--gold);">Direkt zu Payhip</a>).</li>
+              <li><b>Vom Herbstblues ins innere Leuchten (27,00 €):</b> 7-Tage-Selbstwert-Guide (<a href="https://payhip.com/b/mcFN5" target="_blank" rel="noopener" style="color:var(--gold);">Direkt zu Payhip</a>).</li>
+            </ul>
+          </div>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="https://payhip.com/MimiBlack" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Zum offiziellen Payhip-Shop (Sofort-Download)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="legal-box">
+        <b>Wichtiger Hinweis (Kein Heilversprechen / Haftungsausschluss):</b><br/>
+        Die Inhalte dieses Buches dienen ausschließlich der Information, Reflexion und Selbsterkenntnis. Sie stellen keine medizinische, psychotherapeutische oder heilkundliche Beratung oder Behandlung dar und ersetzen bei gesundheitlichen oder seelischen Beschwerden keinesfalls den Besuch bei einer Ärztin, einem Arzt oder einer Psychotherapeutin.
+      </div>
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="legal-box" style="margin-top:0;">
+          <b>Impressum (Angaben gemäß § 5 DDG &amp; § 18 Abs. 2 MStV):</b><br/>
+          Astro Magic &amp; Magic Manifestation · Mimi Black<br/>
+          Herausgeberin: Mimi Black · c/o Autorenglück, Albert-Einstein-Str. 47 · 02977 Hoyerswerda · Deutschland<br/>
+          E-Mail: yourconsciouslife@gmx.de · Shop: <a href="https://payhip.com/MimiBlack" style="color:var(--gold);">https://payhip.com/MimiBlack</a>
+        </div>
+        <div class="legal-box" style="margin-top:0;">
+          <b>Datenschutzhinweis (DSGVO):</b><br/>
+          Verantwortlich: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda (yourconsciouslife@gmx.de). Auskunft, Löschung und Widerruf jederzeit unter yourconsciouslife@gmx.de.
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:24px;">© 2026 Mimi Black · Astro Magic &amp; Magic Manifestation · Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+</body>
+</html>

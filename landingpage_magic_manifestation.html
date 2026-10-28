@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Magic Manifestation · Die 5 Stufen &amp; 7 Schritte der Bewusstwerdung · Mimi Black</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #080616;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --gold: #E9C46A;
+  --amber: #F29F58;
+  --accent: #8B7CFF;
+  --text: #F4F0FF;
+  --muted: #C4BBE3;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Lora', serif;
+  background: radial-gradient(circle at 50% 0%, #1E1545 0%, #0B081E 45%, #060410 100%);
+  color: var(--text);
+  line-height: 1.65;
+}
+.container { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+header.top-bar {
+  border-bottom: 1px solid rgba(233,196,106,0.22);
+  background: #080616;
+}
+.top-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; max-width: 1020px; margin: 0 auto; }
+.brand { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.step-pills { display: flex; gap: 10px; font-family: 'Montserrat', sans-serif; font-size: 11px; }
+.step-pill { padding: 5px 12px; border-radius: 99px; border: 1px solid rgba(233,196,106,0.35); color: var(--muted); text-decoration: none; }
+.step-pill.active { background: rgba(233,196,106,0.14); color: var(--gold); font-weight: 600; }
+section { padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.kicker {
+  display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  background: rgba(233,196,106,0.1); border: 1px solid rgba(233,196,106,0.35);
+  padding: 6px 14px; border-radius: 99px; margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 700; line-height: 1.15; color: #fff; }
+h1 { font-size: 46px; margin-bottom: 18px; }
+h2 { font-size: 34px; margin-bottom: 14px; }
+h3 { font-size: 23px; margin-bottom: 10px; }
+.gold { color: var(--gold); }
+.amber { color: var(--amber); }
+.accent { color: var(--accent); }
+.lead { font-size: 18.5px; color: #E2DCFA; max-width: 820px; margin: 0 auto 26px; }
+.btn {
+  display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 14.5px; font-weight: 700;
+  letter-spacing: 0.04em; text-decoration: none; color: #0B081E;
+  background: linear-gradient(135deg, #F4D58D 0%, #E9C46A 55%, #D4A843 100%);
+  padding: 16px 32px; border-radius: 10px; box-shadow: 0 10px 28px rgba(233,196,106,0.28);
+}
+.btn-outline {
+  background: rgba(139,124,255,0.14); color: #fff; border: 1.5px solid var(--accent);
+  box-shadow: 0 10px 28px rgba(139,124,255,0.18);
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 26px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 26px; }
+.card {
+  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 26px;
+}
+.card-gold {
+  background: rgba(233,196,106,0.07); border: 1.5px solid rgba(233,196,106,0.42);
+  border-radius: 14px; padding: 28px;
+}
+.card-amber {
+  background: rgba(217,119,54,0.09); border: 1.5px solid rgba(217,119,54,0.45);
+  border-radius: 14px; padding: 28px;
+}
+.card-accent {
+  background: rgba(139,124,255,0.08); border: 1.5px solid rgba(139,124,255,0.42);
+  border-radius: 14px; padding: 28px;
+}
+.roadmap-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  background: rgba(15,12,34,0.9); border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 99px; padding: 12px 20px; margin-bottom: 12px;
+}
+.roadmap-left { display: flex; align-items: center; gap: 14px; font-family: 'Montserrat', sans-serif; font-size: 13.5px; font-weight: 600; }
+.num-circle {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0;
+}
+.day-pill {
+  background: linear-gradient(135deg, #5B6CFF, #8B7CFF); color: #fff; font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 99px; white-space: nowrap;
+}
+.price-tag { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1; margin: 12px 0 6px; }
+ul.check-list { list-style: none; margin: 16px 0; }
+ul.check-list li { margin-bottom: 9px; padding-left: 24px; position: relative; font-size: 15px; }
+ul.check-list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
+.legal-box { font-size: 12.5px; color: var(--muted); background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin-top: 22px; }
+footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-inner">
+      <div class="brand">✦ MAGIC MANIFESTATION · MIMI BLACK</div>
+      <div class="step-pills">
+        <a href="#schritt1" class="step-pill active">Schritt 1: Warum es oft stockt</a>
+        <a href="#schritt2" class="step-pill">Schritt 2: Die 5 Stufen &amp; 7 Tage</a>
+        <a href="#schritt3" class="step-pill">Schritt 3: E-Book &amp; Workbook sichern</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="schritt1" style="text-align:center; padding-top:68px;">
+    <div class="container">
+      <div class="kicker">SCHRITT 1 · VOM WUNSCHDENKEN IN DIE ECHTE UMSETZUNG MIT MIMI BLACK</div>
+      <h1>Die <span class="gold">5 Stufen</span> &amp; <span class="gold">7 Schritte</span> der Bewusstwerdung zur Manifestation</h1>
+      <p class="lead">Warum positives Denken allein dein Leben nicht verändert – und wie du in 7 klar strukturierten Praxistagen unbewusste Bremsen löst, dein Nervensystem auf Sicherheit polst und vom Wünschen endlich ins echte Tun kommst.</p>
+      <div style="margin: 26px 0;">
+        <a href="#schritt3" class="btn">Jetzt E-Book &amp; 7-Tage-Praxis-Workbook sichern ✦</a>
+      </div>
+      <p style="font-size:13.5px; color:var(--muted);">Sofort-Download als 14-seitiges PDF-Buch &amp; Arbeitsbuch von Mimi Black · Sichere Abwicklung &amp; 14 Tage Rückgaberecht über Digistore24</p>
+    </div>
+  </section>
+
+  <section id="schritt2">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="kicker">SCHRITT 2 · DAS SYSTEM HINTER ECHTER MANIFESTATION</div>
+        <h2>Manifestation ist: 10 % Wunsch-Gedanke + 90 % verkörpertes Bewusstsein</h2>
+        <p class="lead">Rund 95 % unserer täglichen Reaktionen und Entscheidungen laufen auf Autopilot. Wenn dein Kopf ein großes Ziel will, dein Nervensystem Veränderung aber als unsicher einstuft, gewinnt immer das Schutzprogramm. So lösen wir diese Blockade in 5 Stufen und 7 Praxistagen:</p>
+      </div>
+
+      <div style="margin-top:30px;">
+        <h3 style="text-align:center; margin-bottom:18px;">Die 5 Stufen der Bewusstwerdung (Problem &amp; Lösung):</h3>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">01</span><span><b>Problem:</b> Oberflächliche Affirmationen trotz innerer Zweifel → <b>Lösung:</b> Ehrliche Bestandsaufnahme im Element Wasser</span></div>
+          <span class="day-pill">Tag 1 · Fundament</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">02</span><span><b>Problem:</b> Energie klebt in Vergangenheit &amp; Vergleichen → <b>Lösung:</b> Energielecks schließen im Element Metall</span></div>
+          <span class="day-pill">Tag 2 · Klärung</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">03</span><span><b>Problem:</b> Warten auf äußere Beweise aus dem Mangel → <b>Lösung:</b> Die Identitäts-Weiche im Element Holz</span></div>
+          <span class="day-pill">Tag 3 · Kern-Strategie</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">04</span><span><b>Problem:</b> Selbstsabotage kurz vor dem Ziel → <b>Lösung:</b> Sicherheit im Nervensystem verankern (Element Feuer)</span></div>
+          <span class="day-pill">Tag 4 · Kohärenz</span>
+        </div>
+        <div class="roadmap-row">
+          <div class="roadmap-left"><span class="num-circle">05</span><span><b>Problem:</b> Träumen ohne Umsetzung &amp; Aufgeben bei Gegenwind → <b>Lösung:</b> Beseeltes Handeln &amp; 5-Minuten-Tagesanker (Erde)</span></div>
+          <span class="day-pill">Tag 5 bis Tag 7 · Umsetzung</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schritt3">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="kicker">SCHRITT 3 · DEIN START IN DIE 7-TAGE-UMSETZUNGS-CHALLENGE</div>
+        <h2>Hol dir jetzt das Magic Manifestation E-Book &amp; Praxis-Workbook von Mimi Black</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="card-gold" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="kicker">SOFORT-DOWNLOAD · E-BOOK &amp; 7-TAGE-WORKBOOK</div>
+            <h3>Die 5 Stufen &amp; 7 Schritte der Bewusstwerdung (PDF-Edition · Mimi Black)</h3>
+            <div class="price-tag">27,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Kein Abo · Sofortiger Zugriff als 14-seitiges DIN-A4-PDF</p>
+            <ul class="check-list">
+              <li><b>Tiefgehendes E-Book:</b> Warum klassische Manifestation oft scheitert &amp; wie das 5-Stufen-Modell der Bewusstwerdung funktioniert.</li>
+              <li><b>7 komplett ausgearbeitete Praxistage (Tag 1 bis Tag 7):</b> Jeweils mit Problem-Lösungs-Analyse, 5-Minuten-Körper- &amp; Atemübung, 3 Schreibfeldern und Tages-Check.</li>
+              <li><b>5-Minuten-Morgenroutine, 5-Elemente-Blockaden-Diagnose &amp; 21-Tage-Dranbleib-Tracker.</b></li>
+            </ul>
+          </div>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="https://payhip.com/b/Va1qT" class="btn" style="width:100%;">Jetzt E-Book &amp; 7-Tage-Workbook sichern</a>
+          </div>
+        </div>
+
+        <div class="card-accent" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="kicker" style="color:#D6C6FF; border-color:#8B7CFF; background:rgba(139,124,255,0.18);">VIP-BUNDLE · WORKBOOK + 8-TEILIGER VIDEOKURS</div>
+            <h3>Magic Manifestation Komplettpaket (E-Book, Workbook &amp; Videokurs mit Mimi Black)</h3>
+            <div class="price-tag" style="color:#D6C6FF;">97,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Kein Abo · Das komplette Begleitprogramm mit Mimi Black</p>
+            <ul class="check-list">
+              <li><b>Enthält das komplette 14-seitige E-Book &amp; 7-Tage-Praxis-Workbook (PDF).</b></li>
+              <li><b>PLUS: Alle 8 Video- &amp; Audio-Module von Mimi Black</b> zu den 5 Stufen der Bewusstwerdung und allen 7 Tagen der Umsetzungs-Challenge.</li>
+              <li><b>Angeleitete Körper-, Atem- und Frequenz-Übungen</b> zum direkten Mitmachen am Morgen oder Abend.</li>
+            </ul>
+          </div>
+          <div style="margin-top:20px; text-align:center;">
+            <a href="https://payhip.com/b/t0Sr9" class="btn btn-outline" style="width:100%;">Jetzt VIP-Komplettpaket sichern</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="legal-box">
+        <b>Wichtiger Hinweis (Kein Heil- oder Erfolgsversprechen / Haftungsausschluss):</b><br/>
+        Dieses digitale Produkt dient ausschließlich der Selbstreflexion, Inspiration, Persönlichkeitsentwicklung und allgemeinen Selbstfürsorge. Es stellt keine medizinische, psychologische, therapeutische oder finanzielle Beratung oder Diagnose dar.<br/><br/>
+        <b>Hinweis zur Verkaufsabwicklung:</b> Die Abbuchung und Rechnungsstellung erfolgt über die Digistore24 GmbH (St.-Godehard-Straße 32, 31139 Hildesheim).
+      </div>
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="legal-box" style="margin-top:0;">
+          <b>Impressum (Angaben gemäß § 5 DDG &amp; § 18 Abs. 2 MStV):</b><br/>
+          Magic Manifestation · Mimi Black (Astro Magic &amp; Magic Manifestation)<br/>
+          Herausgeberin: Mimi Black · c/o Autorenglück, Albert-Einstein-Str. 47 · 02977 Hoyerswerda · Deutschland<br/>
+          E-Mail: yourconsciouslife@gmx.de
+        </div>
+        <div class="legal-box" style="margin-top:0;">
+          <b>Datenschutzhinweis (DSGVO):</b><br/>
+          Verantwortlich: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda (yourconsciouslife@gmx.de). Bestellabwicklung über Digistore24 GmbH (Art. 6 Abs. 1 lit. b DSGVO).
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:24px;">© 2026 Magic Manifestation · Mimi Black · Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+
+
+
+
+<style>
+  .checkout-bar {
+    margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(233,196,106,0.35);
+    text-align: center; font-family: 'Montserrat', sans-serif;
+  }
+  .checkout-bar-title {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #E9C46A; margin-bottom: 8px;
+  }
+  .checkout-links {
+    display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
+  }
+  .checkout-chip {
+    font-size: 11.5px; font-weight: 600; padding: 6px 12px; border-radius: 6px;
+    text-decoration: none; color: #F4F0FF; background: rgba(139,124,255,0.18);
+    border: 1px solid rgba(139,124,255,0.45); transition: all 0.15s ease;
+  }
+  .checkout-chip.primary-chip {
+    background: rgba(233,196,106,0.22); border-color: #E9C46A; color: #FFF8E7; font-weight: 700;
+  }
+  .checkout-chip:hover {
+    background: rgba(233,196,106,0.32); border-color: #E9C46A; color: #fff;
+  }
+  .top-store-link {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+    color: #E9C46A; text-decoration: none; padding: 5px 12px; border-radius: 99px;
+    border: 1px solid rgba(233,196,106,0.45); background: rgba(233,196,106,0.08);
+  }
+</style>
+<script id="mimi-black-multi-checkout">
+  window.MIMI_BLACK_SHOPS = {
+    payhip_product:  "https://payhip.com/b/Va1qT",
+    payhip_vip:      "https://payhip.com/b/t0Sr9",
+    payhip_store:    "https://payhip.com/MimiBlack",
+    gumroad_store:   "https://mimiblackmagic.gumroad.com",
+    digistore24_std: "https://www.checkout-ds24.com/product/756164",
+    digistore24_vip: "https://www.checkout-ds24.com/product/756164?plan=1540228"
+  };
+  document.addEventListener("DOMContentLoaded", function() {
+    var s = window.MIMI_BLACK_SHOPS;
+    var qs = window.location.search ? window.location.search.substring(1) : "";
+    var topInner = document.querySelector(".top-inner");
+    if (topInner && !document.querySelector(".top-store-link")) {
+      var shopLink = document.createElement("a");
+      shopLink.href = "https://payhip.com/MimiBlack";
+      shopLink.target = "_blank";
+      shopLink.className = "top-store-link";
+      shopLink.innerHTML = "✦ Mimi Black Shop (Payhip)";
+      topInner.appendChild(shopLink);
+    }
+    document.querySelectorAll("a.btn").forEach(function(btn) {
+      var href = btn.getAttribute("href") || "";
+      if (href.indexOf("#") === 0 || btn.hasAttribute("download")) return;
+      var isVip = href.indexOf("plan=1540228") !== -1 || href.indexOf("b/t0Sr9") !== -1 || btn.classList.contains("btn-outline");
+      // Primary button goes directly to live Payhip product page for Standard, or Digistore24 VIP plan for VIP
+      var primaryUrl = isVip ? (s.payhip_vip || "https://payhip.com/b/t0Sr9") : s.payhip_product;
+      if (qs) primaryUrl += (primaryUrl.indexOf("?") === -1 ? "?" : "&") + qs;
+      btn.setAttribute("href", primaryUrl);
+      var parent = btn.parentElement;
+      if (parent && !parent.querySelector(".checkout-bar")) {
+        var bar = document.createElement("div");
+        bar.className = "checkout-bar";
+        bar.innerHTML =
+          '<div class="checkout-bar-title">Sofort-Download – Wähle deinen bevorzugten Checkout:</div>' +
+          '<div class="checkout-links">' +
+            '<a class="checkout-chip primary-chip" href="' + (isVip ? (s.payhip_vip || "https://payhip.com/b/t0Sr9") : s.payhip_product) + '" target="_blank" rel="noopener">⚡ Sofortkauf via Payhip (Live)</a>' +
+            '<a class="checkout-chip" href="' + s.gumroad_store + '" target="_blank" rel="noopener">Gumroad Shop</a>' +
+            '<a class="checkout-chip" href="' + (isVip ? s.digistore24_vip : s.digistore24_std) + '" target="_blank" rel="noopener">Digistore24</a>' +
+            '<a class="checkout-chip" href="' + s.payhip_store + '" target="_blank" rel="noopener">Alle 4 Bücher im Shop</a>' +
+          '</div>';
+        parent.appendChild(bar);
+      }
+    });
+  });
+</script>
+
+<div style="margin:12px 0;padding:12px 16px;background:rgba(233,196,106,0.12);border:1px solid #E9C46A;border-radius:10px;text-align:center;"><a href="magic-manifestation-en.html" style="color:#E9C46A;font-weight:700;text-decoration:none;">🇬🇧 NEW · INTERNATIONAL ENGLISH EDITION: MAGIC MANIFESTATION – The 5 Stages &amp; 7 Sacred Steps of Conscious Creation (14-Page PDF Workbook · €27.00) →</a> · <a href="https://www.checkout-ds24.com/product/756183" target="_blank" style="color:#FFF3B0;text-decoration:underline;">Digistore24 Checkout (EN)</a> · <a href="https://payhip.com/b/Va1qT" target="_blank" style="color:#FFF3B0;text-decoration:underline;">Payhip Instant Download</a></div>
+</body>
+</html>

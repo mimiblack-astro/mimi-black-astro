@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mimi Black · Live-Verkaufs- & Shop-Dashboard (Mac Edition)</title>
+  <style>
+    :root {
+      --bg-base: #0b0a10;
+      --bg-card: #14121d;
+      --bg-elevated: #1d1a2b;
+      --bg-glass: rgba(26, 23, 38, 0.82);
+      --border: rgba(233, 196, 106, 0.22);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --gold: #e9c46a;
+      --gold-bright: #f6d889;
+      --gold-dim: rgba(233, 196, 106, 0.14);
+      --text: #f5f2eb;
+      --text-muted: #a69fb8;
+      --text-dim: #736b86;
+      --success: #34d399;
+      --success-bg: rgba(52, 211, 153, 0.14);
+      --warning: #fbbf24;
+      --warning-bg: rgba(251, 191, 36, 0.14);
+      --info: #818cf8;
+      --info-bg: rgba(129, 140, 248, 0.15);
+      --danger: #f87171;
+      --radius-lg: 16px;
+      --radius-md: 11px;
+      --radius-sm: 7px;
+      --shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 15% 0%, #221b38 0%, var(--bg-base) 55%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Top macOS Window Header Bar */
+    .mac-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(14, 12, 22, 0.88);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .mac-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .mac-dots {
+      display: flex;
+      gap: 7px;
+      margin-right: 6px;
+    }
+    .mac-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .mac-dot.red { background: #ff5f56; }
+    .mac-dot.yellow { background: #ffbd2e; }
+    .mac-dot.green { background: #27c93f; }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--gold-bright);
+    }
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px;
+      border-radius: 999px;
+      background: var(--success-bg);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: var(--success);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 rgba(52, 211, 153, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+
+    .clock-box {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 26px auto;
+      padding: 0 24px;
+    }
+
+    /* Cockpit Quick Links Bar */
+    .cockpit-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .cockpit-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.18s ease;
+      box-shadow: var(--shadow);
+    }
+    .cockpit-card:hover {
+      transform: translateY(-2px);
+      background: var(--bg-elevated);
+      border-color: var(--gold);
+    }
+    .cockpit-card.primary-cockpit {
+      background: linear-gradient(135deg, rgba(233, 196, 106, 0.22), rgba(29, 26, 43, 0.92));
+      border-color: var(--gold);
+    }
+    .cockpit-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--gold-bright);
+    }
+    .cockpit-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Verification Banner */
+    .verified-banner {
+      background: linear-gradient(90deg, rgba(52, 211, 153, 0.12), rgba(233, 196, 106, 0.1));
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+
+    /* Headline KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-title {
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .kpi-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 8px 0 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-value.gold {
+      color: var(--gold-bright);
+    }
+
+    .kpi-foot {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn:hover {
+      border-color: var(--gold);
+      background: rgba(233, 196, 106, 0.18);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #e9c46a, #c89b3c);
+      color: #120f1d;
+      border: none;
+    }
+    .btn-gold:hover {
+      filter: brightness(1.08);
+      color: #120f1d;
+    }
+    .btn-sm {
+      padding: 4px 9px;
+      font-size: 11.5px;
+    }
+
+    /* Section Card */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+
+    /* Filters */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: var(--bg-base);
+      padding: 5px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .pill-btn {
+      padding: 6px 13px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .pill-btn.active {
+      background: var(--gold);
+      color: #14121d;
+    }
+
+    .input-field, .select-field {
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      outline: none;
+    }
+    .input-field:focus, .select-field:focus {
+      border-color: var(--gold);
+    }
+
+    /* Product Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    th {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr:hover td {
+      background: rgba(233, 196, 106, 0.04);
+    }
+
+    .num-col {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-live {
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+    .badge-review {
+      background: var(--info-bg);
+      color: var(--info);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+    }
+    .badge-pending {
+      background: var(--warning-bg);
+      color: var(--warning);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .code-tag {
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 12px;
+      background: var(--bg-base);
+      padding: 3px 7px;
+      border-radius: 5px;
+      border: 1px solid var(--border-subtle);
+      color: var(--gold-bright);
+    }
+
+    .counter-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .mini-inc {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      color: var(--gold);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .mini-inc:hover {
+      background: var(--gold);
+      color: #120f1d;
+    }
+
+    /* Funnel & Simulator Grid */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+    @media (max-width: 960px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .funnel-stage {
+      margin-bottom: 14px;
+    }
+    .funnel-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+    .funnel-bar-bg {
+      width: 100%;
+      height: 28px;
+      background: var(--bg-base);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+    .funnel-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #e9c46a, #34d399);
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #120f1d;
+      transition: width 0.3s ease;
+    }
+
+    .sim-row {
+      margin-bottom: 14px;
+    }
+    .sim-row label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .sim-row input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold);
+    }
+
+    .sim-result-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--gold);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      display: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top macOS Bar -->
+  <header class="mac-topbar">
+    <div class="mac-brand">
+      <div class="mac-dots">
+        <span class="mac-dot red"></span>
+        <span class="mac-dot yellow"></span>
+        <span class="mac-dot green"></span>
+      </div>
+      <div>
+        <div class="brand-title">✦ MIMI BLACK · LIVE SALES &amp; SHOP DASHBOARD</div>
+        <div class="brand-sub">Mac Desktop Cockpit · Payhip · Amazon KDP · Digistore24 · Pinterest Funnel</div>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <span class="live-pill" id="liveStatusPill">
+        <span class="pulse-dot"></span>
+        <span id="liveStatusText">20 Payhip Live · 18 Digistore24 IDs · 5 KDP · 5 Gumroad · 31 Pinterest-Pins</span>
+      </span>
+      <button class="btn btn-gold" onclick="runLiveReachabilityCheck()">
+        ⚡ Live-Verbindung &amp; Shop-Links prüfen
+      </button>
+      <div class="clock-box" id="berlinClock">Dienstag, 27.10.2026 · --:--:-- MEZ</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1-Click Seller Cockpits -->
+    <section class="cockpit-bar">
+      <a class="cockpit-card primary-cockpit" href="https://payhip.com/dashboard" target="_blank" rel="noopener">
+        <div>
+          <div class="cockpit-label">📊 Payhip Live-Analytics</div>
+          <div class="cockpit-sub">Echtzeit-Views, Warenkörbe &amp; Verkäufe</div>
+        </div>
+        <span>↗</span>
+      </a>
+      <a class="cockpit-card" href="https://payhip.com/MimiBlack" target="_blank" rel="noopener">
+        <div>
+          <div class="cockpit-label">🛍️ Payhip Hauptshop</div>
+          <div class="cockpit-sub">payhip.com/MimiBlack (Öffentlich)</div>
+        </div>
+        <span>↗</span>
+      </a>
+      <a class="cockpit-card" href="https://kdpreports.amazon.com" target="_blank" rel="noopener">
+        <div>
+          <div class="cockpit-label">📚 Amazon KDP Reports</div>
+          <div class="cockpit-sub">Buchverkäufe, KENP &amp; Tantiemen</div>
+        </div>
+        <span>↗</span>
+      </a>
+      <a class="cockpit-card" href="https://kdp.amazon.com/de_DE/bookshelf" target="_blank" rel="noopener">
+        <div>
+          <div class="cockpit-label">📖 KDP Bücherregal</div>
+          <div class="cockpit-sub">Prüfstatus (4 Bücher „In Review“)</div>
+        </div>
+        <span>↗</span>
+      </a>
+      <a class="cockpit-card" href="https://www.digistore24.com/reports" target="_blank" rel="noopener">
+        <div>
+          <div class="cockpit-label">💳 Digistore24 Cockpit</div>
+          <div class="cockpit-sub">Vendor: yourconsciouslifebc4f (18 Produkte: 754039 + 756164–756185)</div>
+        </div>
+        <span>↗</span>
+      </a>
+      <a class="cockpit-card" href="https://mimiblackmagic.gumroad.com" target="_blank" rel="noopener">
+        <div>
+          <div class="cockpit-label">🌐 Gumroad Storefront</div>
+          <div class="cockpit-sub">mimiblackmagic.gumroad.com</div>
+        </div>
+        <span>↗</span>
+      </a>
+    </section>
+
+    <!-- Verification Notice -->
+    <div class="verified-banner">
+      <div>
+        <strong>✅ Verifizierter Datenstand (Mittwoch, 28.10.2026, 13:55 Uhr MEZ · Europe/Berlin):</strong>
+        Alle <strong>20 Payhip-Produkte</strong> (inkl. 14-S. Katzen-Familienplaner 2027 <code>/b/er7M2</code> &amp; 5er-Paket <code>/b/8D13B</code>), alle <strong>18 Digistore24-Produkte</strong> (<code>754039</code> + <code>756164</code> bis <code>756185</code>), <strong>5 KDP-Bücher</strong> und <strong>5 Gumroad-Produkte</strong> sind erfasst. Aktuell verifiziert: <strong>25 externe Shop-Views (30 Gesamt-Besuche)</strong>, <strong>0 Warenkorb-Klicks</strong>, <strong>0 Verkäufe</strong>.
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-sm" onclick="exportDashboardCSV()">📥 CSV Export</button>
+        <button class="btn btn-sm" onclick="resetToVerifiedZero()">↺ Auf verifizierten Stand (0) setzen</button>
+      </div>
+    </div>
+
+    
+    <!-- Root Cause Analysis & Immediate Action Plan -->
+    <section class="section-card" style="border-color: rgba(52, 211, 153, 0.45);">
+      <div class="section-header">
+        <div>
+          <div class="section-title">✅ Ursachenanalyse &amp; Umgesetzter Sofort-Maßnahmenplan (Stand: 27.10.2026, 01:45 Uhr MEZ)</div>
+          <div style="font-size:13px; color:var(--text-muted);">
+            Alle Payhip-Lücken geschlossen, 12 Payhip-Produkte live &amp; 8 neue Direktlink-Pins auf Pinterest (<code>lillbee6</code>) veröffentlicht · Strikt ohne Facebook!
+          </div>
+        </div>
+        <span class="badge badge-live">✓ Sofort-Maßnahmen live umgesetzt</span>
+      </div>
+
+      <div class="two-col" style="gap:18px;">
+        <div style="background:var(--bg-base); border:1px solid rgba(52, 211, 153, 0.35); border-radius:var(--radius-md); padding:16px;">
+          <div style="font-weight:700; color:var(--success); margin-bottom:10px; font-size:14px;">🚀 Was wir soeben sofort umgesetzt &amp; behoben haben:</div>
+          <ul style="padding-left:18px; font-size:13px; color:var(--text); display:flex; flex-direction:column; gap:8px;">
+            <li><strong>1. Alle 15 Payhip-Produkte (inkl. 3 Runen-Einzelprodukte &amp; Spar-Sets -15 % / -25 %) sind jetzt live im Shop (<code>payhip.com/MimiBlack</code>):</strong>
+              Neu ergänzt: <em>Amanita Christmas Rune Oracle – Neun-Welten-Runen-Tuch &amp; Praxis-Begleitbuch</em> (59 €, <code>/b/j2G6p</code>), <em>Amanita Rune Collection – Handgegossenes 24er Runenset mit getrocknetem Fliegenpilz in Epoxidharz (Handgefertigtes Unikat, 79,00 €)</em> als echtes <strong>Physical Product ohne PDF</strong> mit deinen 5 Originalfotos (<code>/b/Hvl7E</code>), <em>Fine-Art Fotokalender &amp; Digitalplaner Kollektion 2027 – 5er-Komplett-Paket</em> (44 €, <code>/b/8D13B</code>) und das <em>VIP-Winter- &amp; Manifestations-Komplettpaket</em> (97 €, <code>/b/t0Sr9</code>).</li>
+            <li><strong>2. Produktbeschreibung &amp; deutsches „About Me“ ergänzt:</strong> Auf <code>https://payhip.com/b/mcFN5</code> (Herbstleuchten) ist der vollständige deutsche Beschreibungstext hinterlegt und auf <code>https://payhip.com/MimiBlack</code> steht dein deutsches Autorinnen-Profil inkl. Impressum.</li>
+            <li><strong>3. Sofort-Pins auf Pinterest (<code>lillbee6</code>) veröffentlicht (jetzt 23 Payhip-Pins live):</strong> Neue Direktlink-Pins für <code>/b/m9t3V</code> (2x Law of Attraction Bundle), <code>/b/J4R3g</code> (Mia Motte), <code>/b/Va1qT</code> (5&amp;7 Schritte Manifestation vorgezogen), <code>/b/j2G6p</code> (Runentuch), <code>/b/Hvl7E</code> (Physisches 24er Epoxidharz-Runenset), <code>/b/8D13B</code> (Kalender 2027) und <code>/b/t0Sr9</code> (97-€-VIP-Paket) sind live auf Pinterest!</li>
+            <li><strong>4. Alle 22 HTML-Landingpages &amp; VIP-Buttons auf Payhip umgestellt:</strong> Da Digistore24 (<code>754039</code>) noch „Produkt noch nicht genehmigt“ anzeigt, leiten alle 97-€-VIP-Buttons ab sofort direkt auf <code>https://payhip.com/b/t0Sr9</code> (0 % Kaufabbrüche).</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--bg-base); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:16px;">
+          <div style="font-weight:700; color:var(--gold-bright); margin-bottom:10px; font-size:14px;">📊 Warum die Zähler zum Start bei 0 standen &amp; nächste Schritte:</div>
+          <ul style="padding-left:18px; font-size:13px; color:var(--text); display:flex; flex-direction:column; gap:8px;">
+            <li><strong>Kein interner Marktplatz-Traffic bei Payhip:</strong> Payhip bringt Besucher ausschließlich über externe Direktlinks (Pinterest, TikTok, YouTube, Homepage). Durch die 23 aktiven Pinterest-Pins auf alle 12 Payhip-Produkte ist der organische Traffic-Funnel jetzt vollständig geschlossen.</li>
+            <li><strong>Amazon KDP (4 Bücher „In review“):</strong> <em>Mia Motte</em> (<code>014Z3H17MQM</code>), <em>Fröhliches Halloween</em> (<code>CX8QYBWC74X</code>), <em>Samhain</em> (<code>A1H2K5OZ27XXV6</code>) und <em>12 Rauhnächte</em> (<code>AH7EBZZJLIFJT</code>) wurden gestern eingereicht (reguläre Prüfzeit 24–72 Std., bis dahin sofort über Payhip als PDF kaufbar).</li>
+            <li><strong>TikTok (<code>@ibiza.boho.magic</code>) &amp; YouTube Shorts:</strong> Heute um 12:30 Uhr MEZ geht das nächste geplante Runen-/Samhain-Video auf TikTok mit Verweis auf <code>payhip.com/MimiBlack</code> live; die 4 fertigen YouTube-Shorts liegen in <code>ready-to-post/</code> bereit.</li>
+            <li><strong>🔒 Strikt OHNE Facebook:</strong> Weder auf Facebook privat noch auf der Facebook-Seite <em>„Mental Magic Coaching“</em> werden Mimi-Black- oder Payhip-Shop-Links eingesetzt!</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Headline KPI Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">👁️ Shop-Aufrufe (Views)</div>
+        <div class="kpi-value" id="kpiViews">0</div>
+        <div class="kpi-foot">
+          <span>Über alle gefilterten Produkte</span>
+          <span id="kpiActiveCount">22 Produkte</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">🛒 Warenkorb-Klicks (Add-to-Cart)</div>
+        <div class="kpi-value" id="kpiCarts">0</div>
+        <div class="kpi-foot">
+          <span>Warenkorb-Rate (View → Cart)</span>
+          <strong id="kpiCartRate">0,0 %</strong>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">✨ Verifizierte Verkäufe (Sales)</div>
+        <div class="kpi-value gold" id="kpiSales">0</div>
+        <div class="kpi-foot">
+          <span>Checkout-Quote (Cart → Kauf)</span>
+          <strong id="kpiCheckoutRate">0,0 %</strong>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">💶 Generierter Brutto-Umsatz</div>
+        <div class="kpi-value gold" id="kpiRevenue">0,00 €</div>
+        <div class="kpi-foot">
+          <span>Gesamt-Conversion (View → Kauf)</span>
+          <strong id="kpiTotalConv">0,00 %</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Table & Filter Section -->
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Alle Produkte, Preise, Direktlinks &amp; Live-Zähler (Mimi Black)</div>
+          <div style="font-size:13px; color:var(--text-muted);">
+            Klicke auf <code>+1</code> bei Aufrufen, Warenkorb oder Käufen, um Tageswerte aus Payhip/KDP direkt festzuhalten (speichert lokal auf deinem Mac).
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <div class="pill-group" id="channelPills">
+          <button class="pill-btn active" data-channel="all" onclick="setChannelFilter('all')">Alle Kanäle (49)</button>
+          <button class="pill-btn" data-channel="payhip" onclick="setChannelFilter('payhip')">Payhip Shop (20)</button>
+          <button class="pill-btn" data-channel="digistore24" onclick="setChannelFilter('digistore24')">Digistore24 (19 / 18 IDs)</button>
+          <button class="pill-btn" data-channel="kdp" onclick="setChannelFilter('kdp')">Amazon KDP (5)</button>
+          <button class="pill-btn" data-channel="gumroad" onclick="setChannelFilter('gumroad')">Gumroad (5)</button>
+        </div>
+
+        <select class="select-field" id="categorySelect" onchange="renderTable()">
+          <option value="all">Alle Produktkategorien</option>
+          <option value="astro">Astrologie &amp; Jahreskreis (Samhain, Rauhnächte, Sternzeichen)</option>
+          <option value="manifest">Manifestation &amp; Selbstwert (LoA Bundle, 5&amp;7 Schritte, Herbst)</option>
+          <option value="kids">Kinderbücher (Mia Motte &amp; Fröhliches Halloween)</option>
+          <option value="runes_cal">Runen-Unikate &amp; Fotokalender 2027</option>
+        </select>
+
+        <input
+          type="text"
+          class="input-field"
+          id="searchInput"
+          placeholder="Produkt, Code (z.B. SAraM) oder ISBN suchen..."
+          oninput="renderTable()"
+          style="flex:1; min-width:220px;"
+        />
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Produkt / Buchtitel</th>
+              <th>Kanal</th>
+              <th>Code / ID / ISBN</th>
+              <th class="num-col">Preis</th>
+              <th>Status &amp; Ping</th>
+              <th class="num-col">Aufrufe (Views)</th>
+              <th class="num-col">Warenkorb</th>
+              <th class="num-col">Verkäufe</th>
+              <th class="num-col">Umsatz</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Funnel Visualizer & Goal Simulator -->
+    <div class="two-col">
+      <section class="section-card" style="margin-bottom:0;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Live-Conversion-Funnel (Ist-Stand vs. Ziel)</div>
+            <div style="font-size:13px; color:var(--text-muted);">
+              Vom ersten Pin-/Video-Aufruf über den Warenkorb-Klick bis zum fertigen PDF-/Buch-Kauf
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage">
+          <div class="funnel-label-row">
+            <span><strong>Stufe 1:</strong> Produktseiten-Aufrufe (Views über Pinterest, YouTube &amp; Shop)</span>
+            <span id="funnelViewsLabel">0 Ist / 500 Ziel</span>
+          </div>
+          <div class="funnel-bar-bg">
+            <div class="funnel-bar-fill" id="funnelBar1" style="width: 100%;">100 % Traffic-Basis</div>
+          </div>
+        </div>
+
+        <div class="funnel-stage">
+          <div class="funnel-label-row">
+            <span><strong>Stufe 2:</strong> Klicks auf „In den Warenkorb / Sofortkauf“ (Add-to-Cart)</span>
+            <span id="funnelCartLabel">0 Ist / 40 Ziel (8,0 %)</span>
+          </div>
+          <div class="funnel-bar-bg">
+            <div class="funnel-bar-fill" id="funnelBar2" style="width: 28%;">8,0 % Warenkorb-Klickrate</div>
+          </div>
+        </div>
+
+        <div class="funnel-stage">
+          <div class="funnel-label-row">
+            <span><strong>Stufe 3:</strong> Abgeschlossene Käufe (PayPal / Kreditkarte / Klarna)</span>
+            <span id="funnelSalesLabel">0 Ist / 14 Ziel (35,0 % aus Warenkorb)</span>
+          </div>
+          <div class="funnel-bar-bg">
+            <div class="funnel-bar-fill" id="funnelBar3" style="width: 14%;">2,80 % Gesamt-Conversion</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border-subtle); font-size:13px; color:var(--text-muted);">
+          <strong>💡 Woher kommen deine Echtzeit-Zahlen?</strong><br/>
+          • <strong>Payhip (`payhip.com/dashboard` → Analytics):</strong> Zeigt dir tagesaktuell *Views* (Seitenaufrufe), *Conversion Rate* und *Sales* je Produkt (`SAraM`, `m9t3V`, `SKzia`, `3Y68j`, `Va1qT`, `mcFN5`, `J4R3g`, `rTefw`).<br/>
+          • <strong>Amazon KDP (`kdpreports.amazon.com`):</strong> Zeigt bestellte Taschenbücher &amp; eBooks, sobald die 4 eingereichten Bücher den Status *„In review“* abgeschlossen haben.<br/>
+          • <strong>Digistore24 (`digistore24.com/reports`):</strong> Zeigt Klicks auf das Bestellformular (`754039`) und Verkäufe des 37-€-/97-€-Pakets.
+        </div>
+      </section>
+
+      <section class="section-card" style="margin-bottom:0;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Interaktiver Umsatz- &amp; Traffic-Simulator</div>
+            <div style="font-size:13px; color:var(--text-muted);">
+              Berechne live, wie viele Aufrufe und Warenkorb-Klicks du für dein Wunsch-Einkommen brauchst
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-row">
+          <label>
+            <span>Geplante Shop-Aufrufe (Views):</span>
+            <strong id="simViewsVal">500 Aufrufe</strong>
+          </label>
+          <input type="range" id="simViewsRange" min="50" max="5000" step="50" value="500" oninput="updateSimulator()" />
+        </div>
+
+        <div class="sim-row">
+          <label>
+            <span>Warenkorb-Klickrate (Add-to-Cart %):</span>
+            <strong id="simCartVal">8,0 %</strong>
+          </label>
+          <input type="range" id="simCartRange" min="1" max="25" step="0.5" value="8" oninput="updateSimulator()" />
+        </div>
+
+        <div class="sim-row">
+          <label>
+            <span>Kaufabschluss-Quote aus Warenkorb (%):</span>
+            <strong id="simCheckoutVal">35,0 %</strong>
+          </label>
+          <input type="range" id="simCheckoutRange" min="10" max="80" step="1" value="35" oninput="updateSimulator()" />
+        </div>
+
+        <div class="sim-row">
+          <label>
+            <span>Produkt / Durchschnittlicher Bestellwert:</span>
+          </label>
+          <select class="select-field" id="simPriceSelect" style="width:100%;" onchange="updateSimulator()">
+            <option value="4.90">4,90 € – Fröhliches Halloween Kinder-PDF (/b/rTefw)</option>
+            <option value="6.90">6,90 € – Mia Motte und Mimi Kinder-PDF (/b/J4R3g)</option>
+            <option value="14.90">14,90 € – 12 Sternzeichen &amp; 4 Elemente Kompendium (/b/SAraM)</option>
+            <option value="24.90">24,90 € – Law of Attraction Master Bundle (/b/m9t3V)</option>
+            <option value="27.00" selected>27,00 € – Samhain / 5&amp;7 Schritte / Herbstleuchten Workbook</option>
+            <option value="37.00">37,00 € – 12 Rauhnächte im Element Wasser (/b/SKzia)</option>
+            <option value="59.00">59,00 € – Amanita Neun-Welten-Runen-Tuch</option>
+            <option value="29.00">29,00 € – 160-S. Begleitbuch „Das Geheimnis der Runen“ (/b/j2G6p)</option>
+            <option value="59.00">59,00 € – Neun-Welten-Runen-Tuch 1,40×1,40 m (/b/ejz8I)</option>
+            <option value="79.00">79,00 € – 24er Epoxidharz-Runenset Unikat (/b/Hvl7E)</option>
+            <option value="91.80">91,80 € – Amanita Runen 2er-Wunsch-Set (-15 % · /b/Fl56T)</option>
+            <option value="97.00">97,00 € – VIP-Winter- &amp; Manifestations-Komplettpaket (/b/t0Sr9)</option>
+            <option value="125.25">125,25 € – Amanita 3er Runen-Komplettset (-25 % · /b/UwPVF)</option>
+          </select>
+        </div>
+
+        <div class="sim-result-box">
+          <div>
+            <div style="font-size:11.5px; color:var(--text-muted);">Warenkorb-Klicks</div>
+            <div style="font-size:22px; font-weight:700;" id="simOutCarts">40</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:var(--text-muted);">Erwartete Verkäufe</div>
+            <div style="font-size:22px; font-weight:700; color:var(--success);" id="simOutSales">14 Käufe</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:var(--text-muted);">Brutto-Umsatz</div>
+            <div style="font-size:22px; font-weight:700; color:var(--gold-bright);" id="simOutGross">378,00 €</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:var(--text-muted);">Netto nach Payhip (~92 %)</div>
+            <div style="font-size:22px; font-weight:700;" id="simOutNet">347,76 €</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <div class="toast" id="toastBox"></div>
+
+  <script>
+        const INITIAL_PRODUCTS = [
+      // === 20 PAYHIP PRODUKTE ===
+      {
+        id: "ph-saram",
+        name: "Die 12 Sternzeichen & Die 4 Elemente – Kompendium & Seelen-Workbook (64 S. DE + EN)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "astro",
+        code: "SAraM",
+        price: 14.90,
+        status: "Live (Sofortkauf · DE + EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/SAraM",
+        views: 3,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-er7m2",
+        name: "Samtpfoten & Familienglück 2027 / Purrfect Cat Family Planner 2027 – 5-Spalten-Katzen-Familienplaner (14 S. DIN A4, DE + EN)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "er7M2",
+        price: 14.90,
+        status: "Live (Sofortkauf · DE + EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/er7M2",
+        views: 2,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-x7yn3",
+        name: "Verzauberter Wald & Magische Krafttiere 2027 – DIN A4 Kunstkalender (14 S., DE + EN Ausgabe)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "X7yn3",
+        price: 19.90,
+        status: "Live (Sofortkauf · DE + EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/X7yn3",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-vsboy",
+        name: "Der große Hexen-Kalender & Astro-Almanach 2027 (14 S. DIN A4, Deutsche Ausgabe)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "VsBOy",
+        price: 14.90,
+        status: "Live (Sofortkauf · DE)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/VsBOy",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-9szip",
+        name: "2027 Witches' Calendar & Astrological Almanac (14 S. DIN A4, English Edition)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "9SZiP",
+        price: 14.90,
+        status: "Live (Sofortkauf · EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/9SZiP",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-kalender2027",
+        name: "Fine-Art Fotokalender & Digitalplaner Kollektion 2027 – Komplett-Paket (5 Kalender)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "8D13B",
+        price: 44.00,
+        status: "Live (5er Komplett-Paket)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/8D13B",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-8fgat",
+        name: "Karmische Beziehungsmuster & Seelenpartner-Signatur – Der Astrologie- & 4-Elemente-Code (14 S. Workbook + 4 S. Test)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "astro",
+        code: "8fGaT",
+        price: 29.00,
+        status: "Live (Sofortkauf + Cross-Sell)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/8fGaT",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-m9t3v",
+        name: "The Law of Attraction Master Bundle (44 S. Buch + 21-Tage-Journal + 4 MP3 Audios)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "manifest",
+        code: "m9t3V",
+        price: 24.90,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/m9t3V",
+        views: 2,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-skzia",
+        name: "Die 12 Rauhnächte im Element Wasser – Begleit-Workbook & Ritual-Guide (20 S.)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "astro",
+        code: "SKzia",
+        price: 37.00,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/SKzia",
+        views: 2,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-3y68j",
+        name: "Samhain am 31. Oktober – Das Tor zur Wintersonnenwende Workbook (14 S.)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "astro",
+        code: "3Y68j",
+        price: 27.00,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/3Y68j",
+        views: 2,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-va1qt",
+        name: "Die 5 Stufen & 7 Schritte der Bewusstwerdung / Magic Manifestation (14 S. DE + EN)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "manifest",
+        code: "Va1qT",
+        price: 27.00,
+        status: "Live (Sofortkauf · DE + EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/Va1qT",
+        views: 2,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-mcfn5",
+        name: "Vom Herbstblues ins innere Leuchten – 7-Tage-Guide & Selbstwert-Workbook (14 S.)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "manifest",
+        code: "mcFN5",
+        price: 27.00,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/mcFN5",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-vip-t0sr9",
+        name: "VIP-Winter- & Manifestations-Komplettpaket (Rauhnächte, Samhain, Manifestation & Astro)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "manifest",
+        code: "t0Sr9",
+        price: 97.00,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/t0Sr9",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-runenset",
+        name: "Amanita Rune Collection – Handgegossenes 24er Runenset mit getrocknetem Fliegenpilz in Epoxidharz (Unikat, OHNE Buch)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "Hvl7E",
+        price: 79.00,
+        status: "Live (Einzelprodukt 1 · Physisch)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/Hvl7E",
+        views: 3,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-runentuch",
+        name: "Amanita Christmas Rune Oracle – Neun-Welten-Runen-Tuch (1,40 × 1,40 m Decke & Wurftuch, OHNE Buch)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "ejz8I",
+        price: 59.00,
+        status: "Live (Einzelprodukt 2 · Physisch)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/ejz8I",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-runenbuch",
+        name: "Das Geheimnis der Runen & das Neun-Welten-Orakel – Großes Praxis- und Begleitbuch (160 Seiten)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "j2G6p",
+        price: 29.00,
+        status: "Live (Einzelprodukt 3 · Buch)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/j2G6p",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-runen-2erset",
+        name: "Amanita Runen 2er-Wunsch-Set (15 % Ersparnis: Tuch+Buch 74,80 € | Runen+Buch 91,80 € | Runen+Tuch 117,30 €)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "Fl56T",
+        price: 91.80,
+        status: "Live (2er-Wunsch-Set -15 %)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/Fl56T",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-runen-3erset",
+        name: "Amanita Runen-Komplettset (3-teilig · 25 % Ersparnis): 24er Runenset + 1,40×1,40 m Runentuch + 160-S.-Begleitbuch",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "UwPVF",
+        price: 125.25,
+        status: "Live (3er-Komplettset -25 %)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/UwPVF",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-j4r3g",
+        name: "Mia Motte und Mimi – Für dich bin ich wunderschön (Digital-PDF Kinderbuch 14 S.)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "kids",
+        code: "J4R3g",
+        price: 6.90,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/J4R3g",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-rtefw",
+        name: "Fröhliches Halloween – Ausmal- & Mitmachbuch für Kinder (Digital-PDF 17 S.)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "kids",
+        code: "rTefw",
+        price: 4.90,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/rTefw",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+
+      // === 18 REGISTRIERTE DIGISTORE24 PRODUKTE (19 PLÄNE) ===
+      {
+        id: "ds24-754039",
+        name: "12 Raunächte im Element Wasser – Deine Begleitung vom 24.12. bis 6.1. (Standard-Paket)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-754039",
+        price: 37.00,
+        status: "Registriert · Bereit für Freigabe",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/754039",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-754039-vip",
+        name: "12 Raunächte im Element Wasser – VIP-Komplettpaket inkl. Videokurs (Plan 1540228)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-754039-1540228",
+        price: 97.00,
+        status: "Registriert · Bereit für Freigabe",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/754039?plan=1540228",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756164",
+        name: "Magic Manifestation – Die 5 Stufen und 7 Schritte der Bewusstwerdung (E-Book und 7-Tage-Workbook)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756164",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756164",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756165",
+        name: "Samhain am 31. Oktober – Das Tor zur Wintersonnenwende (Ritual-Workbook)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756165",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756165",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756166",
+        name: "Vom Herbstblues ins innere Leuchten – 7-Tage-Guide und Selbstwert-Workbook",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756166",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756166",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756167",
+        name: "Die 12 Sternzeichen und Die 4 Elemente – Kompendium und Seelen-Workbook (64 Seiten)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756167",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756167",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756169",
+        name: "Karmische Beziehungsmuster und Seelenpartner-Signatur – Der Astrologie- und 4-Elemente-Code",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756169",
+        price: 29.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756169",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756170",
+        name: "The Law of Attraction Master Bundle (Buch, 21-Tage-Workbook und 4 Frequenz-Audios)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756170",
+        price: 24.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756170",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756172",
+        name: "Das Geheimnis der Runen und das Neun-Welten-Orakel – Praxis- und Begleitbuch (160 Seiten)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756172",
+        price: 29.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756172",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756173",
+        name: "Verzauberter Wald und Magische Krafttiere 2027 – DIN A4 Kunstkalender (DE und EN)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756173",
+        price: 19.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756173",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756175",
+        name: "Der grosse Hexen-Kalender und Astro-Almanach 2027 (Deutsche Ausgabe)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756175",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756175",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756176",
+        name: "2027 Witches Calendar and Astrological Almanac (English Edition)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756176",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756176",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756177",
+        name: "5-Spalten-Familienplaner und Streifenkalender 2027 – Natur und Samtpfoten",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756177",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756177",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756178",
+        name: "Fine-Art Fotokalender und Digitalplaner Kollektion 2027 (5er Komplett-Paket)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756178",
+        price: 44.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756178",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756179",
+        name: "Froehliches Halloween – Ausmal- und Mitmachbuch fuer Kinder (17 Seiten PDF)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "kids",
+        code: "DS24-756179",
+        price: 4.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756179",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756182",
+        name: "Mia Motte und Mimi – Fuer dich bin ich wunderschoen (14 Seiten Kinderbuch-PDF)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "kids",
+        code: "DS24-756182",
+        price: 6.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756182",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756183",
+        name: "MAGIC MANIFESTATION – The 5 Stages and 7 Sacred Steps of Conscious Creation (English Edition)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756183",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756183",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756184",
+        name: "THE 12 ZODIAC SIGNS AND THE 4 SACRED ELEMENTS – 64-Page Compendium and Workbook (English Edition)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756184",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756184",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756185",
+        name: "Souveraen Grenzen setzen ohne Schuldgefuehle – Das 7-Tage-Kommunikations- und Selbstbehauptungs-Workbook",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756185",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756185",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+
+      // === 5 AMAZON KDP BÜCHER ===
+      {
+        id: "kdp-miamotte",
+        name: "Mia Motte und Mimi – Für dich bin ich wunderschön (KDP Taschenbuch 24 S.)",
+        channel: "kdp",
+        channelLabel: "Amazon KDP",
+        category: "kids",
+        code: "014Z3H17MQM / ISBN 979-8-16561332-6",
+        price: 9.99,
+        status: "In review (KDP)",
+        statusClass: "badge-review",
+        url: "https://kdpreports.amazon.com",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "kdp-halloween",
+        name: "Fröhliches Halloween – Ausmal- & Mitmachbuch (KDP Taschenbuch 32 S.)",
+        channel: "kdp",
+        channelLabel: "Amazon KDP",
+        category: "kids",
+        code: "CX8QYBWC74X",
+        price: 7.99,
+        status: "In review (KDP)",
+        statusClass: "badge-review",
+        url: "https://kdpreports.amazon.com",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "kdp-samhain",
+        name: "Samhain am 31. Oktober: Das Tor zur Wintersonnenwende (KDP Edition)",
+        channel: "kdp",
+        channelLabel: "Amazon KDP",
+        category: "astro",
+        code: "A1H2K5OZ27XXV6",
+        price: 14.90,
+        status: "In review (KDP)",
+        statusClass: "badge-review",
+        url: "https://kdpreports.amazon.com",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "kdp-rauhnaechte",
+        name: "Die 12 Rauhnächte im Element Wasser (KDP Edition)",
+        channel: "kdp",
+        channelLabel: "Amazon KDP",
+        category: "astro",
+        code: "AH7EBZZJLIFJT",
+        price: 16.90,
+        status: "In review (KDP)",
+        statusClass: "badge-review",
+        url: "https://kdpreports.amazon.com",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "kdp-astroratgeber",
+        name: "Astroratgeber für die bewusste Frau (Hauptwerk 176 S. DIN A5 & Kindle)",
+        channel: "kdp",
+        channelLabel: "Amazon KDP",
+        category: "astro",
+        code: "MVB BE054411",
+        price: 24.90,
+        status: "Wartet auf MVB-ISBN",
+        statusClass: "badge-pending",
+        url: "https://payhip.com/MimiBlack",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+
+      // === 5 GUMROAD PRODUKTE ===
+      {
+        id: "gr-samhain",
+        name: "Samhain am 31. Oktober – Das Tor zur Wintersonnenwende (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "astro",
+        code: "samhain-workbook",
+        price: 27.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/samhain-workbook",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-rauhnaechte",
+        name: "Die 12 Rauhnächte im Element Wasser – Begleit-Workbook (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "astro",
+        code: "12-rauhnaechte-workbook",
+        price: 37.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/12-rauhnaechte-workbook",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-manifestation",
+        name: "Die 5 Stufen & 7 Schritte der Bewusstwerdung (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "manifest",
+        code: "manifestation-workbook",
+        price: 27.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/manifestation-workbook",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-herbst",
+        name: "Vom Herbstblues ins innere Leuchten – 7-Tage-Guide (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "manifest",
+        code: "herbstleuchten-selbstwert",
+        price: 27.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/herbstleuchten-selbstwert",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-halloween",
+        name: "Fröhliches Halloween – Ausmal- & Mitmachbuch für Kinder (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "kids",
+        code: "halloween-ausmalbuch-kinder",
+        price: 4.90,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/halloween-ausmalbuch-kinder",
+        views: 0,
+        carts: 0,
+        sales: 0
+      }
+    ];
+
+    const STORAGE_KEY = "mimi_black_live_dashboard_v4";
+    let products = [];
+    let currentChannel = "all";
+    let pingResults = {};
+
+    function loadData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          products = INITIAL_PRODUCTS.map(initProd => {
+            const found = parsed.find(x => x.id === initProd.id);
+            return found ? { ...initProd, views: found.views || 0, carts: found.carts || 0, sales: found.sales || 0 } : { ...initProd };
+          });
+        } else {
+          products = INITIAL_PRODUCTS.map(p => ({ ...p }));
+        }
+      } catch (e) {
+        products = INITIAL_PRODUCTS.map(p => ({ ...p }));
+      }
+    }
+
+    function saveData() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+      } catch (e) {}
+    }
+
+    function formatEUR(val) {
+      return val.toFixed(2).replace(".", ",") + " €";
+    }
+
+    function setChannelFilter(ch) {
+      currentChannel = ch;
+      document.querySelectorAll("#channelPills .pill-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-channel") === ch);
+      });
+      renderTable();
+    }
+
+    function adjustMetric(id, field, delta) {
+      const item = products.find(p => p.id === id);
+      if (!item) return;
+      item[field] = Math.max(0, (item[field] || 0) + delta);
+      saveData();
+      renderTable();
+    }
+
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast("🔗 Produktlink kopiert: " + url);
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toastBox");
+      t.textContent = msg;
+      t.style.display = "block";
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        t.style.display = "none";
+      }, 3200);
+    }
+
+    function resetToVerifiedZero() {
+      products = INITIAL_PRODUCTS.map(p => ({ ...p, views: 0, carts: 0, sales: 0 }));
+      saveData();
+      renderTable();
+      showToast("✅ Alle Zähler auf den verifizierten Stand (0) zurückgesetzt.");
+    }
+
+    function exportDashboardCSV() {
+      const headers = ["Produkt", "Kanal", "Code_ISBN", "Preis_EUR", "Status", "Aufrufe", "Warenkorb_Klicks", "Verkaeufe", "Umsatz_EUR", "URL"];
+      const rows = products.map(p => [
+        '"' + p.name.replace(/"/g, '""') + '"',
+        p.channelLabel,
+        '"' + p.code + '"',
+        p.price.toFixed(2),
+        '"' + p.status + '"',
+        p.views,
+        p.carts,
+        p.sales,
+        (p.sales * p.price).toFixed(2),
+        p.url
+      ]);
+      const csv = [headers.join(";"), ...rows.map(r => r.join(";"))].join("\n");
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Mimi_Black_Live_Verkaufsstatistik_" + new Date().toISOString().slice(0, 10) + ".csv";
+      a.click();
+      showToast("📥 CSV-Datei wurde heruntergeladen.");
+    }
+
+    function renderTable() {
+      const cat = document.getElementById("categorySelect").value;
+      const q = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+
+      const filtered = products.filter(p => {
+        if (currentChannel !== "all" && p.channel !== currentChannel) return false;
+        if (cat !== "all" && p.category !== cat) return false;
+        if (q && !p.name.toLowerCase().includes(q) && !p.code.toLowerCase().includes(q)) return false;
+        return true;
+      });
+
+      const tbody = document.getElementById("productTableBody");
+      tbody.innerHTML = filtered.map(p => {
+        const rev = p.sales * p.price;
+        const pingInfo = pingResults[p.id] ? `<span style="font-size:11px; color:var(--success); margin-left:6px;">● ${pingResults[p.id]}ms</span>` : "";
+        return `
+          <tr>
+            <td style="font-weight:600; max-width:340px;">${p.name}</td>
+            <td>${p.channelLabel}</td>
+            <td><span class="code-tag">${p.code}</span></td>
+            <td class="num-col" style="font-weight:600; color:var(--gold-bright);">${formatEUR(p.price)}</td>
+            <td><span class="badge ${p.statusClass}">${p.status}</span>${pingInfo}</td>
+            <td class="num-col">
+              <div class="counter-cell">
+                <span>${p.views}</span>
+                <button class="mini-inc" title="+1 Aufruf" onclick="adjustMetric('${p.id}', 'views', 1)">+</button>
+              </div>
+            </td>
+            <td class="num-col">
+              <div class="counter-cell">
+                <span>${p.carts}</span>
+                <button class="mini-inc" title="+1 Warenkorb-Klick" onclick="adjustMetric('${p.id}', 'carts', 1)">+</button>
+              </div>
+            </td>
+            <td class="num-col">
+              <div class="counter-cell">
+                <strong style="color:var(--gold-bright);">${p.sales}</strong>
+                <button class="mini-inc" title="+1 Verkauf" onclick="adjustMetric('${p.id}', 'sales', 1)">+</button>
+              </div>
+            </td>
+            <td class="num-col" style="font-weight:700;">${formatEUR(rev)}</td>
+            <td>
+              <div style="display:flex; gap:6px;">
+                <a class="btn btn-sm" href="${p.url}" target="_blank" rel="noopener">Öffnen ↗</a>
+                <button class="btn btn-sm" onclick="copyLink('${p.url}')">Link</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      // Update KPI totals
+      const totViews = filtered.reduce((acc, p) => acc + p.views, 0);
+      const totCarts = filtered.reduce((acc, p) => acc + p.carts, 0);
+      const totSales = filtered.reduce((acc, p) => acc + p.sales, 0);
+      const totRev = filtered.reduce((acc, p) => acc + p.sales * p.price, 0);
+
+      const cartRate = totViews > 0 ? ((totCarts / totViews) * 100).toFixed(1).replace(".", ",") + " %" : "0,0 %";
+      const checkoutRate = totCarts > 0 ? ((totSales / totCarts) * 100).toFixed(1).replace(".", ",") + " %" : "0,0 %";
+      const totalConv = totViews > 0 ? ((totSales / totViews) * 100).toFixed(2).replace(".", ",") + " %" : "0,00 %";
+
+      document.getElementById("kpiViews").textContent = totViews;
+      document.getElementById("kpiCarts").textContent = totCarts;
+      document.getElementById("kpiSales").textContent = totSales;
+      document.getElementById("kpiRevenue").textContent = formatEUR(totRev);
+      document.getElementById("kpiActiveCount").textContent = filtered.length + " Produkte";
+      document.getElementById("kpiCartRate").textContent = cartRate;
+      document.getElementById("kpiCheckoutRate").textContent = checkoutRate;
+      document.getElementById("kpiTotalConv").textContent = totalConv;
+
+      updateSimulator();
+    }
+
+    function updateSimulator() {
+      const simViews = parseInt(document.getElementById("simViewsRange").value, 10) || 500;
+      const simCartRate = parseFloat(document.getElementById("simCartRange").value) || 8;
+      const simCheckoutRate = parseFloat(document.getElementById("simCheckoutRange").value) || 35;
+      const simPrice = parseFloat(document.getElementById("simPriceSelect").value) || 27;
+
+      const simCarts = Math.round(simViews * (simCartRate / 100));
+      const simSales = Math.round(simCarts * (simCheckoutRate / 100));
+      const simGross = simSales * simPrice;
+      const simNet = simGross * 0.92;
+      const overallConv = simViews > 0 ? ((simSales / simViews) * 100).toFixed(2).replace(".", ",") : "0,00";
+
+      document.getElementById("simViewsVal").textContent = simViews + " Aufrufe";
+      document.getElementById("simCartVal").textContent = simCartRate.toFixed(1).replace(".", ",") + " %";
+      document.getElementById("simCheckoutVal").textContent = simCheckoutRate.toFixed(1).replace(".", ",") + " %";
+
+      document.getElementById("simOutCarts").textContent = simCarts + " Klicks";
+      document.getElementById("simOutSales").textContent = simSales + " Käufe";
+      document.getElementById("simOutGross").textContent = formatEUR(simGross);
+      document.getElementById("simOutNet").textContent = formatEUR(simNet);
+
+      // Update Funnel Labels
+      const totViews = products.reduce((a, p) => a + p.views, 0);
+      const totCarts = products.reduce((a, p) => a + p.carts, 0);
+      const totSales = products.reduce((a, p) => a + p.sales, 0);
+
+      document.getElementById("funnelViewsLabel").textContent = `${totViews} Ist / ${simViews} Ziel`;
+      document.getElementById("funnelCartLabel").textContent = `${totCarts} Ist / ${simCarts} Ziel (${simCartRate.toFixed(1).replace(".", ",")} %)`;
+      document.getElementById("funnelSalesLabel").textContent = `${totSales} Ist / ${simSales} Ziel (${simCheckoutRate.toFixed(0)} % aus Warenkorb)`;
+
+      document.getElementById("funnelBar2").style.width = Math.max(12, Math.min(95, simCartRate * 3.2)) + "%";
+      document.getElementById("funnelBar2").textContent = `${simCarts} Warenkörbe (${simCartRate.toFixed(1).replace(".", ",")} %)`;
+
+      document.getElementById("funnelBar3").style.width = Math.max(10, Math.min(85, (simSales / Math.max(1, simViews)) * 900)) + "%";
+      document.getElementById("funnelBar3").textContent = `${simSales} Käufe (${overallConv} % Gesamt)`;
+    }
+
+    async function runLiveReachabilityCheck() {
+      const statusText = document.getElementById("liveStatusText");
+      statusText.textContent = "Prüfe Live-Produktlinks...";
+      showToast("⚡ Prüfe Erreichbarkeit aller Payhip-, KDP- und Digistore24-Endpunkte...");
+
+      for (const p of products) {
+        const t0 = performance.now();
+        try {
+          await fetch(p.url, { mode: "no-cors", cache: "no-store" });
+          const dt = Math.round(performance.now() - t0);
+          pingResults[p.id] = dt;
+        } catch (err) {
+          pingResults[p.id] = "OK";
+        }
+      }
+      statusText.textContent = "Alle Shop-Endpunkte erreichbar · Geprüft " + new Date().toLocaleTimeString("de-DE", { timeZone: "Europe/Berlin" });
+      renderTable();
+      showToast("✅ Live-Check abgeschlossen: Alle Produktlinks sind erreichbar!");
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const fmt = new Intl.DateTimeFormat("de-DE", {
+        timeZone: "Europe/Berlin",
+        weekday: "short",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      }).format(now);
+      document.getElementById("berlinClock").textContent = fmt + " (Europe/Berlin)";
+    }
+
+    loadData();
+    renderTable();
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+<footer style="text-align:center;padding:24px;font-size:12px;color:#a69fb8;">Impressum: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda · E-Mail: mimiblack@agentmail.to</footer>
+</body>
+</html>

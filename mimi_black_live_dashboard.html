@@ -553,7 +553,7 @@
     <div class="topbar-right">
       <span class="live-pill" id="liveStatusPill">
         <span class="pulse-dot"></span>
-        <span id="liveStatusText">15 Payhip-Produkte Live · 25 Pinterest-Pins aktiv · 4 KDP In Review</span>
+        <span id="liveStatusText">20 Payhip Live · 18 Digistore24 IDs · 5 KDP · 5 Gumroad · 31 Pinterest-Pins</span>
       </span>
       <button class="btn btn-gold" onclick="runLiveReachabilityCheck()">
         ⚡ Live-Verbindung &amp; Shop-Links prüfen
@@ -597,7 +597,7 @@
       <a class="cockpit-card" href="https://www.digistore24.com/reports" target="_blank" rel="noopener">
         <div>
           <div class="cockpit-label">💳 Digistore24 Cockpit</div>
-          <div class="cockpit-sub">Vendor: yourconsciouslifebc4f (754039)</div>
+          <div class="cockpit-sub">Vendor: yourconsciouslifebc4f (18 Produkte: 754039 + 756164–756185)</div>
         </div>
         <span>↗</span>
       </a>
@@ -613,8 +613,8 @@
     <!-- Verification Notice -->
     <div class="verified-banner">
       <div>
-        <strong>✅ Verifizierter Datenstand (Dienstag, 27.10.2026 · Europe/Berlin):</strong>
-        Alle Postfächer (<code>schwarzeyasmin@gmail.com</code>, <code>yourconsciouslife@gmx.de</code>, <code>mimiblack@agentmail.to</code>) wurden geprüft. Da der Shop-Launch erst gestern Abend (26.10.2026) erfolgte, liegen aktuell <strong>0 externe Bestellungen</strong> vor. Du kannst deine Live-Zähler unten jederzeit per Klick aktualisieren oder mit Payhip Analytics abgleichen.
+        <strong>✅ Verifizierter Datenstand (Mittwoch, 28.10.2026, 13:55 Uhr MEZ · Europe/Berlin):</strong>
+        Alle <strong>20 Payhip-Produkte</strong> (inkl. 14-S. Katzen-Familienplaner 2027 <code>/b/er7M2</code> &amp; 5er-Paket <code>/b/8D13B</code>), alle <strong>18 Digistore24-Produkte</strong> (<code>754039</code> + <code>756164</code> bis <code>756185</code>), <strong>5 KDP-Bücher</strong> und <strong>5 Gumroad-Produkte</strong> sind erfasst. Aktuell verifiziert: <strong>25 externe Shop-Views (30 Gesamt-Besuche)</strong>, <strong>0 Warenkorb-Klicks</strong>, <strong>0 Verkäufe</strong>.
       </div>
       <div style="display:flex; gap:8px;">
         <button class="btn btn-sm" onclick="exportDashboardCSV()">📥 CSV Export</button>
@@ -653,7 +653,7 @@
             <li><strong>Kein interner Marktplatz-Traffic bei Payhip:</strong> Payhip bringt Besucher ausschließlich über externe Direktlinks (Pinterest, TikTok, YouTube, Homepage). Durch die 23 aktiven Pinterest-Pins auf alle 12 Payhip-Produkte ist der organische Traffic-Funnel jetzt vollständig geschlossen.</li>
             <li><strong>Amazon KDP (4 Bücher „In review“):</strong> <em>Mia Motte</em> (<code>014Z3H17MQM</code>), <em>Fröhliches Halloween</em> (<code>CX8QYBWC74X</code>), <em>Samhain</em> (<code>A1H2K5OZ27XXV6</code>) und <em>12 Rauhnächte</em> (<code>AH7EBZZJLIFJT</code>) wurden gestern eingereicht (reguläre Prüfzeit 24–72 Std., bis dahin sofort über Payhip als PDF kaufbar).</li>
             <li><strong>TikTok (<code>@ibiza.boho.magic</code>) &amp; YouTube Shorts:</strong> Heute um 12:30 Uhr MEZ geht das nächste geplante Runen-/Samhain-Video auf TikTok mit Verweis auf <code>payhip.com/MimiBlack</code> live; die 4 fertigen YouTube-Shorts liegen in <code>ready-to-post/</code> bereit.</li>
-            <li><strong>🔒 Strikt OHNE Facebook (Wunsch von Yasmin):</strong> Weder auf Facebook privat noch auf der Facebook-Seite <em>„Mental Magic Coaching“</em> werden Mimi-Black- oder Payhip-Shop-Links eingesetzt!</li>
+            <li><strong>🔒 Strikt OHNE Facebook:</strong> Weder auf Facebook privat noch auf der Facebook-Seite <em>„Mental Magic Coaching“</em> werden Mimi-Black- oder Payhip-Shop-Links eingesetzt!</li>
           </ul>
         </div>
       </div>
@@ -710,10 +710,11 @@
 
       <div class="filter-bar">
         <div class="pill-group" id="channelPills">
-          <button class="pill-btn active" data-channel="all" onclick="setChannelFilter('all')">Alle Kanäle (22)</button>
-          <button class="pill-btn" data-channel="payhip" onclick="setChannelFilter('payhip')">Payhip Shop (15)</button>
+          <button class="pill-btn active" data-channel="all" onclick="setChannelFilter('all')">Alle Kanäle (49)</button>
+          <button class="pill-btn" data-channel="payhip" onclick="setChannelFilter('payhip')">Payhip Shop (20)</button>
+          <button class="pill-btn" data-channel="digistore24" onclick="setChannelFilter('digistore24')">Digistore24 (19 / 18 IDs)</button>
           <button class="pill-btn" data-channel="kdp" onclick="setChannelFilter('kdp')">Amazon KDP (5)</button>
-          <button class="pill-btn" data-channel="digistore24" onclick="setChannelFilter('digistore24')">Digistore24 (2)</button>
+          <button class="pill-btn" data-channel="gumroad" onclick="setChannelFilter('gumroad')">Gumroad (5)</button>
         </div>
 
         <select class="select-field" id="categorySelect" onchange="renderTable()">
@@ -886,19 +887,110 @@
   <div class="toast" id="toastBox"></div>
 
   <script>
-    const INITIAL_PRODUCTS = [
+        const INITIAL_PRODUCTS = [
+      // === 20 PAYHIP PRODUKTE ===
       {
         id: "ph-saram",
-        name: "Die 12 Sternzeichen & Die 4 Elemente – Kompendium & Seelen-Workbook (64 S.)",
+        name: "Die 12 Sternzeichen & Die 4 Elemente – Kompendium & Seelen-Workbook (64 S. DE + EN)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
         category: "astro",
         code: "SAraM",
         price: 14.90,
-        status: "Live (Sofortkauf)",
+        status: "Live (Sofortkauf · DE + EN)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/SAraM",
-        views: 0,
+        views: 3,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-er7m2",
+        name: "Samtpfoten & Familienglück 2027 / Purrfect Cat Family Planner 2027 – 5-Spalten-Katzen-Familienplaner (14 S. DIN A4, DE + EN)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "er7M2",
+        price: 14.90,
+        status: "Live (Sofortkauf · DE + EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/er7M2",
+        views: 2,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-x7yn3",
+        name: "Verzauberter Wald & Magische Krafttiere 2027 – DIN A4 Kunstkalender (14 S., DE + EN Ausgabe)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "X7yn3",
+        price: 19.90,
+        status: "Live (Sofortkauf · DE + EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/X7yn3",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-vsboy",
+        name: "Der große Hexen-Kalender & Astro-Almanach 2027 (14 S. DIN A4, Deutsche Ausgabe)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "VsBOy",
+        price: 14.90,
+        status: "Live (Sofortkauf · DE)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/VsBOy",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-9szip",
+        name: "2027 Witches' Calendar & Astrological Almanac (14 S. DIN A4, English Edition)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "9SZiP",
+        price: 14.90,
+        status: "Live (Sofortkauf · EN)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/9SZiP",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-kalender2027",
+        name: "Fine-Art Fotokalender & Digitalplaner Kollektion 2027 – Komplett-Paket (5 Kalender)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "runes_cal",
+        code: "8D13B",
+        price: 44.00,
+        status: "Live (5er Komplett-Paket)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/8D13B",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ph-8fgat",
+        name: "Karmische Beziehungsmuster & Seelenpartner-Signatur – Der Astrologie- & 4-Elemente-Code (14 S. Workbook + 4 S. Test)",
+        channel: "payhip",
+        channelLabel: "Payhip Shop",
+        category: "astro",
+        code: "8fGaT",
+        price: 29.00,
+        status: "Live (Sofortkauf + Cross-Sell)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/8fGaT",
+        views: 1,
         carts: 0,
         sales: 0
       },
@@ -913,7 +1005,7 @@
         status: "Live (Sofortkauf)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/m9t3V",
-        views: 0,
+        views: 2,
         carts: 0,
         sales: 0
       },
@@ -928,7 +1020,7 @@
         status: "Live (Sofortkauf)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/SKzia",
-        views: 0,
+        views: 2,
         carts: 0,
         sales: 0
       },
@@ -943,22 +1035,22 @@
         status: "Live (Sofortkauf)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/3Y68j",
-        views: 0,
+        views: 2,
         carts: 0,
         sales: 0
       },
       {
         id: "ph-va1qt",
-        name: "Die 5 Stufen & 7 Schritte der Bewusstwerdung zur Manifestation (14 S.)",
+        name: "Die 5 Stufen & 7 Schritte der Bewusstwerdung / Magic Manifestation (14 S. DE + EN)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
         category: "manifest",
         code: "Va1qT",
         price: 27.00,
-        status: "Live (Sofortkauf)",
+        status: "Live (Sofortkauf · DE + EN)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/Va1qT",
-        views: 0,
+        views: 2,
         carts: 0,
         sales: 0
       },
@@ -973,58 +1065,43 @@
         status: "Live (Sofortkauf)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/mcFN5",
-        views: 0,
+        views: 1,
         carts: 0,
         sales: 0
       },
       {
-        id: "ph-j4r3g",
-        name: "Mia Motte und Mimi – Für dich bin ich wunderschön (Digital-PDF Kinderbuch)",
+        id: "ph-vip-t0sr9",
+        name: "VIP-Winter- & Manifestations-Komplettpaket (Rauhnächte, Samhain, Manifestation & Astro)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
-        category: "kids",
-        code: "J4R3g",
-        price: 6.90,
+        category: "manifest",
+        code: "t0Sr9",
+        price: 97.00,
         status: "Live (Sofortkauf)",
         statusClass: "badge-live",
-        url: "https://payhip.com/b/J4R3g",
-        views: 0,
-        carts: 0,
-        sales: 0
-      },
-      {
-        id: "ph-rtefw",
-        name: "Fröhliches Halloween – Ausmal- & Mitmachbuch für Kinder (Digital-PDF 17 S.)",
-        channel: "payhip",
-        channelLabel: "Payhip Shop",
-        category: "kids",
-        code: "rTefw",
-        price: 4.90,
-        status: "Live (Sofortkauf)",
-        statusClass: "badge-live",
-        url: "https://payhip.com/b/rTefw",
-        views: 0,
+        url: "https://payhip.com/b/t0Sr9",
+        views: 1,
         carts: 0,
         sales: 0
       },
       {
         id: "ph-runenset",
-        name: "Amanita Rune Collection – Handgegossenes 24er Runenset mit getrocknetem Fliegenpilz in Epoxidharz (Handgefertigtes Unikat, OHNE Buch)",
+        name: "Amanita Rune Collection – Handgegossenes 24er Runenset mit getrocknetem Fliegenpilz in Epoxidharz (Unikat, OHNE Buch)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
         category: "runes_cal",
         code: "Hvl7E",
         price: 79.00,
-        status: "Live (Einzelprodukt 1 · Physisches Unikat)",
+        status: "Live (Einzelprodukt 1 · Physisch)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/Hvl7E",
-        views: 0,
+        views: 3,
         carts: 0,
         sales: 0
       },
       {
         id: "ph-runentuch",
-        name: "Amanita Christmas Rune Oracle – Neun-Welten-Runen-Tuch (1,40 × 1,40 m Decke & Wurftuch mit 9 Wirkfeldern, OHNE Buch)",
+        name: "Amanita Christmas Rune Oracle – Neun-Welten-Runen-Tuch (1,40 × 1,40 m Decke & Wurftuch, OHNE Buch)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
         category: "runes_cal",
@@ -1039,13 +1116,13 @@
       },
       {
         id: "ph-runenbuch",
-        name: "Das Geheimnis der Runen & das Neun-Welten-Orakel – Großes Praxis- und Begleitbuch zum Runentuch (160 Seiten)",
+        name: "Das Geheimnis der Runen & das Neun-Welten-Orakel – Großes Praxis- und Begleitbuch (160 Seiten)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
         category: "runes_cal",
         code: "j2G6p",
         price: 29.00,
-        status: "Live (Einzelprodukt 3 · 160 S. Buch)",
+        status: "Live (Einzelprodukt 3 · Buch)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/j2G6p",
         views: 0,
@@ -1078,40 +1155,329 @@
         status: "Live (3er-Komplettset -25 %)",
         statusClass: "badge-live",
         url: "https://payhip.com/b/UwPVF",
-        views: 0,
+        views: 1,
         carts: 0,
         sales: 0
       },
       {
-        id: "ph-kalender2027",
-        name: "Fine-Art Fotokalender & Digitalplaner Kollektion 2027 – Komplett-Paket (5 Kalender)",
+        id: "ph-j4r3g",
+        name: "Mia Motte und Mimi – Für dich bin ich wunderschön (Digital-PDF Kinderbuch 14 S.)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
-        category: "runes_cal",
-        code: "8D13B",
-        price: 44.00,
+        category: "kids",
+        code: "J4R3g",
+        price: 6.90,
         status: "Live (Sofortkauf)",
         statusClass: "badge-live",
-        url: "https://payhip.com/b/8D13B",
+        url: "https://payhip.com/b/J4R3g",
         views: 0,
         carts: 0,
         sales: 0
       },
       {
-        id: "ph-vip-t0sr9",
-        name: "VIP-Winter- & Manifestations-Komplettpaket (Rauhnächte, Samhain, Manifestation & Astro)",
+        id: "ph-rtefw",
+        name: "Fröhliches Halloween – Ausmal- & Mitmachbuch für Kinder (Digital-PDF 17 S.)",
         channel: "payhip",
         channelLabel: "Payhip Shop",
+        category: "kids",
+        code: "rTefw",
+        price: 4.90,
+        status: "Live (Sofortkauf)",
+        statusClass: "badge-live",
+        url: "https://payhip.com/b/rTefw",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+
+      // === 18 REGISTRIERTE DIGISTORE24 PRODUKTE (19 PLÄNE) ===
+      {
+        id: "ds24-754039",
+        name: "12 Raunächte im Element Wasser – Deine Begleitung vom 24.12. bis 6.1. (Standard-Paket)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-754039",
+        price: 37.00,
+        status: "Registriert · Bereit für Freigabe",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/754039",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-754039-vip",
+        name: "12 Raunächte im Element Wasser – VIP-Komplettpaket inkl. Videokurs (Plan 1540228)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
         category: "manifest",
-        code: "t0Sr9",
+        code: "DS24-754039-1540228",
         price: 97.00,
-        status: "Live (Sofortkauf)",
-        statusClass: "badge-live",
-        url: "https://payhip.com/b/t0Sr9",
+        status: "Registriert · Bereit für Freigabe",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/754039?plan=1540228",
         views: 0,
         carts: 0,
         sales: 0
       },
+      {
+        id: "ds24-756164",
+        name: "Magic Manifestation – Die 5 Stufen und 7 Schritte der Bewusstwerdung (E-Book und 7-Tage-Workbook)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756164",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756164",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756165",
+        name: "Samhain am 31. Oktober – Das Tor zur Wintersonnenwende (Ritual-Workbook)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756165",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756165",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756166",
+        name: "Vom Herbstblues ins innere Leuchten – 7-Tage-Guide und Selbstwert-Workbook",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756166",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756166",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756167",
+        name: "Die 12 Sternzeichen und Die 4 Elemente – Kompendium und Seelen-Workbook (64 Seiten)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756167",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756167",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756169",
+        name: "Karmische Beziehungsmuster und Seelenpartner-Signatur – Der Astrologie- und 4-Elemente-Code",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756169",
+        price: 29.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756169",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756170",
+        name: "The Law of Attraction Master Bundle (Buch, 21-Tage-Workbook und 4 Frequenz-Audios)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756170",
+        price: 24.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756170",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756172",
+        name: "Das Geheimnis der Runen und das Neun-Welten-Orakel – Praxis- und Begleitbuch (160 Seiten)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756172",
+        price: 29.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756172",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756173",
+        name: "Verzauberter Wald und Magische Krafttiere 2027 – DIN A4 Kunstkalender (DE und EN)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756173",
+        price: 19.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756173",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756175",
+        name: "Der grosse Hexen-Kalender und Astro-Almanach 2027 (Deutsche Ausgabe)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756175",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756175",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756176",
+        name: "2027 Witches Calendar and Astrological Almanac (English Edition)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756176",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756176",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756177",
+        name: "5-Spalten-Familienplaner und Streifenkalender 2027 – Natur und Samtpfoten",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756177",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756177",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756178",
+        name: "Fine-Art Fotokalender und Digitalplaner Kollektion 2027 (5er Komplett-Paket)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "runes_cal",
+        code: "DS24-756178",
+        price: 44.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756178",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756179",
+        name: "Froehliches Halloween – Ausmal- und Mitmachbuch fuer Kinder (17 Seiten PDF)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "kids",
+        code: "DS24-756179",
+        price: 4.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756179",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756182",
+        name: "Mia Motte und Mimi – Fuer dich bin ich wunderschoen (14 Seiten Kinderbuch-PDF)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "kids",
+        code: "DS24-756182",
+        price: 6.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756182",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756183",
+        name: "MAGIC MANIFESTATION – The 5 Stages and 7 Sacred Steps of Conscious Creation (English Edition)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756183",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756183",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756184",
+        name: "THE 12 ZODIAC SIGNS AND THE 4 SACRED ELEMENTS – 64-Page Compendium and Workbook (English Edition)",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "astro",
+        code: "DS24-756184",
+        price: 14.90,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756184",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "ds24-756185",
+        name: "Souveraen Grenzen setzen ohne Schuldgefuehle – Das 7-Tage-Kommunikations- und Selbstbehauptungs-Workbook",
+        channel: "digistore24",
+        channelLabel: "Digistore24",
+        category: "manifest",
+        code: "DS24-756185",
+        price: 27.00,
+        status: "Neu registriert (28.10.2026)",
+        statusClass: "badge-pending",
+        url: "https://www.checkout-ds24.com/product/756185",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+
+      // === 5 AMAZON KDP BÜCHER ===
       {
         id: "kdp-miamotte",
         name: "Mia Motte und Mimi – Für dich bin ich wunderschön (KDP Taschenbuch 24 S.)",
@@ -1187,39 +1553,86 @@
         carts: 0,
         sales: 0
       },
+
+      // === 5 GUMROAD PRODUKTE ===
       {
-        id: "ds24-std",
-        name: "12 Rauhnächte & Samhain Standard-Workbook-Paket (Digistore24)",
-        channel: "digistore24",
-        channelLabel: "Digistore24",
+        id: "gr-samhain",
+        name: "Samhain am 31. Oktober – Das Tor zur Wintersonnenwende (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
         category: "astro",
-        code: "DS24-754039",
+        code: "samhain-workbook",
+        price: 27.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/samhain-workbook",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-rauhnaechte",
+        name: "Die 12 Rauhnächte im Element Wasser – Begleit-Workbook (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "astro",
+        code: "12-rauhnaechte-workbook",
         price: 37.00,
-        status: "Blockiert (Noch nicht genehmigt / CUSDM1)",
-        statusClass: "badge-pending",
-        url: "https://www.checkout-ds24.com/product/754039/",
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/12-rauhnaechte-workbook",
+        views: 1,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-manifestation",
+        name: "Die 5 Stufen & 7 Schritte der Bewusstwerdung (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "manifest",
+        code: "manifestation-workbook",
+        price: 27.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/manifestation-workbook",
         views: 0,
         carts: 0,
         sales: 0
       },
       {
-        id: "ds24-vip",
-        name: "VIP-Winter- & Manifestations-Komplettpaket inkl. Videokurs (Digistore24)",
-        channel: "digistore24",
-        channelLabel: "Digistore24",
+        id: "gr-herbst",
+        name: "Vom Herbstblues ins innere Leuchten – 7-Tage-Guide (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
         category: "manifest",
-        code: "DS24-754039-1540228",
-        price: 97.00,
-        status: "Blockiert (Noch nicht genehmigt / CUSDM1)",
-        statusClass: "badge-pending",
-        url: "https://www.checkout-ds24.com/product/754039/?plan=1540228",
+        code: "herbstleuchten-selbstwert",
+        price: 27.00,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/herbstleuchten-selbstwert",
+        views: 0,
+        carts: 0,
+        sales: 0
+      },
+      {
+        id: "gr-halloween",
+        name: "Fröhliches Halloween – Ausmal- & Mitmachbuch für Kinder (Gumroad Edition)",
+        channel: "gumroad",
+        channelLabel: "Gumroad",
+        category: "kids",
+        code: "halloween-ausmalbuch-kinder",
+        price: 4.90,
+        status: "Live (Gumroad Store)",
+        statusClass: "badge-live",
+        url: "https://mimiblackmagic.gumroad.com/l/halloween-ausmalbuch-kinder",
         views: 0,
         carts: 0,
         sales: 0
       }
     ];
 
-    const STORAGE_KEY = "mimi_black_live_dashboard_v3";
+    const STORAGE_KEY = "mimi_black_live_dashboard_v4";
     let products = [];
     let currentChannel = "all";
     let pingResults = {};
@@ -1464,6 +1877,6 @@
     updateClock();
     setInterval(updateClock, 1000);
   </script>
-<div style="margin:12px 0;padding:12px 16px;background:rgba(233,196,106,0.12);border:1px solid #E9C46A;border-radius:10px;text-align:center;"><a href="magic-manifestation-en.html" style="color:#E9C46A;font-weight:700;text-decoration:none;">🇬🇧 NEW · INTERNATIONAL ENGLISH EDITION: MAGIC MANIFESTATION – The 5 Stages &amp; 7 Sacred Steps of Conscious Creation (14-Page PDF Workbook · €27.00) →</a> · <a href="https://drive.google.com/file/d/1DMBJI92g9vzcgqNxE39QtnoxlWDZTrEf/view?usp=drivesdk" target="_blank" style="color:#FFF3B0;text-decoration:underline;">Google Drive PDF</a> · <a href="https://payhip.com/b/Va1qT" target="_blank" style="color:#FFF3B0;text-decoration:underline;">Payhip Instant Download</a></div>
+<footer style="text-align:center;padding:24px;font-size:12px;color:#a69fb8;">Impressum: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda · E-Mail: mimiblack@agentmail.to</footer>
 </body>
 </html>
