@@ -197,7 +197,8 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
             </ul>
           </div>
           <div style="margin-top:20px; text-align:center;">
-            <a href="https://payhip.com/b/mcFN5" class="btn" style="width:100%;">Jetzt 7-Tage-Guide &amp; Workbook sichern</a>
+            <a href="https://www.checkout-ds24.com/product/756166" target="_blank" rel="noopener" class="btn" style="width:100%; margin-bottom:10px;">⚡ Sofort-Download via Digistore24 (PayPal, Klarna, Karte) →</a>
+            <a href="https://payhip.com/b/mcFN5" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Alternativ via Payhip Shop sichern</a>
           </div>
         </div>
 
@@ -214,7 +215,8 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
             </ul>
           </div>
           <div style="margin-top:20px; text-align:center;">
-            <a href="https://payhip.com/b/t0Sr9" class="btn btn-outline" style="width:100%;">Jetzt VIP-Komplettpaket sichern</a>
+            <a href="https://www.checkout-ds24.com/product/756315" target="_blank" rel="noopener" class="btn" style="width:100%; margin-bottom:10px;">⚡ Masterclass / VIP-Paket via Digistore24 sichern →</a>
+            <a href="https://payhip.com/b/t0Sr9" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Alternativ: VIP-Komplettpaket via Payhip (97,00 €)</a>
           </div>
         </div>
       </div>
@@ -283,9 +285,9 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
     payhip_product:  "https://payhip.com/b/mcFN5",
     payhip_vip:      "https://payhip.com/b/t0Sr9",
     payhip_store:    "https://payhip.com/MimiBlack",
-    gumroad_store:   "https://mimiblackmagic.gumroad.com",
+    gumroad_store:   "https://mimiblackmagic.gumroad.com/l/herbstleuchten-selbstwert",
     digistore24_std: "https://www.checkout-ds24.com/product/756166",
-    digistore24_vip: "https://payhip.com/b/t0Sr9"
+    digistore24_vip: "https://www.checkout-ds24.com/product/756315"
   };
   document.addEventListener("DOMContentLoaded", function() {
     var s = window.MIMI_BLACK_SHOPS;
@@ -301,10 +303,10 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
     }
     document.querySelectorAll("a.btn").forEach(function(btn) {
       var href = btn.getAttribute("href") || "";
-      if (href.indexOf("#") === 0 || btn.hasAttribute("download")) return;
-      var isVip = href.indexOf("plan=1540228") !== -1 || href.indexOf("b/t0Sr9") !== -1 || btn.classList.contains("btn-outline");
+      if (href.indexOf("#") === 0 || btn.hasAttribute("download") || btn.hasAttribute("data-keep-href")) return;
+      var isVip = href.indexOf("756315") !== -1 || href.indexOf("b/t0Sr9") !== -1;
       // Primary button goes directly to live Payhip product page for Standard, or Digistore24 VIP plan for VIP
-      var primaryUrl = isVip ? (s.payhip_vip || "https://payhip.com/b/t0Sr9") : s.payhip_product;
+      var primaryUrl = isVip ? s.digistore24_vip : s.digistore24_std;
       if (qs) primaryUrl += (primaryUrl.indexOf("?") === -1 ? "?" : "&") + qs;
       btn.setAttribute("href", primaryUrl);
       var parent = btn.parentElement;
@@ -314,10 +316,10 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
         bar.innerHTML =
           '<div class="checkout-bar-title">Sofort-Download – Wähle deinen bevorzugten Checkout:</div>' +
           '<div class="checkout-links">' +
-            '<a class="checkout-chip primary-chip" href="' + (isVip ? (s.payhip_vip || "https://payhip.com/b/t0Sr9") : s.payhip_product) + '" target="_blank" rel="noopener">⚡ Sofortkauf via Payhip (Live)</a>' +
+            '<a class="checkout-chip primary-chip" href="' + (isVip ? s.digistore24_vip : s.digistore24_std) + '" target="_blank" rel="noopener">⚡ Sofort-Download via Digistore24</a>' +
+            '<a class="checkout-chip" href="' + (isVip ? s.payhip_vip : s.payhip_product) + '" target="_blank" rel="noopener">✦ Alternativ via Payhip</a>' +
             '<a class="checkout-chip" href="' + s.gumroad_store + '" target="_blank" rel="noopener">Gumroad Shop</a>' +
-            '<a class="checkout-chip" href="' + (isVip ? s.digistore24_vip : s.digistore24_std) + '" target="_blank" rel="noopener">Digistore24</a>' +
-            '<a class="checkout-chip" href="' + s.payhip_store + '" target="_blank" rel="noopener">Alle 4 Bücher im Shop</a>' +
+            '<a class="checkout-chip" href="' + s.payhip_store + '" target="_blank" rel="noopener">Gesamtshop</a>' +
           '</div>';
         parent.appendChild(bar);
       }
