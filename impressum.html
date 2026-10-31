@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum · Mimi Black · Astro Magic & Magic Manifestation</title>
+  <meta name="description" content="Impressum von Mimi Black für mimiblack.de: Angaben nach § 5 DDG und § 18 Abs. 2 MStV." />
+  <meta name="author" content="Mimi Black" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mimiblack.de/impressum.html" />
+  <style>
+    :root {
+      --bg-deep: #0b0e17;
+      --bg-card: rgba(20, 25, 40, 0.82);
+      --gold: #d4af37;
+      --gold-soft: #f0d78c;
+      --cream: #f5f0e6;
+      --muted: #a6b0c9;
+      --border: rgba(212, 175, 55, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #182039 0%, #0b0e17 65%);
+      color: var(--cream);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      letter-spacing: 0.02em;
+    }
+    a { color: var(--gold-soft); text-decoration: none; transition: 0.2s; }
+    a:hover { color: #fff; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 14, 23, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; flex-wrap: wrap; gap: 16px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 1.5rem; font-weight: 700; color: var(--gold);
+    }
+    .brand-badge {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em;
+      padding: 3px 10px; border: 1px solid var(--border); border-radius: 999px;
+      color: var(--cream); font-family: sans-serif;
+    }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.92rem; }
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #b5891c 100%);
+      color: #0b0e17; font-weight: 700; padding: 10px 20px;
+      border-radius: 999px; border: none; cursor: pointer;
+      font-size: 0.92rem; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.28);
+    }
+    .btn-gold:hover { filter: brightness(1.08); color: #0b0e17; }
+    .hero { padding: 56px 0 28px; text-align: center; }
+    .hero-kicker {
+      display: inline-block; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--gold);
+      border: 1px solid var(--border); padding: 6px 16px; border-radius: 999px;
+      margin-bottom: 18px; background: rgba(212, 175, 55, 0.08);
+    }
+    .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.15; margin-bottom: 12px; color: #fff; }
+    .hero p { color: var(--muted); max-width: 760px; margin: 0 auto; }
+    .legal {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 18px; padding: 36px clamp(20px, 4vw, 48px);
+      max-width: 920px; margin: 0 auto;
+    }
+    .legal h2 { color: var(--gold); font-size: 1.7rem; margin: 34px 0 10px; }
+    .legal h2:first-child { margin-top: 0; }
+    .legal h3 { color: var(--gold-soft); font-size: 1.3rem; margin: 22px 0 8px; }
+    .legal p, .legal li { color: var(--cream); font-size: 0.97rem; margin-bottom: 10px; }
+    .legal ul { padding-left: 22px; margin-bottom: 12px; }
+    .legal a { text-decoration: underline; }
+    .legal .note {
+      border-left: 3px solid var(--gold); background: rgba(212,175,55,0.08);
+      padding: 12px 16px; border-radius: 8px; margin: 12px 0;
+    }
+    .legal .toc { columns: 2; column-gap: 28px; }
+    @media (max-width: 640px) { .legal .toc { columns: 1; } }
+    footer {
+      background: rgba(7, 9, 15, 0.96);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 36px;
+      margin-top: 64px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+    .footer-grid h4 { color: var(--gold); margin-bottom: 10px; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-bar">
+    <div class="brand serif">
+      <span>✦ MIMI BLACK</span>
+      <span class="brand-badge">Astro Magic &amp; Magic Manifestation</span>
+    </div>
+    <nav class="nav-links">
+      <a href="/">Startseite</a>
+      <a href="/store.html">Bücher, Kurse &amp; Shop</a>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </nav>
+    <a href="/#rechner" class="btn-gold">Horoskop kostenlos berechnen</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <span class="hero-kicker">Impressum</span>
+    <h1>Impressum</h1>
+    <p>Angaben gemäß § 5 DDG und § 18 Abs. 2 MStV</p>
+  </section>
+
+  <article class="legal">
+    <h2 class="serif">Angaben gemäß § 5 DDG</h2>
+    <p>
+      <strong>Mimi Black</strong><br />
+      Astro Magic &amp; Magic Manifestation<br />
+      c/o Autorenglück<br />
+      Albert-Einstein-Str. 47<br />
+      02977 Hoyerswerda<br />
+      Deutschland
+    </p>
+    <p>Ladungsfähige Anschrift über den Impressums-Schutzservice Autorenglück Easy. Keine Veröffentlichung privater Wohnanschriften.</p>
+
+    <h2 class="serif">Kontakt</h2>
+    <p>E-Mail: <a href="mailto:mimiblack@agentmail.to">mimiblack@agentmail.to</a></p>
+
+    <h2 class="serif">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>
+      Mimi Black<br />
+      c/o Autorenglück<br />
+      Albert-Einstein-Str. 47<br />
+      02977 Hoyerswerda<br />
+      Deutschland
+    </p>
+
+    <h2 class="serif">Verbraucherstreitbeilegung</h2>
+    <p>Die frühere Plattform der EU-Kommission zur Online-Streitbeilegung (OS-Plattform) wurde zum 20.07.2025 eingestellt.</p>
+    <p>Hinweis nach § 36 VSBG: Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+    <h2 class="serif">Haftung für Inhalte</h2>
+    <p>Die Inhalte dieser Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieterin sind wir nach den allgemeinen Gesetzen für eigene Inhalte auf diesen Seiten verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Astrologische und spirituelle Inhalte sind symbolische Deutungen und ersetzen keine medizinische, psychologische, rechtliche oder finanzielle Beratung.</p>
+
+    <h2 class="serif">Haftung für Links</h2>
+    <p>Diese Website enthält Links zu externen Websites Dritter (z. B. Verkaufsplattformen und Social-Media-Kanäle), auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte können wir daher keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+    <h2 class="serif">Urheberrecht</h2>
+    <p>Die Texte, Grafiken, Workbooks und sonstigen Inhalte dieser Website sind urheberrechtlich geschützt (100 % Eigenkreation, Urheberrecht bei Mimi Black). Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der vorherigen schriftlichen Zustimmung.</p>
+
+    <h2 class="serif">Datenschutz</h2>
+    <p>Informationen zur Verarbeitung personenbezogener Daten finden Sie in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+
+  </article>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4 class="serif">✦ MIMI BLACK · Astro Magic &amp; Magic Manifestation</h4>
+      <p>Moderner Horoskop-Systemvergleich, kosmische Zyklen, Runen-Orakel und bewusste Manifestation.</p>
+      <p style="margin-top:10px;">
+        YouTube: <a href="https://www.youtube.com/@AstroMagicMimiBlack" target="_blank" rel="noopener">@AstroMagicMimiBlack</a> ·
+        <a href="https://www.youtube.com/@MagicManifestationMimiBlack" target="_blank" rel="noopener">@MagicManifestationMimiBlack</a>
+      </p>
+    </div>
+    <div>
+      <h4 class="serif">Kontakt</h4>
+      <p>
+        <strong>Mimi Black</strong><br />
+        c/o Autorenglück<br />
+        Albert-Einstein-Str. 47<br />
+        02977 Hoyerswerda<br />
+        Deutschland<br />
+        E-Mail: <a href="mailto:mimiblack@agentmail.to">mimiblack@agentmail.to</a>
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <p class="mb-legal-links" style="text-align:center;margin-top:18px;font-size:0.95rem;font-weight:600;"><a href="/impressum.html" style="color:#f0d78c;text-decoration:underline;">Impressum</a> &middot; <a href="/datenschutz.html" style="color:#f0d78c;text-decoration:underline;">Datenschutz</a></p>
+    <p style="text-align:center;margin-top:8px;font-size:0.82rem;">© 2026 Mimi Black · Astro Magic &amp; Magic Manifestation</p>
+  </div>
+</footer>
+
+</body>
+</html>
