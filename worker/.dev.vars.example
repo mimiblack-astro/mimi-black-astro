@@ -1,7 +1,7 @@
 # Nur für den lokalen Test. Diese Datei als .dev.vars kopieren.
 # .dev.vars wird nicht hochgeladen und darf nicht ins Git.
-# MOCK_GEMINI und MOCK_TURNSTILE niemals in der Produktions-Umgebung setzen.
+# MOCK_MISTRAL und MOCK_TURNSTILE niemals in der Produktions-Umgebung setzen.
 
-MOCK_GEMINI=1
+MOCK_MISTRAL=1
 MOCK_TURNSTILE=1
 QUOTA_SALT=nur-lokal-kein-echtes-geheimnis
