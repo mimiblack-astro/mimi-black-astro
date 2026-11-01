@@ -198,26 +198,10 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
           </div>
           <div style="margin-top:20px; text-align:center;">
             <a href="https://www.checkout-ds24.com/product/756166" target="_blank" rel="noopener" class="btn" style="width:100%; margin-bottom:10px;">⚡ Sofort-Download via Digistore24 (PayPal, Klarna, Karte) →</a>
-            <a href="https://shop.mimiblack.de/b/mcFN5" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Alternativ via Payhip Shop sichern</a>
+            <a href="https://payhip.com/b/mcFN5" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Alternativ via Payhip Shop sichern</a>
           </div>
         </div>
 
-        <div class="card-accent" style="display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <div class="kicker" style="color:#D6C6FF; border-color:#8B7CFF; background:rgba(139,124,255,0.18);">EDITION 2 · DAS GROSSE SELBSTWERT- &amp; MANIFESTATIONS-BUNDLE</div>
-            <h3>VIP-Paket: Beide Workbooks + 9-teiliger Audio-/Videokurs mit Mimi Black</h3>
-            <div class="price-tag" style="color:#D6C6FF;">97,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
-            <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Kein Abo · Komplette persönliche Begleitung durch Herbst &amp; Winter</p>
-            <ul class="check-list">
-              <li><b>Enthält das 14-seitige Workbook „Vom Herbstblues ins innere Leuchten“ (PDF).</b></li>
-              <li><b>PLUS: Das 14-seitige Workbook „Die 5 Stufen &amp; 7 Schritte der Bewusstwerdung“ (PDF).</b></li>
-              <li><b>PLUS: Alle 9 eingesprochenen Video- &amp; Audio-Module von Mimi Black</b> inklusive dem 5-Minuten-Soforthilfe-Audio für graue Stunden.</li>
-            </ul>
-          </div>
-          <div style="margin-top:20px; text-align:center;">
-            <a href="https://shop.mimiblack.de/b/t0Sr9" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Alternativ: VIP-Komplettpaket via Payhip (97,00 €)</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -282,12 +266,12 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
 </style>
 <script id="mimi-black-multi-checkout">
   window.MIMI_BLACK_SHOPS = {
-    payhip_product:  "https://shop.mimiblack.de/b/mcFN5",
-    payhip_vip:      "https://shop.mimiblack.de/b/t0Sr9",
-    payhip_store:    "https://shop.mimiblack.de",
+    payhip_product:  "https://payhip.com/b/mcFN5",
+    payhip_vip:      "",
+    payhip_store:    "https://payhip.com/MimiBlack",
     gumroad_store:   "https://mimiblackmagic.gumroad.com/l/herbstleuchten-selbstwert",
     digistore24_std: "https://www.checkout-ds24.com/product/756166",
-    digistore24_vip: "https://shop.mimiblack.de/b/t0Sr9"
+    digistore24_vip: ""
   };
   document.addEventListener("DOMContentLoaded", function() {
     var s = window.MIMI_BLACK_SHOPS;
@@ -295,7 +279,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
     var topInner = document.querySelector(".top-inner");
     if (topInner && !document.querySelector(".top-store-link")) {
       var shopLink = document.createElement("a");
-      shopLink.href = "https://shop.mimiblack.de";
+      shopLink.href = "https://payhip.com/MimiBlack";
       shopLink.target = "_blank";
       shopLink.className = "top-store-link";
       shopLink.innerHTML = "✦ Mimi Black Shop (Payhip)";
@@ -304,7 +288,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
     document.querySelectorAll("a.btn").forEach(function(btn) {
       var href = btn.getAttribute("href") || "";
       if (href.indexOf("#") === 0 || btn.hasAttribute("download") || btn.hasAttribute("data-keep-href")) return;
-      var isVip = href.indexOf("b/t0Sr9") !== -1;
+      var isVip = false; // VIP-Paket nicht mehr im Angebot (1.11.)
       // Primary button goes directly to live Payhip product page for Standard, or Digistore24 VIP plan for VIP
       var primaryUrl = isVip ? s.digistore24_vip : s.digistore24_std;
       if (qs) primaryUrl += (primaryUrl.indexOf("?") === -1 ? "?" : "&") + qs;
@@ -317,7 +301,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
           '<div class="checkout-bar-title">Sofort-Download – Wähle deinen bevorzugten Checkout:</div>' +
           '<div class="checkout-links">' +
             '<a class="checkout-chip primary-chip" href="' + (isVip ? s.digistore24_vip : s.digistore24_std) + '" target="_blank" rel="noopener">' + (isVip ? '⚡ Sofort-Download via Payhip' : '⚡ Sofort-Download via Digistore24') + '</a>' +
-            '<a class="checkout-chip" href="' + (isVip ? s.payhip_vip : s.payhip_product) + '" target="_blank" rel="noopener">✦ Alternativ via Payhip</a>' +
+            ((isVip ? s.payhip_vip : s.payhip_product) ? '<a class="checkout-chip" href="' + (isVip ? s.payhip_vip : s.payhip_product) + '" target="_blank" rel="noopener">✦ Alternativ via Payhip</a>' : '') +
             '<a class="checkout-chip" href="' + s.gumroad_store + '" target="_blank" rel="noopener">Gumroad Shop</a>' +
             '<a class="checkout-chip" href="' + s.payhip_store + '" target="_blank" rel="noopener">Gesamtshop</a>' +
           '</div>';
