@@ -1,16 +1,16 @@
 # Mimi-Chat: der kleine Dienst hinter der Chat-Seite
 
-Die Chat-Seite liegt als normale HTML-Datei im Ordner `chat/`. Sie spricht mit diesem Dienst. Der Dienst fragt bei Mistral AI (La Plateforme, EU) nach einer Antwort. Kartenziehen passiert hier im Programm, nicht im KI-Modell.
+Die Chat-Seite liegt als normale HTML-Datei im Ordner `chat/`. Sie spricht mit diesem Dienst. Der Dienst fragt bei Google (Gemini) nach einer Antwort. Kartenziehen passiert hier im Programm, nicht im KI-Modell.
 
 Nichts davon ist live, solange du diesen Dienst nicht selbst bei Cloudflare veröffentlichst **und** die beiden Platzhalter in `chat/index.html` einsetzt **und** den Zweig `mimi-chat` erst nach deiner Prüfung nach `main` holst. `main` ist die live Website. Dieser Ordner allein ändert die live Website nicht.
 
 ## Was du vorher brauchst
 
-1. Ein Konto bei Mistral AI (La Plateforme) mit einem **bezahlten** API-Schlüssel und einem **Ausgabenlimit** im Konto, soweit Mistral eines anbietet. Ein kostenloser Schlüssel darf nicht benutzt werden. In der Konsole unter Admin → Privacy den Schalter „Anonymous improvement data“ für die **API** ausschalten, damit Eingaben nicht zum Training verwendet werden. Der Schalter für Vibe gilt dafür nicht. Optional und getrennt davon: Zero Data Retention für die bezahlte API einschalten, sonst gelten die Aufbewahrungsfristen aus der Datenschutzerklärung. Kein Labs- oder Vorschau-Modell verwenden.
+1. Ein Google-Konto mit einem **bezahlten** Gemini-API-Schlüssel (AI Studio, Projekt mit aktiver Abrechnung) und einem **Ausgabenlimit** in der Google-Cloud-Abrechnung. Ein kostenloser Schlüssel darf nicht benutzt werden: Bei unbezahlt kann Google die Texte zum Trainieren verwenden, und für Besucherinnen im EWR ist nach den Gemini-Bedingungen der bezahlte Tarif vorgesehen.
 2. Ein Cloudflare-Konto (für den Worker und für Turnstile).
 3. Node.js 20 oder neuer auf dem Rechner, mit dem du die Befehle ausführst.
 
-Aktuelle Preise stehen bei Mistral, nicht in diesem Text: <https://mistral.ai/pricing>. Das Tageslimit im Dienst (unten) bremst die Menge, ersetzt aber kein Ausgabenlimit bei Mistral.
+Aktuelle Preise stehen bei Google, nicht in diesem Text: <https://ai.google.dev/gemini-api/docs/pricing>. Das Tageslimit im Dienst (unten) bremst die Menge, ersetzt aber kein Ausgabenlimit bei Google.
 
 ## Warum ein Durable Object und nicht das Rate-Limiting-Binding
 
@@ -19,7 +19,7 @@ Cloudflare hat ein Rate-Limiting-Binding. Das kann nur Fenster von **10 oder 60 
 - etwa **20 Nachrichten pro Person und Tag** (Person = Hash der IP-Adresse, nicht der Name)
 - ein **globales Tageslimit** (voreingestellt 400 Nachrichten für alle zusammen)
 
-Dafür gibt es **ein** Durable Object namens `ChatQuota`. Es merkt sich für den laufenden UTC-Tag nur Zähler: einen Hash der IP, die Anzahl und den Zeitpunkt der letzten Nachricht. Der Chat-Text steht dort nicht. Am nächsten Tag wird der Eintrag ersetzt. Fällt der Speicher aus, wird **keine** Anfrage an Mistral geschickt (lieber kurz gesperrt als eine offene Rechnung).
+Dafür gibt es **ein** Durable Object namens `ChatQuota`. Es merkt sich für den laufenden UTC-Tag nur Zähler: einen Hash der IP, die Anzahl und den Zeitpunkt der letzten Nachricht. Der Chat-Text steht dort nicht. Am nächsten Tag wird der Eintrag ersetzt. Fällt der Speicher aus, wird **keine** Anfrage an Google geschickt (lieber kurz gesperrt als eine offene Rechnung).
 
 Grenze: Zwei Menschen hinter derselben IP teilen sich die 20 Nachrichten. Das ist der Kompromiss, weil wir keine Konten anlegen.
 
@@ -33,13 +33,13 @@ Diese drei Werte gehören **nur** in Cloudflare, nie in den Code, nie in Git, ni
 
 | Geheimnis | Was es ist |
 | --- | --- |
-| `MISTRAL_API_KEY` | Bezahlter Schlüssel aus der Mistral-Konsole (La Plateforme) |
+| `GEMINI_API_KEY` | Bezahlter Schlüssel aus Google AI Studio |
 | `TURNSTILE_SECRET` | Geheimer Schlüssel des Turnstile-Widgets |
 | `QUOTA_SALT` | Ein langer Zufallstext, damit aus der IP kein rückwärts lesbarer Speicherwert wird |
 
 In `chat/index.html` stehen nur zwei **öffentliche** Platzhalter: die Adresse dieses Dienstes und der öffentliche Turnstile-Site-Key. Der geheime Turnstile-Schlüssel bleibt hier.
 
-## Lokal ausprobieren, ohne Mistral-Schlüssel
+## Lokal ausprobieren, ohne Google-Schlüssel
 
 Im Ordner `worker/`:
 
@@ -69,14 +69,14 @@ npm test
 
 Mach das erst, wenn du den Pull Request gelesen hast. Die Website auf `main` zeigt den Chat sonst mit dem Hinweis, dass er noch nicht verbunden ist, solange die Platzhalter in `chat/index.html` stehen.
 
-### 1. Mistral, bezahlt, mit Ausgabenlimit
+### 1. Gemini, bezahlt, mit Ausgabenlimit
 
-1. Öffne <https://console.mistral.ai/> und melde dich an (La Plateforme, Mistral AI SAS, Paris).
-2. Schalte einen **bezahlten** Tarif frei (Pay-as-you-go oder ein Plan mit Abrechnung). Ein kostenloser Schlüssel ist für diesen Chat nicht vorgesehen.
+1. Öffne <https://aistudio.google.com/> und melde dich an.
+2. Lege ein Projekt an oder wähle ein vorhandenes, das mit einem **aktiven Rechnungskonto** (Cloud Billing) verbunden ist. Nur dann gilt der Schlüssel als bezahlter Tarif.
 3. Erzeuge einen API-Schlüssel. Kopiere ihn in einen Passwortspeicher, nicht in eine Datei im Projekt.
-4. Setze in der Konsole ein Ausgabenlimit, soweit dein Konto das anbietet. Ohne diese Grenze kann eine Schleife Kosten erzeugen. Das globale Tageslimit von 400 ist nur die Bremse in diesem Dienst.
-5. Unter Admin → Privacy den Schalter „Anonymous improvement data“ für die **API** ausschalten. Zusätzlich prüfen, ob Zero Data Retention für dieses Konto eingeschaltet werden soll. Die Stellen mit `OWNER-CHECK` in der Datenschutzerklärung und der Hinweis im Pull Request sagen, was du an den aktuellen Mistral-Texten gegenzulesen hast.
-6. Das Modell steht in `wrangler.toml` unter `MISTRAL_MODEL` und ist voreingestellt `mistral-small-latest`. Ein anderes Modell nur eintragen, wenn es kein Labs- oder Vorschau-Modell ist. Danach den Dienst neu veröffentlichen.
+4. Öffne in Google Cloud die Abrechnung dieses Projekts und setze ein Budget mit harter Grenze, die du selbst festlegst. Ohne diese Grenze kann eine Schleife Kosten erzeugen. Das globale Tageslimit von 400 ist nur die Bremse in diesem Dienst.
+5. Lies die Gemini API Additional Terms und prüfe, ob ein öffentlicher Unterhaltungs-Chat damit vereinbar ist. Ein Hinweis dazu steht im Pull Request.
+6. Das Modell steht in `wrangler.toml` unter `GEMINI_MODEL` und ist voreingestellt `gemini-2.5-flash-lite`. Nach einer Änderung den Dienst neu veröffentlichen.
 
 ### 2. Turnstile
 
@@ -93,7 +93,7 @@ Im Ordner `worker/`, auf dem Rechner, einmalig `npx wrangler login` ausführen u
 ```bash
 cd worker
 npm install
-npx wrangler secret put MISTRAL_API_KEY
+npx wrangler secret put GEMINI_API_KEY
 npx wrangler secret put TURNSTILE_SECRET
 npx wrangler secret put QUOTA_SALT
 npx wrangler deploy
@@ -124,7 +124,7 @@ Diese Änderung gehört in Git und wird erst mit dem Merge auf `main` für alle 
 - Er speichert keine Chatverläufe, keine Namen und keine Geburtsdaten.
 - Er schreibt den Nachrichtentext nicht in Logs.
 - Er schickt nur die kurze Historie mit, die der Browser für dieses Tab im Arbeitsspeicher hält (höchstens 8 Wechsel, vom Browser geschickt, hier nicht abgelegt).
-- Er ruft nur die Chat-Completions von Mistral auf. Keine Agents, keine Datei-API, keine Conversations und kein Batch. Die Systemanweisung geht als Nachricht mit der Rolle `system` mit.
+- Er benutzt kein Google-Grounding, keine Datei-API und keinen Kontext-Cache. Damit gilt nicht die zusätzliche 30-Tage-Speicherung, die Google nur für Grounding beschreibt.
 - Er erlaubt im Browser nur `https://mimiblack.de` sowie `http://localhost` und `http://127.0.0.1` mit beliebigem Port. `www.mimiblack.de` ist nicht freigegeben. Wenn die Website auch unter `www` läuft, muss das vor dem Livegang ergänzt werden.
 - Karten: 78 Blatt, deutsche Namen, aufrecht oder umgekehrt, Zufall über `crypto.getRandomValues`. Das Modell bekommt die schon gezogenen Karten nur zum Deuten.
 
@@ -134,7 +134,7 @@ Fremde Websites können den Dienst nicht aus dem Browser aufrufen. Jede Person k
 
 ## Wenn etwas schiefgeht
 
-- „Der Chat ist noch nicht eingerichtet.“ Der bezahlte Mistral-Schlüssel fehlt in den Geheimnissen, oder es wurde aus Versehen die lokale Attrappe erwartet.
+- „Der Chat ist noch nicht eingerichtet.“ Der bezahlte Schlüssel fehlt in den Geheimnissen, oder es wurde aus Versehen die lokale Attrappe erwartet.
 - „Die Prüfung hat nicht geklappt.“ Site Key und Secret Key gehören nicht zusammen, oder der Hostname in Turnstile ist nicht `mimiblack.de`.
 - „Für heute sind deine 20 Nachrichten aufgebraucht.“ Das Tageslimit. Es setzt sich um 00:00 UTC zurück, also nachts nach deutscher Zeit.
-- Antwort bleibt aus und im Cloudflare-Konto taucht ein Fehler auf: Das Modell kommt aus der Variablen `MISTRAL_MODEL` (voreingestellt `mistral-small-latest`). Wenn Mistral einen Namen einmal nicht mehr annimmt, trägst du den neuen Namen in `wrangler.toml` ein und veröffentlichst den Dienst neu. Der Aufruf geht an `https://api.mistral.ai/v1/chat/completions`.
+- Antwort bleibt aus und im Cloudflare-Konto taucht ein Fehler auf: Das Modell kommt aus der Variablen `GEMINI_MODEL` (voreingestellt `gemini-2.5-flash-lite`). Wenn Google den Namen einmal ändert, trägst du den neuen Namen in `wrangler.toml` ein und veröffentlichst den Dienst neu. Der Aufruf geht an die Schnittstelle `generateContent`.

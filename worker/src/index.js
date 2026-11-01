@@ -4,10 +4,10 @@ import { cardInstruction, mockReply, systemPrompt } from "./prompt.js";
 import { CRISIS_REPLY, isCrisis } from "./safety.js";
 import { clip, intEnv, isAllowedOrigin, sanitizeHistory } from "./validate.js";
 
-const MISTRAL_URL = "https://api.mistral.ai/v1/chat/completions";
-const DEFAULT_MISTRAL_MODEL = "mistral-small-latest";
-const MISTRAL_TEMPERATURE = 0.7;
-const MISTRAL_MAX_TOKENS = 700;
+const GEMINI_URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
+const DEFAULT_GEMINI_MODEL = "gemini-2.5-flash-lite";
+const GEMINI_TEMPERATURE = 0.8;
+const GEMINI_MAX_OUTPUT_TOKENS = 700;
 
 export class ChatQuota {
   constructor(ctx, env) {
@@ -95,7 +95,7 @@ export default {
     if (!turnstileOk) {
       return json({ error: "turnstile", message: "Die Prüfung hat nicht geklappt. Bitte lade die Seite neu und versuch es noch einmal." }, 403, origin, allowed);
     }
-    if (env.MOCK_MISTRAL !== "1" && (!env.MISTRAL_API_KEY || !env.QUOTA_SALT)) {
+    if (env.MOCK_GEMINI !== "1" && (!env.GEMINI_API_KEY || !env.QUOTA_SALT)) {
       return json({ error: "config", message: "Der Chat ist noch nicht eingerichtet." }, 503, origin, allowed);
     }
     if (isCrisis(message)) {
@@ -130,11 +130,11 @@ export default {
     let reply;
     let mock = false;
     try {
-      if (env.MOCK_MISTRAL === "1") {
+      if (env.MOCK_GEMINI === "1") {
         reply = mockReply(message, cards);
         mock = true;
       } else {
-        reply = await callMistral(env, safeHistory, message, cards);
+        reply = await callGemini(env, safeHistory, message, cards);
       }
     } catch {
       return json({ error: "model", message: "Mimi ist gerade nicht erreichbar. Bitte versuch es gleich noch einmal." }, 502, origin, allowed);
@@ -182,54 +182,51 @@ async function verifyTurnstile(request, env, token) {
   return data.success === true;
 }
 
-function mistralModel(env) {
-  const raw = typeof env.MISTRAL_MODEL === "string" ? env.MISTRAL_MODEL.trim() : "";
-  return /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(raw) ? raw : DEFAULT_MISTRAL_MODEL;
+function geminiModel(env) {
+  const raw = typeof env.GEMINI_MODEL === "string" ? env.GEMINI_MODEL.trim() : "";
+  return /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(raw) ? raw : DEFAULT_GEMINI_MODEL;
 }
 
-function mistralRole(role) {
-  return role === "model" || role === "assistant" ? "assistant" : "user";
+function geminiText(data) {
+  if (data?.promptFeedback?.blockReason) return "";
+  return (data?.candidates?.[0]?.content?.parts || [])
+    .map((part) => (part && typeof part.text === "string" ? part.text : ""))
+    .join("")
+    .trim();
 }
 
-function mistralText(data) {
-  const choice = data?.choices?.[0];
-  if (choice?.finish_reason === "content_filter") return "";
-  const content = choice?.message?.content;
-  if (typeof content === "string") return content.trim();
-  if (!Array.isArray(content)) return "";
-  return content.map((part) => {
-    if (typeof part === "string") return part;
-    if (part && typeof part.text === "string") return part.text;
-    return "";
-  }).join("").trim();
-}
-
-async function callMistral(env, history, message, cards) {
-  const messages = [
-    { role: "system", content: systemPrompt() },
-    ...history.map((item) => ({ role: mistralRole(item.role), content: item.text })),
-    { role: "user", content: `${cardInstruction(cards)}\n\nNachricht:\n${message}` }
-  ];
-  const response = await fetch(MISTRAL_URL, {
+async function callGemini(env, history, message, cards) {
+  const contents = history.map((item) => ({
+    role: item.role === "model" || item.role === "assistant" ? "model" : "user",
+    parts: [{ text: item.text }]
+  }));
+  contents.push({
+    role: "user",
+    parts: [{ text: `${cardInstruction(cards)}\n\nNachricht:\n${message}` }]
+  });
+  const model = geminiModel(env);
+  const response = await fetch(`${GEMINI_URL_BASE}/${encodeURIComponent(model)}:generateContent`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      authorization: `Bearer ${env.MISTRAL_API_KEY}`
+      "x-goog-api-key": env.GEMINI_API_KEY
     },
     body: JSON.stringify({
-      model: mistralModel(env),
-      messages,
-      temperature: MISTRAL_TEMPERATURE,
-      max_tokens: MISTRAL_MAX_TOKENS
+      systemInstruction: { parts: [{ text: systemPrompt() }] },
+      contents,
+      generationConfig: {
+        temperature: GEMINI_TEMPERATURE,
+        maxOutputTokens: GEMINI_MAX_OUTPUT_TOKENS
+      }
     }),
     signal: AbortSignal.timeout(20000)
   });
   if (!response.ok) {
-    console.error("mistral_http_error", response.status);
-    throw new Error("mistral");
+    console.error("gemini_http_error", response.status);
+    throw new Error("gemini");
   }
   const data = await response.json();
-  const text = mistralText(data);
+  const text = geminiText(data);
   if (!text) {
     return "Dazu kann ich nichts sagen. Ich bin eine virtuelle Figur und bleibe bei der Unterhaltung, ohne Rat zu Gesundheit, Psyche, Recht oder Geld. Magst du eine andere Frage oder eine Karte?";
   }

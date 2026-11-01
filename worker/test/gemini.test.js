@@ -19,7 +19,7 @@ function quotaBinding(outcome = { ok: true, remaining: 19 }) {
 
 function env(overrides = {}) {
   return {
-    MISTRAL_API_KEY: "test-key",
+    GEMINI_API_KEY: "test-key",
     QUOTA_SALT: "salt",
     TURNSTILE_SECRET: "turnstile-secret-value",
     CHAT_QUOTA: quotaBinding(),
@@ -45,83 +45,77 @@ function chatRequest(message, history = [], token = "turnstile-token-ok") {
   });
 }
 
-function installFetch(handler) {
-  const calls = [];
-  globalThis.fetch = async (url, init) => {
-    const target = String(url);
-    calls.push({ url: target, init });
-    if (target.includes("challenges.cloudflare.com")) {
-      return Response.json({ success: true });
-    }
-    return handler(target, init, calls);
-  };
-  return calls;
-}
-
 test.afterEach(() => {
   globalThis.fetch = originalFetch;
 });
 
-test("chat completion sends a system message and bearer auth to Mistral", async () => {
-  const calls = installFetch(async (target) => {
-    assert.equal(target, "https://api.mistral.ai/v1/chat/completions");
+test("generateContent sends systemInstruction and the API key to Gemini", async () => {
+  let captured;
+  globalThis.fetch = async (url, init) => {
+    const target = String(url);
+    if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true });
+    captured = { url: target, init };
     return Response.json({
-      choices: [{ finish_reason: "stop", message: { role: "assistant", content: "Hallo von Mistral" } }]
+      candidates: [{
+        content: { parts: [{ text: "Hallo " }, { text: "von Gemini" }] }
+      }]
     });
-  });
+  };
 
   const response = await worker.fetch(chatRequest("Wie ist die Stimmung heute?", [
     { role: "user", text: "Guten Tag" },
     { role: "model", text: "Schön, dass du da bist." }
-  ]), env({ MISTRAL_MODEL: "mistral-small-latest" }));
+  ]), env({ GEMINI_MODEL: "gemini-2.5-flash-lite" }));
   const body = await response.json();
 
   assert.equal(response.status, 200);
-  assert.equal(body.reply, "Hallo von Mistral");
+  assert.equal(body.reply, "Hallo von Gemini");
   assert.equal(body.mock, false);
-  const mistralCall = calls.find((call) => call.url.includes("api.mistral.ai"));
-  assert.equal(mistralCall.init.method, "POST");
-  assert.equal(mistralCall.init.headers.authorization, "Bearer test-key");
-  const payload = JSON.parse(mistralCall.init.body);
-  assert.equal(payload.model, "mistral-small-latest");
-  assert.equal(payload.temperature, 0.7);
-  assert.equal(payload.max_tokens, 700);
-  assert.equal(payload.messages[0].role, "system");
-  assert.match(payload.messages[0].content, /Du bist Mimi/);
-  assert.deepEqual(payload.messages.slice(1).map((item) => item.role), ["user", "assistant", "user"]);
-  assert.equal(payload.messages[1].content, "Guten Tag");
-  assert.equal(payload.messages[2].content, "Schön, dass du da bist.");
-  assert.match(payload.messages[3].content, /Wie ist die Stimmung heute\?/);
-  assert.equal(payload.messages.some((item) => item.role === "model"), false);
+  assert.equal(
+    captured.url,
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent"
+  );
+  assert.equal(captured.init.method, "POST");
+  assert.equal(captured.init.headers["x-goog-api-key"], "test-key");
+  const payload = JSON.parse(captured.init.body);
+  assert.equal(payload.systemInstruction.parts[0].text.includes("Du bist Mimi"), true);
+  assert.equal(payload.generationConfig.temperature, 0.8);
+  assert.equal(payload.generationConfig.maxOutputTokens, 700);
+  assert.deepEqual(payload.contents.map((item) => item.role), ["user", "model", "user"]);
+  assert.equal(payload.contents[0].parts[0].text, "Guten Tag");
+  assert.equal(payload.contents[1].parts[0].text, "Schön, dass du da bist.");
+  assert.match(payload.contents[2].parts[0].text, /Wie ist die Stimmung heute\?/);
+  assert.equal(payload.messages, undefined);
   assert.doesNotMatch(JSON.stringify(body), /test-key/);
 });
 
-test("an unknown model var falls back to mistral-small-latest", async () => {
-  let model = "";
-  globalThis.fetch = async (url, init) => {
-    if (String(url).includes("challenges.cloudflare.com")) return Response.json({ success: true });
-    model = JSON.parse(init.body).model;
+test("an unknown model var falls back to gemini-2.5-flash-lite", async () => {
+  let called = "";
+  globalThis.fetch = async (url) => {
+    const target = String(url);
+    if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true });
+    called = target;
     return Response.json({
-      choices: [{ message: { content: [{ type: "text", text: "In Teilen geantwortet" }] } }]
+      candidates: [{ content: { parts: [{ text: "Fallback-Modell" }] } }]
     });
   };
-
-  const response = await worker.fetch(chatRequest("Nur ein Satz."), env({ MISTRAL_MODEL: "nicht erlaubt" }));
+  const response = await worker.fetch(chatRequest("Nur ein Satz."), env({ GEMINI_MODEL: "nicht erlaubt" }));
   const body = await response.json();
-  assert.equal(model, "mistral-small-latest");
-  assert.equal(body.reply, "In Teilen geantwortet");
+  assert.equal(body.reply, "Fallback-Modell");
+  assert.match(called, /\/models\/gemini-2\.5-flash-lite:generateContent$/);
 });
 
-test("a custom MISTRAL_MODEL is sent as given", async () => {
-  let model = "";
-  globalThis.fetch = async (url, init) => {
-    if (String(url).includes("challenges.cloudflare.com")) return Response.json({ success: true });
-    model = JSON.parse(init.body).model;
-    return Response.json({ choices: [{ message: { content: "ok" } }] });
+test("a custom GEMINI_MODEL is used in the generateContent URL", async () => {
+  let called = "";
+  globalThis.fetch = async (url) => {
+    const target = String(url);
+    if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true });
+    called = target;
+    return Response.json({ candidates: [{ content: { parts: [{ text: "ok" }] } }] });
   };
-  const response = await worker.fetch(chatRequest("Kurz."), env({ MISTRAL_MODEL: "mistral-large-latest" }));
+  const response = await worker.fetch(chatRequest("Kurz."), env({ GEMINI_MODEL: "gemini-2.5-flash" }));
   assert.equal(response.status, 200);
-  assert.equal(model, "mistral-large-latest");
+  assert.match(called, /\/models\/gemini-2\.5-flash:generateContent$/);
 });
 
 test("an upstream error stays a generic 502 and does not echo the key", async () => {
@@ -136,10 +130,13 @@ test("an upstream error stays a generic 502 and does not echo the key", async ()
   assert.doesNotMatch(JSON.stringify(body), /test-key|upstream leaked/);
 });
 
-test("an empty model reply becomes the safe fallback", async () => {
+test("a blocked model reply becomes the safe fallback", async () => {
   globalThis.fetch = async (url) => {
     if (String(url).includes("challenges.cloudflare.com")) return Response.json({ success: true });
-    return Response.json({ choices: [{ finish_reason: "content_filter", message: { content: "weg" } }] });
+    return Response.json({
+      promptFeedback: { blockReason: "SAFETY" },
+      candidates: [{ content: { parts: [{ text: "weg" }] } }]
+    });
   };
   const response = await worker.fetch(chatRequest("Hallo."), env());
   const body = await response.json();
@@ -147,10 +144,10 @@ test("an empty model reply becomes the safe fallback", async () => {
   assert.match(body.reply, /Dazu kann ich nichts sagen/);
 });
 
-test("a crisis message never calls Mistral", async () => {
+test("a crisis message never calls Gemini", async () => {
   let called = false;
   globalThis.fetch = async (url) => {
-    if (String(url).includes("api.mistral.ai")) called = true;
+    if (String(url).includes("generativelanguage.googleapis.com")) called = true;
     if (String(url).includes("challenges.cloudflare.com")) return Response.json({ success: true });
     throw new Error(`unexpected ${url}`);
   };
@@ -162,16 +159,16 @@ test("a crisis message never calls Mistral", async () => {
   assert.deepEqual(body.cards, []);
 });
 
-test("the local mock does not call Mistral", async () => {
+test("the local mock does not call Gemini", async () => {
   let called = false;
   globalThis.fetch = async () => {
     called = true;
     throw new Error("fetch should not run");
   };
   const response = await worker.fetch(chatRequest("Hallo lokal.", [], "local-dev"), env({
-    MOCK_MISTRAL: "1",
+    MOCK_GEMINI: "1",
     MOCK_TURNSTILE: "1",
-    MISTRAL_API_KEY: undefined,
+    GEMINI_API_KEY: undefined,
     TURNSTILE_SECRET: undefined
   }));
   const body = await response.json();

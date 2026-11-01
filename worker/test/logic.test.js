@@ -98,12 +98,13 @@ test("source keeps the model name and does not embed a key", () => {
     "src/deck.js",
     "wrangler.toml"
   ].map((file) => readFileSync(new URL(`../${file}`, import.meta.url), "utf8")).join("\n");
-  assert.match(source, /mistral-small-latest/);
-  assert.match(source, /https:\/\/api\.mistral\.ai\/v1\/chat\/completions/);
-  assert.doesNotMatch(source, /gemini/i);
-  assert.doesNotMatch(source, /GEMINI/);
-  assert.doesNotMatch(source, /generativelanguage/);
+  assert.match(source, /gemini-2\.5-flash-lite/);
+  assert.match(source, /generativelanguage\.googleapis\.com\/v1beta\/models/);
+  assert.match(source, /systemInstruction/);
+  assert.doesNotMatch(source, /mistral/i);
+  assert.doesNotMatch(source, /MISTRAL/);
+  assert.doesNotMatch(source, /api\.mistral\.ai/);
   assert.doesNotMatch(source, /AIza[0-9A-Za-z\-_]{20,}/);
-  assert.doesNotMatch(source, /MISTRAL_API_KEY\s*=\s*["'][^"']+["']/);
+  assert.doesNotMatch(source, /GEMINI_API_KEY\s*=\s*["'][^"']+["']/);
   assert.doesNotMatch(source, /console\.log\(/);
 });

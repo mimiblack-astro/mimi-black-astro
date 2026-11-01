@@ -3,14 +3,14 @@ main = "src/index.js"
 compatibility_date = "2026-10-15"
 
 # Geheimnisse NICHT hier eintragen. Im Terminal:
-#   npx wrangler secret put MISTRAL_API_KEY
+#   npx wrangler secret put GEMINI_API_KEY
 #   npx wrangler secret put TURNSTILE_SECRET
 #   npx wrangler secret put QUOTA_SALT
 # Lokale Attrappen nur in .dev.vars (siehe .dev.vars.example), nie in [vars].
 
 [vars]
-# Modell der Chat-API. Leer oder ungültig fällt im Code auf mistral-small-latest zurück.
-MISTRAL_MODEL = "mistral-small-latest"
+# Modell der Gemini-API. Leer oder ungültig fällt im Code auf gemini-2.5-flash-lite zurück.
+GEMINI_MODEL = "gemini-2.5-flash-lite"
 USER_DAILY_LIMIT = "20"
 GLOBAL_DAILY_CAP = "400"
 MIN_INTERVAL_MS = "4000"
