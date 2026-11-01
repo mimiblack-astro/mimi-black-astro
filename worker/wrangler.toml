@@ -1,0 +1,33 @@
+name = "mimi-chat"
+main = "src/index.js"
+compatibility_date = "2026-10-15"
+
+# Geheimnisse NICHT hier eintragen. Im Terminal:
+#   npx wrangler secret put GEMINI_API_KEY
+#   npx wrangler secret put TURNSTILE_SECRET
+#   npx wrangler secret put QUOTA_SALT
+# Lokale Attrappen nur in .dev.vars (siehe .dev.vars.example), nie in [vars].
+
+[vars]
+USER_DAILY_LIMIT = "20"
+GLOBAL_DAILY_CAP = "400"
+MIN_INTERVAL_MS = "4000"
+MAX_INPUT_CHARS = "800"
+MAX_HISTORY = "8"
+MAX_HISTORY_CHARS = "1200"
+
+# Eine Durable-Object-Klasse für das Tageskontingent.
+# Begründung steht in der README: das Rate-Limiting-Binding kann nur 10 oder 60 Sekunden
+# und zählt je Standort nur ungefähr. Für „20 pro Person und Tag“ plus ein weltweites
+# Tageslimit braucht es einen gemeinsamen Zähler. Dafür ist ein Durable Object geeignet.
+[[durable_objects.bindings]]
+name = "CHAT_QUOTA"
+class_name = "ChatQuota"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatQuota"]
+
+# Keine Route auf mimiblack.de, solange die Inhaberin nicht ausdrücklich freigibt.
+# Der Worker bleibt unter der workers.dev-Adresse und wird von der Chat-Seite aufgerufen.
+# workers_dev = true

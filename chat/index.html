@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mimi-Chat · virtuelle Tarot- und Astro-Begleitung · Mimi Black</title>
+  <meta name="description" content="Sprich mit Mimi, einer virtuellen Figur. Der Chat ist Unterhaltung mit KI, zieht Tarotkarten im Programm und ist keine Beratung." />
+  <meta name="author" content="Mimi Black" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mimiblack.de/chat/" />
+  <style>
+    :root {
+      --night-950: #120a24;
+      --night-900: #1b1033;
+      --night-800: #241544;
+      --night-700: #2f1d57;
+      --violet: #5a2fbd;
+      --violet-deep: #412a8c;
+      --violet-bright: #8b6cff;
+      --violet-soft: #c7b8ff;
+      --lavender: #f3eef7;
+      --ink: #1a1426;
+      --sub: #453855;
+      --rose: #f6a6cf;
+      --gold-200: #f8e0a6;
+      --gold-300: #f0cd86;
+      --gold-500: #dbb160;
+      --gold-ink: #241606;
+      --gold-grad: linear-gradient(135deg, #f8e0a6 0%, #eecf85 35%, #dbb160 100%);
+      --gold: #f0cd86;
+      --gold-soft: #f8e0a6;
+      --cream: #f4eeff;
+      --muted: #cdc1e0;
+      --border: rgba(199, 184, 255, 0.22);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(1000px 520px at 90% 0%, rgba(139, 108, 255, 0.24), transparent 60%),
+        radial-gradient(800px 420px at 0% 30%, rgba(246, 166, 207, 0.12), transparent 55%),
+        linear-gradient(180deg, var(--night-900), var(--night-950));
+      color: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .serif { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; letter-spacing: 0.02em; }
+    a { color: var(--gold-soft); }
+    a:hover { color: #fff; }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(18, 10, 36, 0.86);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+    .brand { color: var(--gold-300); font-size: 1.45rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav-links a { color: var(--cream); text-decoration: none; padding: 8px 12px; border-radius: 999px; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { background: rgba(199, 184, 255, 0.14); color: #fff; }
+    .ai-flag {
+      background: var(--gold-grad);
+      color: var(--gold-ink);
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+    }
+    .hero { padding: 36px 0 10px; }
+    .kicker {
+      display: inline-block; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold-200); border: 1px solid rgba(248, 224, 166, 0.4);
+      border-radius: 999px; padding: 6px 12px; margin-bottom: 12px;
+    }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.05; margin-bottom: 10px; }
+    h1 em {
+      font-style: italic;
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead { color: var(--muted); max-width: 62ch; }
+    .panel {
+      margin: 22px 0 36px;
+      background: rgba(36, 21, 68, 0.88);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 44px rgba(10, 4, 26, 0.45);
+      padding: 22px;
+    }
+    .consent h2 { font-size: 1.8rem; margin-bottom: 8px; }
+    .points { margin: 12px 0 16px 18px; color: var(--cream); }
+    .points li { margin: 6px 0; }
+    .check {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(18, 10, 36, 0.45);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+    .check input { width: 1.2rem; height: 1.2rem; margin-top: 4px; accent-color: var(--violet); flex: none; }
+    button, .btn {
+      border: 0; cursor: pointer; border-radius: 999px; font-weight: 800;
+      padding: 12px 18px; font-size: 1rem;
+    }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-gold { background: var(--gold-grad); color: var(--gold-ink); }
+    .btn-ghost {
+      background: transparent; color: var(--gold-soft);
+      border: 1px solid rgba(240, 205, 134, 0.45);
+    }
+    .fine { color: var(--muted); font-size: 0.92rem; margin-top: 12px; }
+    .log {
+      min-height: 280px; max-height: 520px; overflow: auto;
+      display: flex; flex-direction: column; gap: 14px;
+      padding-right: 4px;
+    }
+    .bubble { max-width: min(100%, 640px); border-radius: 18px; padding: 12px 14px; }
+    .bubble.user { align-self: flex-end; background: rgba(90, 47, 189, 0.55); }
+    .bubble.mimi { align-self: flex-start; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); }
+    .who { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-200); margin-bottom: 4px; }
+    .bubble p { white-space: pre-wrap; }
+    .tarot-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; }
+    .tarot-card {
+      width: 138px; min-height: 214px; border-radius: 16px; padding: 12px 10px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
+      color: var(--cream);
+      background:
+        radial-gradient(80px 50px at 50% 18%, rgba(248, 224, 166, 0.2), transparent 70%),
+        linear-gradient(180deg, #3a2280, #1b1033);
+      border: 1px solid rgba(219, 177, 96, 0.75);
+      box-shadow: inset 0 0 0 4px rgba(18, 10, 36, 0.35), 0 12px 24px rgba(10, 4, 26, 0.35);
+    }
+    .tarot-card.is-reversed { box-shadow: inset 0 0 0 4px rgba(246, 166, 207, 0.25), 0 12px 24px rgba(10, 4, 26, 0.35); }
+    .tarot-card .glyph {
+      width: 54px; height: 54px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: rgba(248, 224, 166, 0.12);
+      color: var(--gold-200); font-size: 1.3rem;
+    }
+    .tarot-card .pos { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet-soft); }
+    .tarot-card strong { font-family: Georgia, serif; color: var(--gold-200); font-size: 1.12rem; line-height: 1.2; }
+    .tarot-card .ori { font-size: 0.75rem; border: 1px solid rgba(248, 224, 166, 0.4); border-radius: 999px; padding: 2px 8px; }
+    .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .tools button { background: rgba(199, 184, 255, 0.1); color: var(--cream); border: 1px solid var(--border); font-weight: 650; }
+    form.composer { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+    textarea {
+      width: 100%; resize: vertical; min-height: 74px; max-height: 180px;
+      border-radius: 16px; border: 1px solid var(--border);
+      background: rgba(18, 10, 36, 0.55); color: var(--cream);
+      padding: 12px; font: inherit;
+    }
+    textarea:focus, button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 3px solid var(--gold-300); outline-offset: 2px;
+    }
+    .meta { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+    .warn {
+      border-left: 3px solid var(--gold-300);
+      background: rgba(240, 205, 134, 0.08);
+      padding: 10px 12px; border-radius: 10px; margin-top: 12px;
+    }
+    .hidden { display: none !important; }
+    footer { border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font-size: 0.92rem; }
+    footer nav { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+    @media (max-width: 720px) {
+      .nav-bar { flex-wrap: wrap; align-items: flex-start; }
+      .nav-links { width: 100%; }
+      .nav-links a { background: rgba(199, 184, 255, 0.08); }
+      .ai-flag { font-size: 0.82rem; }
+      form.composer { grid-template-columns: 1fr; }
+      .tarot-card { width: 112px; min-height: 188px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-bar">
+      <a class="brand serif" href="/">✦ MIMI BLACK</a>
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="/">Startseite</a>
+        <a href="/chat/" aria-current="page">Mimi-Chat</a>
+        <a href="https://shop.mimiblack.de" target="_blank" rel="noopener">Shop</a>
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </header>
+  <p class="ai-flag" role="note">Mimi ist eine virtuelle Figur – Antworten entstehen mit KI</p>
+
+  <main class="container">
+    <section class="hero">
+      <span class="kicker">Tarot &amp; Astrologie · nur Unterhaltung</span>
+      <h1 class="serif">Ein Gespräch mit <em>Mimi</em></h1>
+      <p class="lead">Mimi ist eine virtuelle Figur. Sie deutet Karten, die das Programm zieht, und bleibt bei Bildern und Stimmung. Das ist keine Beratung und kein Blick in eine feststehende Zukunft.</p>
+    </section>
+
+    <!-- OWNER-CHECK: Eine einzige Einwilligung fasst Alter, KI-Hinweis, Unterhaltung und Übermittlung an Google zusammen. Ob das getrennt werden muss, bitte rechtlich prüfen. -->
+    <section class="panel consent" id="consent-panel">
+      <h2 class="serif">Kurz innehalten, bevor es losgeht</h2>
+      <p>Der Chat startet erst, wenn du das hier bestätigst. Deine Zustimmung gilt nur für dieses Browser-Tab und wird nicht bei uns gespeichert.</p>
+      <ul class="points">
+        <li>Du bist mindestens 18 Jahre alt.</li>
+        <li>Mimi ist eine virtuelle Figur. Die Antworten erzeugt eine KI (Google Gemini).</li>
+        <li>Alles ist nur Unterhaltung, keine medizinische, psychologische, rechtliche oder finanzielle Beratung und kein Heilversprechen.</li>
+        <li>Deine Nachrichten werden zur Verarbeitung an Google (Gemini API) gesendet. Dabei kann eine Übermittlung in die USA stattfinden.</li>
+      </ul>
+      <label class="check">
+        <input type="checkbox" id="consent-check" />
+        <span>Ich bin mindestens 18 Jahre alt. Ich weiß, dass Mimi eine virtuelle Figur ist und die Antworten von einer KI (Google Gemini) erzeugt werden. Der Chat ist nur Unterhaltung und keine Beratung. Meine Nachrichten werden zur Verarbeitung an Google (Gemini API) gesendet, einschließlich einer möglichen Übermittlung in die USA.</span>
+      </label>
+      <button class="btn-gold" type="button" id="consent-start" disabled>Chat starten</button>
+      <p class="fine">Einzelheiten stehen in der <a href="/datenschutz.html#mimi-chat">Datenschutzerklärung</a>. In einer Krise erreichst du die Telefonseelsorge unter 0800 111 0 111 oder 116 123.</p>
+    </section>
+
+    <section class="panel hidden" id="chat-panel" aria-labelledby="chat-title">
+      <h2 class="serif" id="chat-title">Mimi hört zu</h2>
+      <div class="log" id="log" aria-live="polite"></div>
+      <div class="tools" role="group" aria-label="Karten legen">
+        <button type="button" id="draw-one">Eine Karte ziehen</button>
+        <button type="button" id="draw-three">Drei Karten legen</button>
+      </div>
+      <form class="composer" id="composer">
+        <label for="message">Deine Nachricht
+          <textarea id="message" name="message" maxlength="800" placeholder="Womit darf Mimi sich heute beschäftigen?" required></textarea>
+        </label>
+        <button class="btn-gold" type="submit" id="send">Senden</button>
+      </form>
+      <div id="turnstile-slot"></div>
+      <div class="meta">
+        <span id="count">0 / 800</span>
+        <span id="remaining"></span>
+      </div>
+      <p class="warn" id="setup-note" hidden></p>
+      <p class="fine">Nur Unterhaltung, keine Beratung. Keine Heilversprechen. Antworten können danebenliegen. Hinweise auf den Shop sind mit „Werbung“ gekennzeichnet. <button class="btn-ghost" type="button" id="withdraw" style="margin-left:8px;">Einwilligung für dieses Tab zurücknehmen</button></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Nur Unterhaltung, keine Beratung.</strong> Der Mimi-Chat ersetzt keine medizinische, psychologische, rechtliche oder finanzielle Beratung und verspricht keine Heilung. In einer Krise: Telefonseelsorge 0800 111 0 111 oder 116 123, bei akuter Gefahr Notruf 112.</p>
+      <nav aria-label="Fußzeile">
+        <a href="/">Startseite</a>
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html#mimi-chat">Datenschutz zum Chat</a>
+        <a href="https://shop.mimiblack.de" target="_blank" rel="noopener">Shop</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    /* OWNER-CHECK: Nach dem Deploy beide Platzhalter ersetzen.
+       WORKER_URL = die Adresse aus `npx wrangler deploy`.
+       TURNSTILE_SITE_KEY = der öffentliche Site Key. Das Geheimnis bleibt nur im Worker. */
+    const WORKER_URL = "https://mimi-chat.YOUR-SUBDOMAIN.workers.dev";
+    const TURNSTILE_SITE_KEY = "TURNSTILE_SITE_KEY_HIER_EINSETZEN";
+    const CONSENT_KEY = "mimiChatConsent";
+
+    const consentPanel = document.getElementById("consent-panel");
+    const chatPanel = document.getElementById("chat-panel");
+    const consentCheck = document.getElementById("consent-check");
+    const consentStart = document.getElementById("consent-start");
+    const log = document.getElementById("log");
+    const form = document.getElementById("composer");
+    const messageBox = document.getElementById("message");
+    const count = document.getElementById("count");
+    const remaining = document.getElementById("remaining");
+    const setupNote = document.getElementById("setup-note");
+    const history = [];
+    let turnstileToken = "";
+    let busy = false;
+    let widgetId = null;
+    let turnstileMounted = false;
+
+    function isLocalHost() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+
+    function workerUrl() {
+      if (isLocalHost()) return "http://127.0.0.1:8787";
+      return WORKER_URL;
+    }
+
+    function workerConfigured() {
+      return isLocalHost() || !WORKER_URL.includes("YOUR-SUBDOMAIN");
+    }
+
+    function turnstileConfigured() {
+      return isLocalHost() || !TURNSTILE_SITE_KEY.includes("HIER_EINSETZEN");
+    }
+
+    consentCheck.addEventListener("change", () => {
+      consentStart.disabled = !consentCheck.checked;
+    });
+
+    consentStart.addEventListener("click", () => {
+      if (!consentCheck.checked) return;
+      sessionStorage.setItem(CONSENT_KEY, "1");
+      openChat();
+    });
+
+    document.getElementById("withdraw").addEventListener("click", () => {
+      sessionStorage.removeItem(CONSENT_KEY);
+      history.splice(0, history.length);
+      log.replaceChildren();
+      messageBox.value = "";
+      updateCount();
+      chatPanel.classList.add("hidden");
+      consentPanel.classList.remove("hidden");
+      consentCheck.checked = false;
+      consentStart.disabled = true;
+      turnstileToken = "";
+    });
+
+    messageBox.addEventListener("input", updateCount);
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      send("none");
+    });
+    document.getElementById("draw-one").addEventListener("click", () => send("one"));
+    document.getElementById("draw-three").addEventListener("click", () => send("three"));
+
+    function updateCount() {
+      count.textContent = `${messageBox.value.length} / 800`;
+    }
+
+    function openChat() {
+      consentPanel.classList.add("hidden");
+      chatPanel.classList.remove("hidden");
+      if (!workerConfigured() || !turnstileConfigured()) {
+        setupNote.hidden = false;
+        setupNote.textContent = "Mimi-Chat ist noch nicht verbunden. Die Adresse des Dienstes oder der Turnstile-Schlüssel fehlt noch. Es wird nichts gesendet.";
+      }
+      mountTurnstile();
+      if (!log.childElementCount) addBubble("mimi", "Schön, dass du da bist. Ich bin Mimi, eine virtuelle Figur. Frag mich etwas, oder lass eine Karte ziehen. Ich rate nicht zu Gesundheit, Psyche, Recht oder Geld.");
+      messageBox.focus();
+    }
+
+    function mountTurnstile() {
+      if (turnstileMounted || !turnstileConfigured()) return;
+      turnstileMounted = true;
+      if (isLocalHost()) {
+        turnstileToken = "local-dev";
+        return;
+      }
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.onload = () => {
+        widgetId = window.turnstile.render("#turnstile-slot", {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "dark",
+          callback: (token) => { turnstileToken = token; },
+          "expired-callback": () => { turnstileToken = ""; },
+          "error-callback": () => { turnstileToken = ""; }
+        });
+      };
+      document.head.appendChild(script);
+    }
+
+    function addBubble(kind, text, cards) {
+      const item = document.createElement("article");
+      item.className = `bubble ${kind}`;
+      const who = document.createElement("span");
+      who.className = "who";
+      who.textContent = kind === "user" ? "Du" : "Mimi";
+      item.appendChild(who);
+      if (cards && cards.length) item.appendChild(renderCards(cards));
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      item.appendChild(paragraph);
+      log.appendChild(item);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function renderCards(cards) {
+      const row = document.createElement("div");
+      row.className = "tarot-row";
+      for (const card of cards) {
+        const face = document.createElement("article");
+        face.className = `tarot-card${card.reversed ? " is-reversed" : ""}`;
+        face.setAttribute("aria-label", `${card.position}: ${card.name}, ${card.orientationLabel}`);
+        const pos = document.createElement("span");
+        pos.className = "pos";
+        pos.textContent = card.position || "Karte";
+        const glyph = document.createElement("span");
+        glyph.className = "glyph";
+        glyph.setAttribute("aria-hidden", "true");
+        glyph.textContent = card.glyph || "✦";
+        const name = document.createElement("strong");
+        name.textContent = card.name;
+        const ori = document.createElement("span");
+        ori.className = "ori";
+        ori.textContent = card.orientationLabel || (card.reversed ? "umgekehrt" : "aufrecht");
+        face.append(pos, glyph, name, ori);
+        row.appendChild(face);
+      }
+      return row;
+    }
+
+    async function send(spread) {
+      if (busy) return;
+      if (sessionStorage.getItem(CONSENT_KEY) !== "1") return;
+      let text = messageBox.value.trim();
+      if (!text && spread === "one") text = "Bitte zieh eine Karte und deute sie als Unterhaltung.";
+      if (!text && spread === "three") text = "Bitte leg drei Karten und deute sie als Unterhaltung.";
+      if (!text) return;
+      if (!workerConfigured() || !turnstileConfigured()) {
+        setupNote.hidden = false;
+        setupNote.textContent = "Es wird nichts gesendet, solange die Platzhalter in der Chat-Seite nicht ersetzt sind.";
+        return;
+      }
+      if (!turnstileToken) {
+        addBubble("mimi", "Die kurze Prüfung ist noch nicht fertig. Warte einen Moment und sende dann noch einmal.");
+        return;
+      }
+      busy = true;
+      document.getElementById("send").disabled = true;
+      addBubble("user", text);
+      messageBox.value = "";
+      updateCount();
+      const prior = history.slice(-8);
+      try {
+        const response = await fetch(`${workerUrl()}/api/chat`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            message: text,
+            history: prior,
+            spread,
+            consent: true,
+            turnstileToken
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          addBubble("mimi", data.message || "Das hat gerade nicht geklappt. Bitte versuch es noch einmal.");
+        } else {
+          const cards = Array.isArray(data.cards) ? data.cards : [];
+          const reply = String(data.reply || "");
+          addBubble("mimi", reply, cards);
+          const memory = cards.length
+            ? `Gezogene Karten: ${cards.map((card) => `${card.name} (${card.orientationLabel})`).join(", ")}.\n${reply}`
+            : reply;
+          history.push({ role: "user", text });
+          history.push({ role: "model", text: memory });
+          while (history.length > 8) history.shift();
+          if (typeof data.remaining === "number") remaining.textContent = `Noch ${data.remaining} Nachrichten heute`;
+          if (data.mock) remaining.textContent = `${remaining.textContent} · lokale Testantwort`.trim();
+        }
+      } catch {
+        addBubble("mimi", "Ich erreiche den Chat-Dienst gerade nicht. Wenn du lokal testest, muss wrangler dev laufen.");
+      } finally {
+        busy = false;
+        document.getElementById("send").disabled = false;
+        turnstileToken = isLocalHost() ? "local-dev" : "";
+        if (window.turnstile && widgetId != null) window.turnstile.reset(widgetId);
+      }
+    }
+
+    if (sessionStorage.getItem(CONSENT_KEY) === "1") openChat();
+  </script>
+</body>
+</html>
