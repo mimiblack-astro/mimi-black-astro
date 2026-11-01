@@ -120,22 +120,49 @@
   </script>
   <style>
     :root {
-      --bg-deep: #0b0e17;
-      --bg-card: rgba(20, 25, 40, 0.82);
-      --bg-elevated: rgba(29, 36, 58, 0.9);
-      --gold: #d4af37;
-      --gold-soft: #f0d78c;
-      --cream: #f5f0e6;
-      --muted: #a6b0c9;
-      --accent-placidus: #6c9eff;
-      --accent-wholesign: #d4af37;
-      --accent-vedic: #4fd1c5;
-      --border: rgba(212, 175, 55, 0.25);
+      /* Farbwelt 2026-11: Violett-Nacht, Lavendel & Gold (Stimmung inspiriert, eigene Werte) */
+      --night-950: #120a24;
+      --night-900: #1b1033;
+      --night-800: #241544;
+      --night-700: #2f1d57;
+      --violet: #5a2fbd;
+      --violet-deep: #412a8c;
+      --violet-bright: #8b6cff;
+      --violet-soft: #c7b8ff;
+      --lavender: #f3eef7;
+      --lavender-2: #e9e0f3;
+      --paper: #ffffff;
+      --ink: #1a1426;
+      --sub: #453855;
+      --rose: #f6a6cf;
+      --mint: #46d68a;
+      --gold-200: #f8e0a6;
+      --gold-300: #f0cd86;
+      --gold-500: #dbb160;
+      --gold-ink: #241606;
+      --gold-grad: linear-gradient(135deg, #f8e0a6 0%, #eecf85 35%, #dbb160 100%);
+      /* bestehende Variablen, auf neue Palette gemappt */
+      --bg-deep: var(--night-950);
+      --bg-card: rgba(36, 21, 68, 0.88);
+      --bg-elevated: rgba(47, 29, 87, 0.92);
+      --gold: #f0cd86;
+      --gold-soft: #f8e0a6;
+      --cream: #f4eeff;
+      --muted: #cdc1e0;
+      --accent-placidus: #9db8ff;
+      --accent-wholesign: #f0cd86;
+      --accent-vedic: #6fe0c8;
+      --border: rgba(199, 184, 255, 0.22);
+      --radius: 22px;
+      --shadow: 0 18px 44px rgba(10, 4, 26, 0.45);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: radial-gradient(circle at 50% 0%, #182039 0%, #0b0e17 65%);
+      background:
+        radial-gradient(1200px 600px at 85% 8%, rgba(139, 108, 255, 0.22), transparent 60%),
+        radial-gradient(900px 500px at 5% 40%, rgba(246, 166, 207, 0.10), transparent 60%),
+        linear-gradient(180deg, var(--night-900) 0%, var(--night-950) 100%);
       color: var(--cream);
       line-height: 1.6;
       min-height: 100vh;
@@ -152,7 +179,7 @@
     header {
       position: sticky; top: 0; z-index: 100;
       backdrop-filter: blur(14px);
-      background: rgba(11, 14, 23, 0.85);
+      background: rgba(18, 10, 36, 0.86);
       border-bottom: 1px solid var(--border);
     }
     .nav-bar {
@@ -170,16 +197,17 @@
     }
     .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.92rem; }
     .btn-gold {
-      background: linear-gradient(135deg, #d4af37 0%, #b5891c 100%);
-      color: #0b0e17; font-weight: 700; padding: 10px 20px;
+      background: var(--gold-grad);
+      color: var(--gold-ink); font-weight: 700; padding: 10px 20px;
       border-radius: 999px; border: none; cursor: pointer;
       font-size: 0.92rem; display: inline-flex; align-items: center; gap: 8px;
-      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.28);
+      box-shadow: 0 6px 20px rgba(219, 177, 96, 0.32);
+      text-decoration: none;
     }
-    .btn-gold:hover { filter: brightness(1.08); color: #0b0e17; }
+    .btn-gold:hover { filter: brightness(1.06); color: var(--gold-ink); transform: translateY(-1px); }
     .btn-outline {
-      background: transparent; color: var(--gold-soft);
-      border: 1px solid var(--gold); padding: 9px 18px;
+      background: rgba(199, 184, 255, 0.08); color: var(--gold-soft);
+      border: 1px solid rgba(240, 205, 134, 0.7); padding: 9px 18px;
       border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 0.9rem;
     }
 
@@ -205,10 +233,10 @@
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      margin-bottom: 36px;
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 36px);
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
     }
     .calc-controls {
       display: grid;
@@ -224,7 +252,7 @@
     .field input, .field select {
       width: 100%; padding: 11px 14px; border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(11, 14, 23, 0.9); color: var(--cream);
+      background: rgba(18, 10, 36, 0.85); color: var(--cream);
       font-size: 0.95rem;
     }
     .preset-bar {
@@ -329,7 +357,7 @@
 
     /* Footer / Impressum */
     footer {
-      background: rgba(7, 9, 15, 0.96);
+      background: linear-gradient(180deg, var(--night-900), #0d0619);
       border-top: 1px solid var(--border);
       padding: 48px 0 36px;
       margin-top: 64px;
@@ -345,8 +373,8 @@
 
     /* Big Three User Profile Bar */
     .profile-bar {
-      background: linear-gradient(135deg, rgba(29, 36, 58, 0.95), rgba(15, 20, 34, 0.95));
-      border: 1px solid var(--gold);
+      background: linear-gradient(135deg, rgba(65, 42, 140, 0.55), rgba(36, 21, 68, 0.95));
+      border: 1px solid rgba(240, 205, 134, 0.55);
       border-radius: 18px;
       padding: 18px 24px;
       margin: 24px 0 18px;
@@ -356,8 +384,8 @@
     .profile-user { display: flex; align-items: center; gap: 12px; }
     .avatar-circle {
       width: 44px; height: 44px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), #8a640f);
-      color: #0b0e17; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      background: var(--gold-grad);
+      color: var(--gold-ink); font-weight: 800; display: flex; align-items: center; justify-content: center;
       font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
     }
     .big-three-btns { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -377,8 +405,8 @@
     .big3-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-soft); }
     .big3-val { font-size: 0.98rem; font-weight: 700; color: #fff; }
     .big3-drawer {
-      background: rgba(20, 26, 44, 0.95);
-      border: 1px solid var(--gold);
+      background: rgba(36, 21, 68, 0.95);
+      border: 1px solid rgba(240, 205, 134, 0.55);
       border-radius: 16px;
       padding: 20px 24px;
       margin-bottom: 24px;
@@ -409,8 +437,142 @@
     .tag-bazi { background: rgba(248, 113, 113, 0.16); color: #f87171; border: 1px solid #f87171; }
     .sys-pill-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.88rem; text-align: left; }
     .lock-card {
-      background: rgba(15, 19, 32, 0.9); border: 1px dashed rgba(212,175,55,0.45);
+      background: rgba(27, 16, 51, 0.9); border: 1px dashed rgba(240,205,134,0.5);
       border-radius: 14px; padding: 18px; margin-top: 14px; position: relative;
+    }
+
+    /* ===== Redesign 2026-11: Struktur, Hero, Wegweiser, Abschnitte ===== */
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold-300); outline-offset: 3px; border-radius: 8px; }
+    header .nav-bar { padding: 12px 24px; gap: 12px 20px; flex-wrap: nowrap; }
+    header .nav-cta { white-space: nowrap; flex-shrink: 0; }
+    header .brand { font-size: 1.45rem; color: var(--gold-300); white-space: nowrap; }
+    header .brand a { color: inherit; }
+    .nav-links { gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { color: var(--cream); padding: 8px 12px; border-radius: 999px; white-space: nowrap; font-weight: 500; }
+    .nav-links a:hover { background: rgba(199, 184, 255, 0.14); color: #fff; }
+    .nav-links a.nav-app { color: var(--violet-soft); }
+    .btn-violet {
+      background: var(--violet); color: #fff; font-weight: 700; padding: 11px 22px;
+      border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(90, 47, 189, 0.35);
+    }
+    .btn-violet:hover { background: #6a3fd6; color: #fff; transform: translateY(-1px); }
+    .btn-ghost {
+      color: #fff; border: 1px solid rgba(255,255,255,0.45); padding: 10px 20px; border-radius: 999px;
+      font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .btn-lg { padding: 14px 26px; font-size: 1rem; }
+
+    .mb-hero {
+      position: relative; overflow: hidden; text-align: center;
+      padding: clamp(56px, 9vw, 112px) 0 clamp(56px, 8vw, 96px);
+      background:
+        radial-gradient(700px 360px at 50% -10%, rgba(240, 205, 134, 0.28), transparent 70%),
+        radial-gradient(900px 520px at 100% 100%, rgba(246, 166, 207, 0.22), transparent 65%),
+        radial-gradient(900px 520px at 0% 100%, rgba(139, 108, 255, 0.35), transparent 65%),
+        linear-gradient(160deg, #412a8c 0%, #2a1660 45%, #1b1033 100%);
+      border-bottom: 1px solid rgba(240, 205, 134, 0.25);
+    }
+    .mb-hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.7;
+      background-image:
+        radial-gradient(1.5px 1.5px at 12% 22%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 28% 68%, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 44% 14%, #f8e0a6 50%, transparent 51%),
+        radial-gradient(1px 1px at 63% 38%, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 78% 18%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 88% 62%, #f8e0a6 50%, transparent 51%),
+        radial-gradient(1px 1px at 7% 84%, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 55% 86%, #fff 50%, transparent 51%);
+    }
+    .mb-hero .container { position: relative; }
+    .mb-hero .hero-kicker { color: var(--gold-200); border-color: rgba(248, 224, 166, 0.45); background: rgba(18, 10, 36, 0.35); }
+    .mb-hero h1 { font-size: clamp(2.3rem, 5.2vw, 4rem); line-height: 1.08; color: #fff; margin: 6px auto 18px; max-width: 900px; }
+    .mb-hero h1 em { font-style: italic; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mb-hero p.lead { max-width: 720px; margin: 0 auto 30px; color: #ece4ff; font-size: clamp(1.02rem, 1.6vw, 1.15rem); }
+    .mb-hero .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .trust-row { display: flex; gap: 10px 22px; justify-content: center; flex-wrap: wrap; margin-top: 30px; font-size: 0.9rem; color: #e4dafa; }
+    .trust-row span::before { content: "✦ "; color: var(--gold-300); }
+
+    .mb-band-light { background: var(--lavender); color: var(--ink); padding: clamp(48px, 7vw, 84px) 0; }
+    .mb-band-light .section-title { margin: 0 0 32px; }
+    .mb-band-light .section-title h2 { color: var(--ink); }
+    .mb-band-light .section-title p { color: var(--sub); }
+    .mb-band-light .hero-kicker { color: var(--violet-deep); border-color: rgba(90, 47, 189, 0.3); background: rgba(90, 47, 189, 0.07); }
+    .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+    .guide-card {
+      background: var(--paper); border: 1px solid rgba(65, 42, 140, 0.12); border-radius: var(--radius);
+      padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; color: var(--ink);
+      box-shadow: 0 1px 2px rgba(61, 42, 92, 0.09), 0 14px 32px rgba(61, 42, 92, 0.12);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .guide-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(61,42,92,.12), 0 26px 54px rgba(61,42,92,.18); color: var(--ink); }
+    .guide-icon {
+      width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; background: linear-gradient(135deg, #ede6ff, #fbefd6);
+    }
+    .guide-card h3 { font-size: 1.5rem; color: var(--ink); line-height: 1.2; }
+    .guide-card p { color: var(--sub); font-size: 0.95rem; flex: 1; }
+    .guide-card .guide-link { color: var(--violet); font-weight: 700; }
+    .guide-card.is-accent { background: linear-gradient(160deg, #5a2fbd, #412a8c); color: #fff; border-color: transparent; }
+    .guide-card.is-accent h3 { color: #fff; }
+    .guide-card.is-accent p { color: #ece4ff; }
+    .guide-card.is-accent .guide-link { color: var(--gold-200); }
+    .guide-card.is-accent .guide-icon { background: rgba(255,255,255,0.14); }
+
+    main.container { padding-top: 56px; }
+    .section-title { margin: 8px 0 28px; }
+    .section-title h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+    .hero-kicker { color: var(--gold-300); border-color: rgba(240, 205, 134, 0.4); background: rgba(240, 205, 134, 0.08); }
+    .product-card { background: linear-gradient(180deg, rgba(47, 29, 87, 0.92), rgba(36, 21, 68, 0.92)); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .product-card:hover { border-color: var(--gold-300); }
+    .product-type { color: var(--violet-soft); }
+    .price { color: var(--gold-200); }
+    .wheel-card { border-radius: 20px; }
+    .chip.active, .chip:hover { background: rgba(139, 108, 255, 0.28); border-color: var(--violet-soft); }
+    .big3-btn { background: rgba(139, 108, 255, 0.14); }
+    .big3-btn:hover, .big3-btn.active { background: rgba(240, 205, 134, 0.2); border-color: var(--gold-300); }
+
+    /* einheitliche Optik für ältere Inhaltsblöcke mit Inline-Stilen */
+    .mb-block {
+      background: linear-gradient(180deg, rgba(47, 29, 87, 0.92), rgba(27, 16, 51, 0.95)) !important;
+      border: 1px solid rgba(240, 205, 134, 0.35) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--shadow);
+      margin: 0 auto 48px !important;
+      padding: clamp(20px, 3vw, 34px) !important;
+      color: var(--cream) !important;
+    }
+    .mb-block article { background: rgba(18, 10, 36, 0.55) !important; border-radius: 16px !important; }
+    .mb-block h2 { font-family: 'Cormorant Garamond', Georgia, serif !important; font-size: clamp(1.6rem, 3vw, 2.1rem) !important; line-height: 1.2; }
+    .mb-block-wide { max-width: 1192px !important; }
+    #rauhnaechte-fokus article { background: rgba(18, 10, 36, 0.55) !important; border-color: rgba(240,205,134,0.3) !important; }
+
+    .mb-chat-teaser { text-align: center; }
+    footer { margin-top: 24px; }
+    footer a { color: var(--gold-200); }
+    .footer-links { display: flex; gap: 10px 22px; flex-wrap: wrap; justify-content: center; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--border); }
+    .footer-links a { color: var(--cream); font-weight: 600; }
+    .footer-links a:hover { color: var(--gold-200); }
+
+    @media (max-width: 760px) {
+      header .nav-bar { flex-wrap: wrap; padding: 10px 16px 6px; justify-content: space-between; }
+      .hero-kicker { letter-spacing: 0.1em; font-size: 0.72rem; }
+      .container { padding: 0 16px; }
+      header .brand { font-size: 1.25rem; }
+      header .brand-badge { display: none; }
+      header .nav-cta { padding: 8px 14px; font-size: 0.85rem; }
+      .nav-links { order: 3; width: 100%; padding-bottom: 4px; }
+      .nav-links a { padding: 6px 10px; font-size: 0.88rem; background: rgba(199, 184, 255, 0.08); }
+      .mb-hero .cta-row a { width: 100%; justify-content: center; }
+      .trust-row { font-size: 0.84rem; }
+      main.container { padding-top: 36px; }
+      .card { margin-bottom: 32px; }
+      .mb-feature { grid-template-columns: 1fr !important; justify-items: center; }
+      .mb-block-wide { margin-left: 16px !important; margin-right: 16px !important; }
     }
 
   </style>
@@ -421,22 +583,87 @@
 <header>
   <div class="container nav-bar">
     <div class="brand serif">
-      <span>✦ MIMI BLACK</span>
+      <a href="#top" aria-label="Mimi Black – zum Seitenanfang">✦ MIMI BLACK</a>
       <span class="brand-badge">Astro Magic &amp; Jyotish</span>
     </div>
-    <nav class="nav-links">
-      <a href="#rechner">3-System-Rechner</a>
-      <a href="#vergleich">System-Tabelle</a>
-      <a href="#systemwissen">Placidus vs. Whole Sign vs. Vedisch</a>
-      <a href="#shop">Bücher, Kurse &amp; Shop</a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="#rechner">Horoskop-Rechner</a>
+      <a href="app/" class="nav-app">Web-App</a>
+      <a href="#rauhnaechte-fokus">Rauhnächte</a>
+      <a href="#systemwissen">Wissen</a>
+      <a href="#shop">Bücher &amp; Kurse</a>
       <a href="#impressum">Impressum</a>
     </nav>
-    <a href="#rechner" class="btn-gold">Horoskop für 0 € berechnen</a>
+    <a href="https://shop.mimiblack.de" target="_blank" rel="noopener" class="btn-gold nav-cta">Zum Shop ↗</a>
   </div>
 </header>
 
+<section class="mb-hero" id="top">
+  <div class="container">
+    <span class="hero-kicker">Echtzeit-Ephemeriden · 0 € für dich</span>
+    <h1 class="serif">Dein Geburtshoroskop im direkten <em>Mehr-System-Vergleich</em></h1>
+    <p class="lead">
+      Entdecke auf einen Blick, wie sich dein Horoskop verändert, wenn du zwischen
+      <strong>Westlich Placidus</strong>, <strong>Whole Sign (Ganzzeichen)</strong> und dem
+      <strong>Vedischen System (Sidereal / Lahiri)</strong> wechselst – ergänzt um Human Design &amp; BaZi, live berechnet nach astronomischen Ephemeriden.
+    </p>
+    <div class="cta-row">
+      <a href="#rechner" class="btn-gold btn-lg">✦ Horoskop für 0 € berechnen</a>
+      <a href="app/" class="btn-violet btn-lg">Web-App öffnen</a>
+      <a href="https://shop.mimiblack.de" target="_blank" rel="noopener" class="btn-ghost btn-lg">Bücher &amp; Workbooks ↗</a>
+    </div>
+    <div class="trust-row">
+      <span>5 Systeme nebeneinander</span>
+      <span>Berechnung direkt im Browser</span>
+      <span>Keine Speicherung deiner Geburtsdaten</span>
+    </div>
+  </div>
+</section>
+
+<section class="mb-band-light" aria-labelledby="wegweiser-titel">
+  <div class="container">
+    <div class="section-title">
+      <span class="hero-kicker">Dein Wegweiser</span>
+      <h2 class="serif" id="wegweiser-titel">Wohin möchtest du heute?</h2>
+      <p>Vier Wege in die Welt von Mimi Black – vom kostenlosen Rechner bis zu Workbooks für die Rauhnächte.</p>
+    </div>
+    <div class="guide-grid">
+      <a class="guide-card" href="#rechner">
+        <span class="guide-icon" aria-hidden="true">☉</span>
+        <h3 class="serif">Horoskop-Rechner</h3>
+        <p>Sonne, Mond &amp; Aszendent in fünf Systemen vergleichen – inklusive Häuser-Tabelle und Hawaii-Relokation.</p>
+        <span class="guide-link">Jetzt berechnen →</span>
+      </a>
+      <a class="guide-card is-accent" href="app/">
+        <span class="guide-icon" aria-hidden="true">✦</span>
+        <h3 class="serif">Mimi-Black-Web-App</h3>
+        <p>Himmelskuppel, Transite und Seelenpartner als installierbare App – läuft direkt auf deinem Gerät.</p>
+        <span class="guide-link">App öffnen →</span>
+      </a>
+      <a class="guide-card" href="#rauhnaechte-fokus">
+        <span class="guide-icon" aria-hidden="true">☾</span>
+        <h3 class="serif">Rauhnächte 2026</h3>
+        <p>Begleiter für die Zeit von Samhain bis zum 6. Januar: Buch, 13-Wünsche-Workbook und Almanach 2027.</p>
+        <span class="guide-link">Zu den Begleitern →</span>
+      </a>
+      <a class="guide-card" href="https://shop.mimiblack.de" target="_blank" rel="noopener">
+        <span class="guide-icon" aria-hidden="true">📖</span>
+        <h3 class="serif">Shop</h3>
+        <p>Alle Bücher, Workbooks, Kalender und Orakel-Sets als Sofort-Download im Mimi-Black-Shop.</p>
+        <span class="guide-link">shop.mimiblack.de ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <main class="container">
   
+  <div class="section-title">
+    <span class="hero-kicker">Horoskop-Rechner · 0 €</span>
+    <h2 class="serif">Deine Big Three in fünf Systemen</h2>
+    <p>Gib Geburtsdatum, Uhrzeit und Ort ein – Mimi vergleicht Placidus, Whole Sign, Vedisch, Human Design und BaZi direkt nebeneinander.</p>
+  </div>
+
   <!-- EINGELOGGTES NUTZERPROFIL MIT KLICKBAREN BIG THREE BUTTONS -->
   <section class="profile-bar">
     <div class="profile-user">
@@ -469,16 +696,6 @@
     </div>
     <p id="big3DrawerText" style="color:var(--cream);font-size:0.95rem;"></p>
   </div>
-
-  <section class="hero">
-    <span class="hero-kicker">Echtzeit-Ephemeriden · 0 € für dich</span>
-    <h1 class="serif">Dein Geburtshoroskop im direkten 3-System-Vergleich</h1>
-    <p>
-      Entdecke auf einen Blick, wie sich dein Horoskop verändert, wenn du zwischen
-      <strong>Westlich Placidus</strong>, <strong>Westlich Whole Sign (Ganzzeichen)</strong> und dem
-      <strong>Vedischen System (Sidereal / Lahiri)</strong> wechselst – live berechnet nach astronomischen Ephemeriden.
-    </p>
-  </section>
 
   <!-- INTERACTIVE CALCULATOR -->
   <section id="rechner" class="card">
@@ -1035,7 +1252,7 @@
   </section>
 
 <!-- MIMI-NEW-14-15 -->
-<section style="max-width:1100px;margin:40px auto;padding:24px;border:2px solid #d4af37;border-radius:16px;background:#14101c;color:#f3e9d2;font-family:inherit">
+<section class="mb-block" style="max-width:1192px;margin:40px auto;padding:24px;border:2px solid #d4af37;border-radius:16px;background:#14101c;color:#f3e9d2;font-family:inherit">
 <h2 style="color:#d4af37;text-align:center">🐾 NEU: Witches' &amp; Halloween Cat Planner 2027 (English Edition)</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
 <article style="background:#1e1729;border-radius:12px;padding:14px;text-align:center"><img src="assets/mimiblack-cover-witches-cat-family-planner-2027-en-800w.webp" alt="Witches' Cat Family Planner 2027: 5-Column Mystical Organizer with Clever Cat Quotes &amp; Monthly Cat Lover's Rituals" style="width:100%;max-width:220px;border-radius:8px"><div style="font-size:.8em;opacity:.8;margin-top:8px">Produkt 14 · EN · 14 pages</div><h3 style="font-size:1em">Witches' Cat Family Planner 2027: 5-Column Mystical Organizer with Clever Cat Quotes &amp; Monthly Cat Lover's Rituals</h3><div style="font-size:1.3em;color:#d4af37;font-weight:bold">14,90 €</div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px"><a href="https://shop.mimiblack.de/b/tIa7W" target="_blank" rel="noopener" style="display:inline-block;padding:10px 14px;background:#d4af37;color:#14101c;border-radius:8px;font-weight:bold;text-decoration:none">⚡ Sofort-Download via Payhip →</a></div> <a href="https://shop.mimiblack.de/b/er7M2" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:8px 12px;border:1px solid #d4af37;color:#f3e9d2;border-radius:8px;font-size:.82em;text-decoration:none">🐾 Classic Cat Planner (er7M2)</a></article>
@@ -1045,7 +1262,7 @@
 </section>
 
 <!-- MIMI-NEW-18-19-20 -->
-<section style="max-width:1100px;margin:40px auto;padding:24px;border:2px solid #F5C518;border-radius:16px;background:#090618;color:#f3e9d2;font-family:inherit">
+<section class="mb-block" style="max-width:1192px;margin:40px auto;padding:24px;border:2px solid #F5C518;border-radius:16px;background:#090618;color:#f3e9d2;font-family:inherit">
 <div style="text-align:center;font-size:12px;font-weight:bold;letter-spacing:1.5px;color:#00E5FF;text-transform:uppercase">🚀 NEU: DIE 3-STUFEN GROK BOT &amp; KI-AUTOMATISIERUNGS-SUITE</div>
 <h2 style="color:#F5C518;text-align:center;margin:8px 0 14px">🤖 Vom KI-Einsteiger zum eigenen 24/7 AI-Agenten-Team (Handbuch · Playbook · Masterclass-Kurs)</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
@@ -1057,7 +1274,7 @@
 </section>
 
 <!-- MIMI-NEW-16-17 -->
-<section style="max-width:1100px;margin:40px auto;padding:24px;border:2px solid #d4af37;border-radius:16px;background:#14101c;color:#f3e9d2;font-family:inherit">
+<section class="mb-block" style="max-width:1192px;margin:40px auto;padding:24px;border:2px solid #d4af37;border-radius:16px;background:#14101c;color:#f3e9d2;font-family:inherit">
 <h2 style="color:#d4af37;text-align:center">🌌 NEU: Das Geheimnis der 12 Rauhnächte &amp; Die Rauhnächte-Masterclass</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
 <article style="background:#1e1729;border-radius:12px;padding:14px;text-align:center"><img src="assets/cover-2026-11/mimiblack-cover-geheimnis-der-12-rauhnaechte-800w.webp" alt="Das Geheimnis der 12 Rauhnächte &amp; Dein 13. Wunsch – Das große Buch &amp; 12-Monats-Workbook" style="width:100%;max-width:220px;border-radius:8px"><div style="font-size:.8em;opacity:.8;margin-top:8px">Produkt 16 · DE · 28 Seiten</div><h3 style="font-size:1em">Das Geheimnis der 12 Rauhnächte &amp; Dein 13. Wunsch – Das große Buch &amp; 12-Monats-Workbook</h3><div style="font-size:1.3em;color:#d4af37;font-weight:bold">24,90 €</div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px"><a href="https://www.checkout-ds24.com/product/756314" target="_blank" rel="noopener" style="display:inline-block;padding:10px 14px;background:#d4af37;color:#14101c;border-radius:8px;font-weight:bold;text-decoration:none">⚡ Sofort-Download via Digistore24 →</a><a href="https://shop.mimiblack.de/b/ANjag" target="_blank" rel="noopener" style="display:inline-block;padding:10px 12px;border:1px solid #d4af37;color:#f3e9d2;border-radius:8px;font-size:.85em;text-decoration:none">✦ Alternativ via Payhip</a></div></article>
@@ -1067,7 +1284,7 @@
 </section>
 
 <!-- MIMI-NEW-10-13 -->
-<section style="max-width:1100px;margin:40px auto;padding:24px;border:2px solid #d4af37;border-radius:16px;background:#14101c;color:#f3e9d2;font-family:inherit">
+<section class="mb-block" style="max-width:1192px;margin:40px auto;padding:24px;border:2px solid #d4af37;border-radius:16px;background:#14101c;color:#f3e9d2;font-family:inherit">
 <h2 style="color:#d4af37;text-align:center">🔥 Samhain-Kollektion 2026 (Produkte 10–13)</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
 <article style="background:#1e1729;border-radius:12px;padding:14px;text-align:center"><img src="assets/cover-2026-11/mimiblack-cover-sperrnaechte-rauhnaechte-13-wuensche-800w.webp" alt="Von Samhain durch die 12 Sperrnächte in die Rauhnächte – 13-Wünsche-Workbook" style="width:100%;max-width:220px;border-radius:8px"><div style="font-size:.8em;opacity:.8;margin-top:8px">Produkt 10 · DE · 24 Seiten</div><h3 style="font-size:1em">Von Samhain durch die 12 Sperrnächte in die Rauhnächte – 13-Wünsche-Workbook</h3><div style="font-size:1.3em;color:#d4af37;font-weight:bold">19,90 €</div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px"><a href="https://www.checkout-ds24.com/product/756278" target="_blank" rel="noopener" style="display:inline-block;padding:10px 14px;background:#d4af37;color:#14101c;border-radius:8px;font-weight:bold;text-decoration:none">⚡ Sofort-Download via Digistore24 →</a><a href="https://shop.mimiblack.de/b/f6d13" target="_blank" rel="noopener" style="display:inline-block;padding:10px 12px;border:1px solid #d4af37;color:#f3e9d2;border-radius:8px;font-size:.85em;text-decoration:none">✦ Alternativ via Payhip</a></div></article>
@@ -1079,8 +1296,40 @@
 </main>
 
 
+<!-- ENGLISH 64-PAGE ZODIAC COMPENDIUM CARD -->
+    <div class="mb-block mb-block-wide mb-feature" style="max-width:1040px;margin:24px auto;padding:24px;background:linear-gradient(145deg,#1E1236,#110920);border:2px solid #E9C46A;border-radius:16px;display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;box-shadow:0 14px 36px rgba(0,0,0,0.55);">
+      <img src="assets/cover-2026-11/mimiblack-cover-zodiac-signs-4-elements-en-800w.webp" alt="THE 12 ZODIAC SIGNS & THE 4 SACRED ELEMENTS (64 Pages EN)" style="width:100%;max-width:160px;border-radius:8px;border:1.5px solid #E9C46A;"/>
+      <div>
+        <div style="display:inline-block;background:rgba(233,196,106,0.16);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px;">🇬🇧 NEW INTERNATIONAL ENGLISH EDITION · 64 PAGES DIN A4</div>
+        <h3 style="color:#FFFFFF;font-size:22px;margin:0 0 8px 0;font-family:Georgia,serif;">THE 12 ZODIAC SIGNS &amp; THE 4 SACRED ELEMENTS – Ultimate Astrological Compendium &amp; Grimoire</h3>
+        <p style="color:#E2D9F3;font-size:14.5px;margin:0 0 14px 0;line-height:1.55;">All 12 Zodiac Signs (4 full A4 pages each), the 4 Sacred Elements, 3 Modalities, 84-Year Uranus Life Cycle, 10 Ruling Planets, 12 Houses, Healing Crystals, Sacred Solstice Trees, Body Zones &amp; Musical Keys — By Mimi Black.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <a href="https://shop.mimiblack.de/b/SAraM" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">✦ Alternative: Payhip (€14.90)</a>
+          <a href="zodiac-compendium-en.html" style="background:rgba(255,255,255,0.08);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">🇬🇧 English Product Page</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ENCHANTED FOREST & MYSTICAL WILDLIFE 2027 WALL CALENDAR CARD (DE + EN) -->
+    <div class="mb-block mb-block-wide mb-feature" style="max-width:1040px;margin:24px auto;padding:24px;background:linear-gradient(145deg,#171128,#0D0918);border:2px solid #D4AF37;border-radius:16px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:0 14px 36px rgba(0,0,0,0.6);">
+      <img src="assets/cover-2026-11/mimiblack-cover-verzauberter-wald-krafttiere-2027-800w.webp" alt="Verzauberter Wald & Magische Krafttiere 2027 (Mimi Black)" style="width:100%;max-width:180px;border-radius:8px;border:1.5px solid #D4AF37;"/>
+      <div>
+        <div style="display:inline-block;background:rgba(212,175,55,0.18);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px;">🌲🦉 NEU 2027 · FINE-ART KRAFTTIER-WANDKALENDER (DEUTSCH + ENGLISCH · 14 SEITEN DIN A4)</div>
+        <h3 style="color:#FFFFFF;font-size:22px;margin:0 0 8px 0;font-family:Georgia,serif;">Verzauberter Wald &amp; Magische Krafttiere 2027 · Enchanted Forest &amp; Mystical Wildlife</h3>
+        <p style="color:#E2D9F3;font-size:14.5px;margin:0 0 14px 0;line-height:1.55;">13 exklusive Dark-Cottagecore- &amp; Krafttier-Illustrationen (Schleiereule, Polarwolf, Luchs, Feldhase, Rotfuchs, Königshirsch, Schwan, Eisvogel, Igel, Eichhörnchen, Rabe, Dachs &amp; Rotkehlchen) mit Vollmond, Neumond, Sonnenwenden &amp; Krafttier-Botschaften — By Mimi Black.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <a href="https://www.checkout-ds24.com/product/756173" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#E9C46A,#C89B3C);color:#140B24;font-family:sans-serif;font-weight:800;font-size:14px;padding:11px 20px;border-radius:8px;text-decoration:none;">⚡ Sofort-Download via Digistore24 (19,90 €) →</a>
+          <a href="https://www.checkout-ds24.com/product/756178" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">🎁 5er-Paket via Digistore24 (44,00 €)</a>
+          <a href="https://shop.mimiblack.de/b/X7yn3" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">✦ Alternativ via Payhip (19,90 €)</a>
+          <a href="https://shop.mimiblack.de/b/8D13B" target="_blank" rel="noopener" style="color:#E9C46A;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:4px;">🎁 5er-Paket Payhip (44,00 €)</a>
+          <a href="verzauberter-wald-krafttiere-2027.html" style="color:#FFF3B0;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:4px;">✨ Produktseite &amp; Vorschau</a>
+        </div>
+      </div>
+    </div>
+
 <!-- NEU: Kalender 09 Katzen-Familienplaner 2027 (5 freie Spalten, DE & EN) -->
-<div style="margin: 24px auto; max-width: 1040px; background: linear-gradient(145deg, #162B35, #0E1D24); border: 2px solid #E4BE72; border-radius: 16px; padding: 24px; color: #F9F6F0; box-shadow: 0 14px 36px rgba(0,0,0,0.5);">
+<div class="mb-block mb-block-wide" style="margin: 24px auto; max-width: 1040px; background: linear-gradient(145deg, #162B35, #0E1D24); border: 2px solid #E4BE72; border-radius: 16px; padding: 24px; color: #F9F6F0; box-shadow: 0 14px 36px rgba(0,0,0,0.5);">
   <div style="display:flex; flex-wrap:wrap; gap:22px; align-items:center;">
     <img src="assets/cover-2026-11/mimiblack-cover-samtpfoten-familienplaner-2027-800w.webp" alt="Samtpfoten & Familienglück 2027" style="width:165px; border-radius:10px; border:2px solid #E4BE72;"/>
     <div style="flex:1; min-width:260px;">
@@ -1100,7 +1349,7 @@
 
 
       <!-- KOMPLETTE SOFORTKAUF-ÜBERSICHT (ALLE 28 PAYHIP & 26 DIGISTORE24 DIREKTLINKS) -->
-  <section style="max-width:1040px;margin:28px auto;padding:24px;background:rgba(20,14,36,0.92);border:1.5px solid rgba(233,196,106,0.45);border-radius:16px;color:#F5F0FF;font-family:sans-serif;">
+  <section class="mb-block mb-block-wide" style="max-width:1040px;margin:28px auto;padding:24px;background:rgba(20,14,36,0.92);border:1.5px solid rgba(233,196,106,0.45);border-radius:16px;color:#F5F0FF;font-family:sans-serif;">
     <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#E9C46A;font-weight:700;margin-bottom:6px;">✦ OFFIZIELLES DIREKTKAUF-VERZEICHNIS · SOFORT-DOWNLOAD (PAYHIP &amp; DIGISTORE24)</div>
     <h2 style="font-family:Georgia,serif;font-size:24px;color:#fff;margin:0 0 14px;">Alle 26 Digistore24- &amp; 28 Payhip-Direkt-Checkouts im Überblick</h2>
     <div style="overflow-x:auto;">
@@ -1174,7 +1423,13 @@
       </p>
     </div>
   </div>
-<p class="mb-legal-links" style="text-align:center;margin:18px auto 0;font-size:15px;line-height:1.6;"><a href="/impressum.html" style="color:#d4af37;text-decoration:underline;font-weight:700;">Impressum</a> &middot; <a href="/datenschutz.html" style="color:#d4af37;text-decoration:underline;font-weight:700;">Datenschutz</a></p>
+<nav class="container footer-links" aria-label="Fußzeile">
+    <a href="#rechner">Horoskop-Rechner</a>
+    <a href="app/">Web-App</a>
+    <a href="https://shop.mimiblack.de" target="_blank" rel="noopener">Shop</a>
+    <a href="/impressum.html" style="text-decoration:underline;">Impressum</a>
+    <a href="/datenschutz.html" style="text-decoration:underline;">Datenschutz</a>
+  </nav>
 </footer>
 
 <script>
@@ -1693,38 +1948,6 @@ function loadPreset(key, btn) {
 
 window.addEventListener('DOMContentLoaded', recalculateAll);
 </script>
-
-    <!-- ENGLISH 64-PAGE ZODIAC COMPENDIUM CARD -->
-    <div style="max-width:1040px;margin:24px auto;padding:24px;background:linear-gradient(145deg,#1E1236,#110920);border:2px solid #E9C46A;border-radius:16px;display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;box-shadow:0 14px 36px rgba(0,0,0,0.55);">
-      <img src="assets/cover-2026-11/mimiblack-cover-zodiac-signs-4-elements-en-800w.webp" alt="THE 12 ZODIAC SIGNS & THE 4 SACRED ELEMENTS (64 Pages EN)" style="width:100%;max-width:160px;border-radius:8px;border:1.5px solid #E9C46A;"/>
-      <div>
-        <div style="display:inline-block;background:rgba(233,196,106,0.16);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px;">🇬🇧 NEW INTERNATIONAL ENGLISH EDITION · 64 PAGES DIN A4</div>
-        <h3 style="color:#FFFFFF;font-size:22px;margin:0 0 8px 0;font-family:Georgia,serif;">THE 12 ZODIAC SIGNS &amp; THE 4 SACRED ELEMENTS – Ultimate Astrological Compendium &amp; Grimoire</h3>
-        <p style="color:#E2D9F3;font-size:14.5px;margin:0 0 14px 0;line-height:1.55;">All 12 Zodiac Signs (4 full A4 pages each), the 4 Sacred Elements, 3 Modalities, 84-Year Uranus Life Cycle, 10 Ruling Planets, 12 Houses, Healing Crystals, Sacred Solstice Trees, Body Zones &amp; Musical Keys — By Mimi Black.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-          <a href="https://shop.mimiblack.de/b/SAraM" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">✦ Alternative: Payhip (€14.90)</a>
-          <a href="zodiac-compendium-en.html" style="background:rgba(255,255,255,0.08);border:1px solid #E9C46A;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">🇬🇧 English Product Page</a>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ENCHANTED FOREST & MYSTICAL WILDLIFE 2027 WALL CALENDAR CARD (DE + EN) -->
-    <div style="max-width:1040px;margin:24px auto;padding:24px;background:linear-gradient(145deg,#171128,#0D0918);border:2px solid #D4AF37;border-radius:16px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:0 14px 36px rgba(0,0,0,0.6);">
-      <img src="assets/cover-2026-11/mimiblack-cover-verzauberter-wald-krafttiere-2027-800w.webp" alt="Verzauberter Wald & Magische Krafttiere 2027 (Mimi Black)" style="width:100%;max-width:180px;border-radius:8px;border:1.5px solid #D4AF37;"/>
-      <div>
-        <div style="display:inline-block;background:rgba(212,175,55,0.18);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:8px;">🌲🦉 NEU 2027 · FINE-ART KRAFTTIER-WANDKALENDER (DEUTSCH + ENGLISCH · 14 SEITEN DIN A4)</div>
-        <h3 style="color:#FFFFFF;font-size:22px;margin:0 0 8px 0;font-family:Georgia,serif;">Verzauberter Wald &amp; Magische Krafttiere 2027 · Enchanted Forest &amp; Mystical Wildlife</h3>
-        <p style="color:#E2D9F3;font-size:14.5px;margin:0 0 14px 0;line-height:1.55;">13 exklusive Dark-Cottagecore- &amp; Krafttier-Illustrationen (Schleiereule, Polarwolf, Luchs, Feldhase, Rotfuchs, Königshirsch, Schwan, Eisvogel, Igel, Eichhörnchen, Rabe, Dachs &amp; Rotkehlchen) mit Vollmond, Neumond, Sonnenwenden &amp; Krafttier-Botschaften — By Mimi Black.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-          <a href="https://www.checkout-ds24.com/product/756173" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#E9C46A,#C89B3C);color:#140B24;font-family:sans-serif;font-weight:800;font-size:14px;padding:11px 20px;border-radius:8px;text-decoration:none;">⚡ Sofort-Download via Digistore24 (19,90 €) →</a>
-          <a href="https://www.checkout-ds24.com/product/756178" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">🎁 5er-Paket via Digistore24 (44,00 €)</a>
-          <a href="https://shop.mimiblack.de/b/X7yn3" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.08);border:1px solid #D4AF37;color:#FFF3B0;font-family:sans-serif;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:8px;text-decoration:none;">✦ Alternativ via Payhip (19,90 €)</a>
-          <a href="https://shop.mimiblack.de/b/8D13B" target="_blank" rel="noopener" style="color:#E9C46A;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:4px;">🎁 5er-Paket Payhip (44,00 €)</a>
-          <a href="verzauberter-wald-krafttiere-2027.html" style="color:#FFF3B0;font-family:sans-serif;font-size:13px;text-decoration:underline;margin-left:4px;">✨ Produktseite &amp; Vorschau</a>
-        </div>
-      </div>
-    </div>
 
 </body>
 </html>
