@@ -1,0 +1,12 @@
+{
+  "name": "mimi-chat-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^4.45.0"
+  }
+}
