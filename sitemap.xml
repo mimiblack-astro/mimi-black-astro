@@ -73,12 +73,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mimiblack.de/samhain.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mimiblack.de/rauhnaechte.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -109,28 +103,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mimiblack.de/impressum.html</loc>
-    <lastmod>2026-10-31</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://mimiblack.de/datenschutz.html</loc>
-    <lastmod>2026-10-31</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
     <loc>https://mimiblack.de/produkte/law-of-attraction-master-bundle/</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mimiblack.de/en-samhain-through-the-veil.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mimiblack.de/en-12-zodiac-signs-4-elements.html</loc>
@@ -149,11 +125,5 @@
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mimiblack.de/en/legal-notice/</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset>
