@@ -73,12 +73,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mimiblack.de/samhain.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mimiblack.de/rauhnaechte.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -125,12 +119,6 @@
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mimiblack.de/en-samhain-through-the-veil.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mimiblack.de/en-12-zodiac-signs-4-elements.html</loc>
