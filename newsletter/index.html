@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deine Wunsch-Vorbereitung für die Rauhnächte · Mimi Black</title>
+  <meta name="description" content="Als Dankeschön für deine Anmeldung erhältst du ein 4-seitiges Heft, mit dem du in Ruhe herausfindest, was du dir für 2027 wirklich wünschst – noch bevor die Rauhnächte beginnen." />
+  <meta name="author" content="Mimi Black" />
+  <link rel="canonical" href="https://mimiblack.de/newsletter/" />
+  <meta property="og:title" content="Deine Wunsch-Vorbereitung für die Rauhnächte · Mimi Black" />
+  <meta property="og:description" content="Als Dankeschön für deine Anmeldung liegt ein 4-seitiges Heft bereit: acht Fragen, eine Schreibhilfe und Platz für 13 Wunsch-Ideen." />
+  <meta property="og:url" content="https://mimiblack.de/newsletter/" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f7f1e6;
+      --card: #fffdf8;
+      --ink: #2c2416;
+      --muted: #6b6358;
+      --gold: #8a6d3b;
+      --gold-deep: #6e542c;
+      --line: rgba(138, 109, 59, 0.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 50% 0%, #fff6e8 0%, var(--paper) 55%, #efe4d2 100%);
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2, .serif { font-family: "Cormorant Garamond", Georgia, serif; }
+    a { color: var(--gold-deep); }
+    a:hover { color: var(--ink); }
+    header {
+      padding: 22px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.72);
+    }
+    header a.brand {
+      text-decoration: none;
+      color: var(--gold-deep);
+      letter-spacing: 0.16em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 20px 72px; }
+    .kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; margin-bottom: 16px; }
+    .lead { font-size: 1.08rem; color: var(--muted); margin-bottom: 28px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px 24px;
+      box-shadow: 0 18px 40px rgba(44, 36, 22, 0.08);
+    }
+    label { display: block; font-weight: 600; margin-bottom: 8px; }
+    input[type="email"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+      margin-bottom: 16px;
+    }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 18px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      background: #2c2416;
+      color: #f5efe3;
+    }
+    button:hover { background: #3d3322; }
+    button:disabled { opacity: 0.7; cursor: wait; }
+    .hint { font-size: 0.92rem; color: var(--muted); margin-top: 14px; }
+    .success, .error {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+    }
+    .success { background: #eef6ea; color: #215c2e; }
+    .error { background: #fbeaea; color: #7a1f1f; }
+    .more { margin-top: 36px; color: var(--muted); font-size: 0.98rem; }
+    .more h2 { font-size: 1.45rem; color: var(--ink); margin-bottom: 10px; }
+    .more ul { margin: 10px 0 0 18px; }
+    .more li { margin: 6px 0; }
+    footer {
+      text-align: center;
+      padding: 0 20px 48px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer p { max-width: 640px; margin: 0 auto 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="https://mimiblack.de/">✦ Mimi Black</a>
+  </header>
+  <main>
+    <span class="kicker">Rauhnächte 2026/27</span>
+    <h1>Deine Wunsch-Vorbereitung für die Rauhnächte</h1>
+    <p class="lead">Als Dankeschön für deine Anmeldung erhältst du ein 4-seitiges Heft, mit dem du in Ruhe herausfindest, was du dir für 2027 wirklich wünschst – noch bevor die Rauhnächte beginnen.</p>
+    <div class="card">
+      <form id="nl-form" novalidate>
+        <label for="email">E-Mail-Adresse</label>
+        <input id="email" name="email" type="email" autocomplete="email" required placeholder="sarah.b@example.net" />
+        <button type="submit" id="nl-submit">Ja, bitte zusenden</button>
+      </form>
+      <p class="hint">Du kannst dich jederzeit wieder abmelden. Es geht nur um Impulse zu den Rauhnächten von Mimi Black. Hinweise dazu findest du in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+      <div class="success" id="nl-success">Fast geschafft! Bitte bestätige deine Anmeldung über den Link in der E-Mail, die wir dir gerade geschickt haben.</div>
+      <div class="error" id="nl-error"></div>
+    </div>
+    <section class="more">
+      <h2>Wenn du später tiefer einsteigen möchtest</h2>
+      <p>Das Heft bereitet deine Wünsche vor. Das Ritual selbst – mit Fahrplan, Streifen und Nacht-Tracker – folgt im Einstiegsheft, wenn du es später möchtest.</p>
+      <ul>
+        <li><a href="https://www.checkout-ds24.com/product/756278">Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook</a></li>
+        <li><a href="https://www.checkout-ds24.com/product/756175">Hexen-Kalender &amp; Astro-Almanach 2027</a></li>
+        <li><a href="https://shop.mimiblack.de">shop.mimiblack.de</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Impressum: Mimi Black, c/o Autorenglück, Albert-Einstein-Str. 47, 02977 Hoyerswerda · <a href="mailto:mimiblack@agentmail.to">mimiblack@agentmail.to</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+    <p>Die Inhalte dienen der Inspiration und Selbstreflexion. Sie ersetzen keine ärztliche, psychotherapeutische oder heilpraktische Behandlung.</p>
+  </footer>
+  <script>
+    (function () {
+      var form = document.getElementById('nl-form');
+      var email = document.getElementById('email');
+      var submit = document.getElementById('nl-submit');
+      var success = document.getElementById('nl-success');
+      var errorBox = document.getElementById('nl-error');
+      var endpoint = 'https://assets.mailerlite.com/jsonp/2756734/forms/203310201148802570/subscribe';
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        errorBox.style.display = 'none';
+        success.style.display = 'none';
+        var value = (email.value || '').trim();
+        if (!value || !email.checkValidity()) {
+          errorBox.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+          errorBox.style.display = 'block';
+          return;
+        }
+        submit.disabled = true;
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ fields: { email: value } })
+        }).then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (result) {
+            if (result.data && result.data.success) {
+              form.style.display = 'none';
+              success.style.display = 'block';
+            } else {
+              var msg = 'Die Anmeldung hat nicht geklappt. Bitte versuche es gleich noch einmal.';
+              try {
+                var fields = result.data && result.data.errors && result.data.errors.fields;
+                if (fields && fields.email && fields.email[0]) msg = fields.email[0];
+              } catch (e) {}
+              errorBox.textContent = msg;
+              errorBox.style.display = 'block';
+              submit.disabled = false;
+            }
+          }).catch(function () {
+            errorBox.textContent = 'Die Anmeldung hat nicht geklappt. Bitte versuche es gleich noch einmal.';
+            errorBox.style.display = 'block';
+            submit.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

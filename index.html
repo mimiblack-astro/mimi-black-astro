@@ -556,6 +556,20 @@
       margin: 4px auto 0;
       min-height: 88px;
     }
+    .mb-nl-form label { display:block; font-weight:600; margin-bottom:8px; color: var(--ink); }
+    .mb-nl-row { display:flex; gap:10px; flex-wrap:wrap; }
+    .mb-nl-row input[type="email"] {
+      flex:1; min-width:220px; padding:13px 14px; border-radius:12px;
+      border:1px solid rgba(65,42,92,.18); font: inherit; color: var(--ink); background:#fff;
+    }
+    .mb-nl-row button {
+      border:0; border-radius:999px; padding:13px 18px; font:inherit; font-weight:700;
+      cursor:pointer; background:#2c2416; color:#f5efe3;
+    }
+    .mb-nl-hint { font-size:0.92rem; color: var(--sub); margin-top:12px; }
+    .mb-nl-success, .mb-nl-error { display:none; margin-top:14px; padding:12px 14px; border-radius:12px; }
+    .mb-nl-success { background:#eef6ea; color:#215c2e; }
+    .mb-nl-error { background:#fbeaea; color:#7a1f1f; }
 
     .mb-chat-teaser { text-align: center; }
     footer { margin-top: 24px; }
@@ -607,6 +621,7 @@
       <a href="#rauhnaechte-fokus">Rauhnächte</a>
       <a href="#systemwissen">Wissen</a>
       <a href="#shop">Bücher &amp; Kurse</a>
+      <a href="/newsletter/">Newsletter</a>
       <a href="#impressum">Impressum</a>
     </nav>
     <a href="https://shop.mimiblack.de" target="_blank" rel="noopener" class="btn-gold nav-cta">Zum Shop ↗</a>
@@ -679,6 +694,12 @@
         <p>Der Katzenplaner im Mimi-Black-Shop.</p>
         <span class="guide-link">Zum Katzenplaner →</span>
       </a>
+      <a class="guide-card" href="/newsletter/">
+        <span class="guide-icon" aria-hidden="true">✦</span>
+        <h3 class="serif">Wunsch-Vorbereitung</h3>
+        <p>Als Dankeschön: ein 4-seitiges Heft, mit dem du deine Wünsche für 2027 in Ruhe vorbereitest.</p>
+        <span class="guide-link">Newsletter →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -687,11 +708,21 @@
   <div class="container">
     <div class="section-title">
       <span class="hero-kicker">Rauhnächte</span>
-      <h2 class="serif" id="anmeldung-titel">Spickzettel zu den Rauhnächten</h2>
-      <p>Trag dich ein für den Rauhnächte-Spickzettel.</p>
+      <h2 class="serif" id="anmeldung-titel">Deine Wunsch-Vorbereitung für die Rauhnächte</h2>
+      <p>Als Dankeschön für deine Anmeldung erhältst du ein 4-seitiges Heft, mit dem du in Ruhe herausfindest, was du dir für 2027 wirklich wünschst – noch bevor die Rauhnächte beginnen.</p>
     </div>
-    <div id="mailerlite-form" class="mailerlite-slot" aria-label="Anmeldung zum Rauhnächte-Spickzettel">
-      <div class="ml-embedded" data-form="ft7Avd"></div>
+    <div id="mailerlite-form" class="mailerlite-slot" aria-label="Anmeldung zur Wunsch-Vorbereitung">
+      <form id="mb-nl-form" class="mb-nl-form" novalidate>
+        <label for="mb-nl-email">E-Mail-Adresse</label>
+        <div class="mb-nl-row">
+          <input id="mb-nl-email" name="email" type="email" autocomplete="email" required placeholder="sarah.b@example.net" />
+          <button type="submit" id="mb-nl-submit">Ja, bitte zusenden</button>
+        </div>
+        <p class="mb-nl-hint">Du kannst dich jederzeit wieder abmelden. Es geht nur um Impulse zu den Rauhnächten von Mimi Black. Mehr dazu in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+      </form>
+      <div class="mb-nl-success" id="mb-nl-success">Fast geschafft! Bitte bestätige deine Anmeldung über den Link in der E-Mail, die wir dir gerade geschickt haben.</div>
+      <div class="mb-nl-error" id="mb-nl-error"></div>
+      <p class="mb-nl-hint" style="text-align:center;margin-top:10px;"><a href="/newsletter/">Zur Newsletter-Seite →</a></p>
     </div>
   </div>
 </section>
@@ -1414,6 +1445,7 @@
     <a href="#rechner">Horoskop-Rechner</a>
     <a href="app/">Web-App</a>
     <a href="https://shop.mimiblack.de" target="_blank" rel="noopener">Shop</a>
+    <a href="/newsletter/">Newsletter</a>
     <a href="/impressum.html" style="text-decoration:underline;">Impressum</a>
     <a href="/datenschutz.html" style="text-decoration:underline;">Datenschutz</a>
   </nav>
@@ -1936,5 +1968,53 @@ function loadPreset(key, btn) {
 window.addEventListener('DOMContentLoaded', recalculateAll);
 </script>
 
+
+<script>
+(function () {
+  var form = document.getElementById('mb-nl-form');
+  if (!form) return;
+  var email = document.getElementById('mb-nl-email');
+  var submit = document.getElementById('mb-nl-submit');
+  var success = document.getElementById('mb-nl-success');
+  var errorBox = document.getElementById('mb-nl-error');
+  var endpoint = 'https://assets.mailerlite.com/jsonp/2756734/forms/203310201148802570/subscribe';
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    errorBox.style.display = 'none';
+    success.style.display = 'none';
+    var value = (email.value || '').trim();
+    if (!value || !email.checkValidity()) {
+      errorBox.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      errorBox.style.display = 'block';
+      return;
+    }
+    submit.disabled = true;
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ fields: { email: value } })
+    }).then(function (res) { return res.json().then(function (data) { return { data: data }; }); })
+      .then(function (result) {
+        if (result.data && result.data.success) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          var msg = 'Die Anmeldung hat nicht geklappt. Bitte versuche es gleich noch einmal.';
+          try {
+            var fields = result.data && result.data.errors && result.data.errors.fields;
+            if (fields && fields.email && fields.email[0]) msg = fields.email[0];
+          } catch (e) {}
+          errorBox.textContent = msg;
+          errorBox.style.display = 'block';
+          submit.disabled = false;
+        }
+      }).catch(function () {
+        errorBox.textContent = 'Die Anmeldung hat nicht geklappt. Bitte versuche es gleich noch einmal.';
+        errorBox.style.display = 'block';
+        submit.disabled = false;
+      });
+  });
+})();
+</script>
 </body>
 </html>
