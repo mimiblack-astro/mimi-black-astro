@@ -1,6 +1,6 @@
 {
-  "name": "Mimi Black · Astro Magic",
-  "short_name": "Mimi Black",
+  "name": "Astro Magic",
+  "short_name": "Astro Magic",
   "lang": "de-DE",
   "id": "/app/",
   "start_url": "/app/",
@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "background_color": "#0b0e17",
   "theme_color": "#0b0e17",
-  "description": "Geburtshoroskop von Mimi Black. Fünf Systeme, Himmelskuppel, Transite und Seelenpartner. Nur auf dem Gerät.",
+  "description": "Dein ganzer Himmel. In einer App. Westlich, Vedisch, Chinesisch und Human Design an einem Ort. Berechnet nur auf deinem Gerät.",
   "icons": [
     {
       "src": "/app/icon-192.png",
