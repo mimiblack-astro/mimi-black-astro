@@ -1,4 +1,4 @@
-const CACHE = "mimi-black-astro-v1";
+const CACHE = "astro-magic-1.3.2";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(self.skipWaiting());
