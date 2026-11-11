@@ -187,19 +187,18 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
       <div class="grid-2">
         <div class="card-gold" style="display:flex; flex-direction:column; justify-content:space-between;">
           <div>
-            <div class="kicker">EDITION 1 · WORKBOOK-SET &amp; E-MAIL-BEGLEITUNG</div>
-            <h3>12 Rauhnächte im Element Wasser</h3>
-            <div class="price-tag">37,00 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
+            <div class="kicker">DAS GROSSE BUCH · 28 SEITEN PDF</div>
+            <h3>Das Geheimnis der Rauhnächte &amp; dein 13. Wunsch</h3>
+            <div class="price-tag">24,90 € <span style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-weight:400;">inkl. MwSt. · Einmalzahlung</span></div>
             <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">Kein Abo · Sofortiger PDF-Download nach dem Kauf</p>
             <ul class="check-list">
-              <li><b>20-seitiges Rauhnächte-E-Book &amp; Begleit-Workbook (PDF, DIN A4):</b> Grundlagen, Vorbereitungs-Checkliste, Räucher-Guide, 13-Wünsche-Ritual &amp; 12 gestaltete Rauhnächte-Journalseiten.</li>
-              <li><b>12 tägliche Begleit-Impulse per E-Mail</b> vom 25. Dezember 2026 bis zum 6. Januar 2027.</li>
-              <li><b>5-Elemente-Jahreskompass &amp; Monats-Rückspiegel für ganz 2027.</b></li>
+              <li><b>Das große Buch und 12-Monats-Workbook (28 Seiten PDF, DIN A4):</b> Ursprung, alte Mythen und Rituale der Rauhnächte.</li>
+              <li><b>Das Geheimnis deines 13. Wunsches</b> und wie du ihn durch das Jahr 2027 trägst.</li>
+              <li><b>12-Monats-Umsetzungs-Workbook</b> für das ganze Jahr 2027.</li>
             </ul>
           </div>
           <div style="margin-top:20px; text-align:center;">
             <a href="https://www.checkout-ds24.com/product/756314" target="_blank" rel="noopener" class="btn" style="width:100%; margin-bottom:10px;">⚡ Sofort-Download via Digistore24 (PayPal, Klarna, Karte) →</a>
-            <a href="https://shop.mimiblack.de/b/SKzia" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;">✦ Alternativ: Standard-Paket via Payhip (37,00 €)</a>
           </div>
         </div>
 
@@ -238,7 +237,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
               <div style="text-align:center;margin-bottom:12px;">
                 <img src="assets/cover-2026-11/mimiblack-cover-geheimnis-der-12-rauhnaechte-800w.webp" alt="Das Geheimnis der 12 Rauhnächte & Dein 13. Wunsch" style="width:140px;border-radius:8px;border:1px solid #E9C46A;margin-bottom:10px;">
                 <div class="kicker" style="margin-bottom:6px;">PRODUKT 16 · 28 SEITEN 3D-BUCH-EDITION</div>
-                <h3 style="font-size:19px;">Das Geheimnis der 12 Rauhnächte &amp; Dein 13. Wunsch – Das große Buch &amp; 12-Monats-Workbook</h3>
+                <h3 style="font-size:19px;">Das Geheimnis der Rauhnächte &amp; dein 13. Wunsch: Das große Buch und 12-Monats-Workbook</h3>
                 <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#E9C46A;margin-top:4px;">24,90 € <span style="font-size:13px;color:var(--muted);">inkl. MwSt. · 28 S. PDF</span></div>
               </div>
               <ul class="check-list" style="font-size:13.5px;">
@@ -248,7 +247,6 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
             </div>
             <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
               <a href="https://www.checkout-ds24.com/product/756314" data-keep-href="1" target="_blank" rel="noopener" class="btn" style="flex:1;text-align:center;padding:12px 14px;font-size:12.5px;">⚡ Digistore24 (24,90 €) →</a>
-              <a href="https://shop.mimiblack.de/b/ANjag" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="padding:12px 12px;font-size:12px;">✦ Payhip</a>
             </div>
           </div>
 
@@ -339,7 +337,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
 </style>
 <script id="mimi-black-multi-checkout">
   window.MIMI_BLACK_SHOPS = {
-    payhip_product:  "https://shop.mimiblack.de/b/SKzia",
+    payhip_product:  "",
     payhip_vip:      "",
     payhip_store:    "https://shop.mimiblack.de",
     gumroad_store:   "https://mimiblackmagic.gumroad.com",
@@ -360,7 +358,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
     }
     document.querySelectorAll("a.btn").forEach(function(btn) {
       var href = btn.getAttribute("href") || "";
-      if (href.indexOf("#") === 0 || btn.hasAttribute("download") || btn.hasAttribute("data-keep-href")) return;
+      if (href.indexOf("checkout-ds24.com/product/756314") === -1 || btn.hasAttribute("download") || btn.hasAttribute("data-keep-href")) return;
       var isVip = false; // VIP-Paket nicht mehr im Angebot (1.11.)
       // Primary button goes directly to live Payhip product page for Standard, or Digistore24 VIP plan for VIP
       var primaryUrl = isVip ? s.digistore24_vip : s.digistore24_std;
@@ -371,12 +369,10 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
         var bar = document.createElement("div");
         bar.className = "checkout-bar";
         bar.innerHTML =
-          '<div class="checkout-bar-title">Sofort-Download – Wähle deinen bevorzugten Checkout:</div>' +
+          '<div class="checkout-bar-title">Sofort-Download über Digistore24:</div>' +
           '<div class="checkout-links">' +
             '<a class="checkout-chip primary-chip" href="' + (isVip ? s.digistore24_vip : s.digistore24_std) + '" target="_blank" rel="noopener">' + (isVip ? '⚡ Sofort-Download via Payhip' : '⚡ Sofort-Download via Digistore24') + '</a>' +
             ((isVip ? s.payhip_vip : s.payhip_product) ? '<a class="checkout-chip" href="' + (isVip ? s.payhip_vip : s.payhip_product) + '" target="_blank" rel="noopener">✦ Alternativ via Payhip</a>' : '') +
-            '<a class="checkout-chip" href="' + s.gumroad_store + '" target="_blank" rel="noopener">Gumroad Shop</a>' +
-            '<a class="checkout-chip" href="' + s.payhip_store + '" target="_blank" rel="noopener">Alle 28 Produkte im Shop</a>' +
           '</div>';
         parent.appendChild(bar);
       }
