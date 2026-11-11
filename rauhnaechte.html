@@ -134,9 +134,9 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
       <div class="grid-3">
         <div class="card-amber">
           <div class="kicker">Hauptangebot</div>
-          <h3>Rauhnächte</h3>
+          <h3>Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook</h3>
           <p style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#FFD2A6;margin:8px 0 14px;">19,90 €</p>
-          <p><a href="https://shop.mimiblack.de/b/f6d13" class="btn">Zum Angebot →</a></p>
+          <p><a href="https://www.checkout-ds24.com/product/756278" target="_blank" rel="noopener" class="btn">⚡ Sofort-Download via Digistore24 (19,90 €) →</a></p>
         </div>
         <div class="card">
           <div class="kicker">2. Astronomie &amp; TCM</div>
@@ -153,8 +153,8 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
       <div style="margin-top:38px;">
         <h3 style="text-align:center; margin-bottom:20px;">Dein roter Faden durch die dunkle Jahreshälfte:</h3>
         <div class="roadmap-row">
-          <div class="roadmap-left"><span class="num-circle" style="background:#D97736;">01</span><span><b>Rauhnächte</b> · 19,90 €</span></div>
-          <span class="day-pill" style="background:#D97736;"><a href="https://shop.mimiblack.de/b/f6d13" style="color:#fff;text-decoration:none;">Zum Angebot</a></span>
+          <div class="roadmap-left"><span class="num-circle" style="background:#D97736;">01</span><span><b>Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook</b> · 19,90 €</span></div>
+          <span class="day-pill" style="background:#D97736;"><a href="https://www.checkout-ds24.com/product/756278" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">⚡ Digistore24</a></span>
         </div>
         <div class="roadmap-row">
           <div class="roadmap-left"><span class="num-circle">02</span><span><b>Wintersonnenwende (21. Dezember):</b> Öffnen deines Winter-Samens &amp; Vorbereitung deiner 13 Wünsche</span></div>
@@ -216,9 +216,9 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
           <div class="card-amber" style="display:flex;flex-direction:column;justify-content:space-between;">
             <div>
               <div style="text-align:center;margin-bottom:12px;">
-                <img src="assets/cover-2026-11/mimiblack-cover-sperrnaechte-rauhnaechte-13-wuensche-800w.webp" alt="Rauhnächte" style="width:140px;border-radius:8px;border:1px solid #F29F58;margin-bottom:10px;">
+                <img src="assets/cover-2026-11/mimiblack-cover-sperrnaechte-rauhnaechte-13-wuensche-800w.webp" alt="Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook" style="width:140px;border-radius:8px;border:1px solid #F29F58;margin-bottom:10px;">
                 <div class="kicker" style="margin-bottom:6px;">PRODUKT 10 · 24 SEITEN DIN A4 (DE)</div>
-                <h3 style="font-size:19px;">Rauhnächte</h3>
+                <h3 style="font-size:19px;">Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook</h3>
                 <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#FFD2A6;margin-top:4px;">19,90 € <span style="font-size:13px;color:var(--muted);">inkl. MwSt. · 24 S. PDF</span></div>
               </div>
               <ul class="check-list" style="font-size:13.5px;">
@@ -228,7 +228,6 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
             </div>
             <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
               <a href="https://www.checkout-ds24.com/product/756278" data-keep-href="1" target="_blank" rel="noopener" class="btn" style="flex:1;text-align:center;padding:12px 14px;font-size:12.5px;">⚡ Digistore24 (19,90 €) →</a>
-              <a href="https://shop.mimiblack.de/b/f6d13" data-keep-href="1" target="_blank" rel="noopener" class="btn btn-outline" style="padding:12px 12px;font-size:12px;">✦ Payhip</a>
             </div>
           </div>
 
@@ -356,7 +355,6 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
   };
   document.addEventListener("DOMContentLoaded", function() {
     var s = window.MIMI_BLACK_SHOPS;
-    var qs = window.location.search ? window.location.search.substring(1) : "";
     var topInner = document.querySelector(".top-inner");
     if (topInner && !document.querySelector(".top-store-link")) {
       var shopLink = document.createElement("a");
@@ -370,10 +368,7 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
       var href = btn.getAttribute("href") || "";
       if (href.indexOf("checkout-ds24.com/product/756314") === -1 || btn.hasAttribute("download") || btn.hasAttribute("data-keep-href")) return;
       var isVip = false; // VIP-Paket nicht mehr im Angebot (1.11.)
-      // Primary button goes directly to live Payhip product page for Standard, or Digistore24 VIP plan for VIP
-      var primaryUrl = isVip ? s.digistore24_vip : s.digistore24_std;
-      if (qs) primaryUrl += (primaryUrl.indexOf("?") === -1 ? "?" : "&") + qs;
-      btn.setAttribute("href", primaryUrl);
+      // Href bleibt unverändert. cam und utm setzt /js/ds24-tracking.js auf allen DS24-Links.
       var parent = btn.parentElement;
       if (parent && !parent.querySelector(".checkout-bar")) {
         var bar = document.createElement("div");
@@ -389,5 +384,6 @@ footer { padding: 44px 0 60px; font-size: 13px; color: var(--muted); }
     });
   });
 </script>
+<script src="/js/ds24-tracking.js"></script>
 </body>
 </html>

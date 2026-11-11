@@ -16,4 +16,5 @@ select,button{padding:10px;border-radius:8px;margin:4px;font-size:1em}button{bac
 <script>const G={"Feuer|Luft":40,"Erde|Wasser":40,"Feuer|Erde":30,"Luft|Wasser":30,"Feuer|Wasser":20,"Erde|Luft":20};
 function calc(){const a=document.getElementById('a').value,b=document.getElementById('b').value,c=+document.getElementById('c').value;
 let e=a==b?30:(G[a+"|"+b]||G[b+"|"+a]);let s=Math.round((e+c+30)/100*100);let t=s<55?"Karmische Verstrickung – Zeit, das Muster zu lösen.":s<80?"Wachstumsbeziehung – bewusst gestalten.":"Seelenpartner-Resonanz – vertiefen!";
-document.getElementById('res').textContent="Dein Harmonie-Score: "+s+"/100 · "+t;}</script></body></html>
+document.getElementById('res').textContent="Dein Harmonie-Score: "+s+"/100 · "+t;}</script><script src="/js/ds24-tracking.js"></script>
+</body></html>
