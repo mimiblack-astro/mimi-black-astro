@@ -7,6 +7,7 @@
   <meta name="description" content="Die Rauhnächte vom 25. Dezember bis zum 6. Januar. Einstieg mit dem Rauhnacht-Ritual für 4,90 €, dazu das Workbook und der Astro-Almanach 2027." />
   <meta name="author" content="Mimi Black" />
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0820" />
   <link rel="canonical" href="https://mimiblack.de/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_DE" />
@@ -14,254 +15,453 @@
   <meta property="og:title" content="Rauhnächte 2026/27 · Mimi Black" />
   <meta property="og:description" content="Vom 25. Dezember bis zum 6. Januar: Rauhnacht-Ritual, Workbook und Astro-Almanach." />
   <meta property="og:url" content="https://mimiblack.de/" />
+  <meta property="og:image" content="https://mimiblack.de/assets/hero/mimiblack-astrologin-og-1200w.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="KI-generierte Illustration: mystische Astrologin mit Astrolabium vor einem Sternenhimmel" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="/assets/fonts/CormorantGaramond-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" type="image/webp"
+        imagesrcset="assets/hero/mimiblack-astrologin-hero-800w.webp 800w, assets/hero/mimiblack-astrologin-hero-1200w.webp 1200w, assets/hero/mimiblack-astrologin-hero-1920w.webp 1920w"
+        imagesizes="(max-width: 759px) 230vw, 100vw" />
+  <link rel="stylesheet" href="/assets/css/mimi-mystic-base.css" />
   <style>
-    :root {
-      --night-950: #120a24;
-      --night-900: #1b1033;
-      --night-800: #241544;
-      --violet-deep: #412a8c;
-      --gold-200: #f8e0a6;
-      --gold-300: #f0cd86;
-      --gold-500: #dbb160;
-      --gold-ink: #241606;
-      --gold-grad: linear-gradient(135deg, #f8e0a6 0%, #eecf85 35%, #dbb160 100%);
-      --cream: #f4eeff;
-      --muted: #cdc1e0;
-      --border: rgba(199, 184, 255, 0.22);
-      --radius: 22px;
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--mm-sans);
       background:
-        radial-gradient(900px 420px at 50% -10%, rgba(240, 205, 134, 0.22), transparent 70%),
-        linear-gradient(180deg, var(--night-900) 0%, var(--night-950) 100%);
-      color: var(--cream);
-      line-height: 1.55;
+        radial-gradient(1200px 700px at 90% 0%, rgba(122, 63, 143, 0.30), transparent 60%),
+        radial-gradient(900px 600px at 0% 45%, rgba(74, 31, 92, 0.32), transparent 62%),
+        radial-gradient(900px 600px at 70% 100%, rgba(212, 168, 83, 0.09), transparent 60%),
+        linear-gradient(180deg, var(--mm-indigo-900) 0%, var(--mm-indigo-950) 100%);
+      color: var(--mm-text);
+      line-height: 1.6;
+      font-size: 1.0625rem;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3, .serif { font-family: Georgia, "Times New Roman", serif; letter-spacing: 0.01em; }
-    a { color: var(--gold-200); }
-    img { max-width: 100%; height: auto; }
-    .wrap { width: min(920px, calc(100% - 32px)); margin: 0 auto; }
-    header {
-      position: sticky; top: 0; z-index: 2;
-      background: rgba(18, 10, 36, 0.92);
-      border-bottom: 1px solid var(--border);
+    h1, h2, h3, .serif { font-family: var(--mm-serif); font-weight: 600; letter-spacing: 0.01em; line-height: 1.12; }
+    a { color: var(--mm-gold-200); text-underline-offset: 3px; }
+    a:hover { color: #fff; }
+    img { max-width: 100%; height: auto; display: block; }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+
+    /* Kopfzeile */
+    .site-head {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11, 8, 32, 0.72);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--mm-line-soft);
     }
-    .bar { display: flex; align-items: center; min-height: 56px; }
-    .brand { color: var(--gold-300); font-weight: 700; text-decoration: none; letter-spacing: 0.08em; white-space: nowrap; }
-    .hero { padding: 28px 0 8px; text-align: center; }
+    .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+    .brand { color: var(--mm-gold-200); font-family: var(--mm-serif); font-size: 1.35rem; font-weight: 600; letter-spacing: 0.14em; text-decoration: none; white-space: nowrap; }
+    .brand span { color: var(--mm-gold-300); }
+    .nav { display: none; gap: 22px; font-size: 0.92rem; }
+    .nav a { color: var(--mm-muted); text-decoration: none; padding: 8px 2px; }
+    .nav a:hover { color: var(--mm-gold-100); }
+    .head-cta {
+      display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px;
+      border: 1px solid var(--mm-line); border-radius: 999px;
+      color: var(--mm-gold-100); font-size: 0.88rem; font-weight: 600; text-decoration: none; white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; }
+    .hero-media { position: relative; aspect-ratio: 4 / 5; max-height: 72vh; width: 100%; }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 66% 25%; }
+    .hero-media::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11, 8, 32, 0) 45%, rgba(11, 8, 32, 0.75) 80%, var(--mm-indigo-900) 100%);
+    }
+    .ki-hint {
+      position: absolute; right: 10px; top: 10px; z-index: 2;
+      font-size: 0.7rem; letter-spacing: 0.04em; color: rgba(245, 240, 255, 0.85);
+      background: rgba(11, 8, 32, 0.55); border: 1px solid var(--mm-line-soft);
+      padding: 3px 9px; border-radius: 999px;
+    }
+    .hero-copy { position: relative; z-index: 1; margin-top: -88px; padding-bottom: 44px; }
     .kicker {
-      display: inline-block; margin-bottom: 12px; padding: 6px 12px;
-      border: 1px solid rgba(248, 224, 166, 0.45); border-radius: 999px;
-      color: var(--gold-200); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px; padding: 6px 14px;
+      border: 1px solid var(--mm-line); border-radius: 999px; background: rgba(11, 8, 32, 0.5);
+      color: var(--mm-gold-200); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
     }
-    h1 { font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1.12; color: #fff; margin-bottom: 10px; }
-    .dates { color: var(--cream); font-size: 1.05rem; margin-bottom: 18px; }
-    .buy {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; max-width: 520px; margin: 0 auto;
-      min-height: 52px; padding: 14px 18px;
-      border-radius: 16px; text-decoration: none; text-align: center;
-      background: var(--gold-grad); color: var(--gold-ink);
-      font-weight: 800; font-size: 1.05rem; line-height: 1.3;
-      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.35);
+    .hero h1 {
+      font-size: clamp(2.3rem, 9vw, 4.4rem); margin-bottom: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--mm-gold-100) 65%, var(--mm-gold-300) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .buy:hover { color: var(--gold-ink); filter: brightness(1.05); }
-    .hero p.aktion {
-      margin: 10px auto 0; max-width: 36rem;
-      color: #f7edd4; font-size: 0.92rem; font-weight: 600;
+    .hero h1 em { font-style: italic; font-weight: 500; }
+    .lead { color: var(--mm-muted); font-size: 1.08rem; max-width: 34rem; margin-bottom: 10px; }
+    .lead + .lead { margin-bottom: 26px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-entry { margin-top: 18px; color: var(--mm-muted); font-size: 0.95rem; }
+    .hero-entry a { color: var(--mm-gold-100); font-weight: 600; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; padding: 14px 26px; border-radius: 999px;
+      font-weight: 700; font-size: 1rem; line-height: 1.25; text-align: center; text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
-    .hero p.aktion a { color: #f7edd4; text-decoration: none; }
-    .hero p.aktion a:hover { text-decoration: underline; }
-    .hero p.note { margin: 14px auto 0; max-width: 36rem; color: var(--muted); font-size: 0.95rem; }
-    section { padding: 28px 0; }
-    h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); color: #fff; margin-bottom: 10px; }
-    .prose p { color: var(--cream); margin-bottom: 10px; }
-    .prose strong { color: var(--gold-200); font-weight: 700; }
-    .cards { display: grid; gap: 16px; }
-    .card {
-      background: rgba(36, 21, 68, 0.88);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      display: grid;
-      gap: 14px;
+    .btn-gold { background: var(--mm-gold-grad); color: var(--mm-gold-ink); box-shadow: 0 12px 30px rgba(212, 168, 83, 0.32); }
+    .btn-gold:hover { color: var(--mm-gold-ink); filter: brightness(1.06); transform: translateY(-1px); box-shadow: 0 16px 36px rgba(212, 168, 83, 0.42); }
+    .btn-ghost { border: 1px solid rgba(236, 201, 126, 0.65); color: var(--mm-gold-100); background: rgba(11, 8, 32, 0.45); }
+    .btn-ghost:hover { color: #fff; border-color: var(--mm-gold-200); background: rgba(236, 201, 126, 0.10); }
+    .btn-block { width: 100%; }
+
+    /* Abschnitte */
+    section.block { padding: 56px 0; }
+    .eyebrow { color: var(--mm-gold-300); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px; }
+    h2 { font-size: clamp(2rem, 6vw, 3rem); color: #fff; margin-bottom: 14px; }
+    .intro { color: var(--mm-muted); max-width: 40rem; margin-bottom: 28px; }
+    .divider { width: 120px; height: 1px; margin: 0 auto; background: linear-gradient(90deg, transparent, var(--mm-gold-300), transparent); position: relative; }
+    .divider::after { content: "✦"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -52%); color: var(--mm-gold-300); font-size: 0.8rem; background: var(--mm-indigo-900); padding: 0 8px; }
+
+    .glass {
+      background: linear-gradient(160deg, rgba(40, 30, 92, 0.58), rgba(42, 18, 56, 0.58));
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      border: 1px solid var(--mm-line);
+      border-radius: var(--mm-radius);
+      box-shadow: 0 20px 48px rgba(5, 3, 18, 0.5), inset 0 1px 0 rgba(251, 236, 198, 0.10);
     }
-    .card img { width: min(220px, 70%); margin: 0 auto; border-radius: 12px; display: block; }
-    .card h3 { font-size: 1.45rem; color: #fff; line-height: 1.2; }
-    .card p { color: var(--muted); font-size: 0.98rem; }
-    .card .buy { max-width: none; }
-    .set-card { grid-column: 1 / -1; }
-    .hero-cover {
-      width: min(240px, 58%);
-      margin: 0 auto 18px;
-      border-radius: 12px;
-      display: block;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+
+    /* Kalender */
+    .nights { display: grid; gap: 18px; }
+    .night { padding: 24px; position: relative; overflow: hidden; }
+    .night::before {
+      content: ""; position: absolute; width: 180px; height: 180px; right: -60px; top: -60px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236, 201, 126, 0.22), transparent 70%);
     }
-    .set-preis {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
-      margin-top: 8px;
+    .night .label { color: var(--mm-gold-300); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+    .night h3 { font-size: 2rem; color: #fff; margin: 6px 0 4px; }
+    .night .range { font-family: var(--mm-serif); font-size: 1.35rem; color: var(--mm-gold-100); margin-bottom: 12px; }
+    .night p { color: var(--mm-muted); }
+    .beads { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; list-style: none; }
+    .beads li {
+      width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 0.72rem; font-weight: 600; color: var(--mm-gold-100);
+      border: 1px solid var(--mm-line); background: rgba(11, 8, 32, 0.45);
     }
-    .set-neu { color: var(--gold-200); font-size: 1.35rem; font-weight: 800; }
-    .set-einzeln { color: var(--muted); font-size: 1rem; }
-    .set-card img { width: min(100%, 560px); }
-    .newsletter {
-      background: #f3eef7; color: #1a1426;
-      border-radius: var(--radius); padding: 20px 16px;
+    .beads li.wish { background: var(--mm-gold-grad); color: var(--mm-gold-ink); border-color: transparent; }
+    .night .more-link { display: inline-block; margin-top: 14px; font-weight: 600; }
+
+    /* Werke */
+    .works { display: grid; gap: 20px; }
+    .work { padding: 18px; display: flex; flex-direction: column; gap: 14px; transition: transform .25s ease, border-color .25s ease; }
+    .work:hover { transform: translateY(-3px); border-color: rgba(236, 201, 126, 0.7); }
+    .work .cover { border-radius: 12px; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45); width: min(240px, 72%); margin: 0 auto; }
+    .work h3 { font-size: 1.6rem; color: #fff; }
+    .work p { color: var(--mm-muted); font-size: 0.98rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .chip { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--mm-line); color: var(--mm-gold-200); }
+    .work .price { margin-top: auto; line-height: 1; font-family: var(--mm-serif); font-size: 1.7rem; font-weight: 600; color: var(--mm-gold-100); }
+    .work-feature { border-color: rgba(236, 201, 126, 0.6); }
+    .badge { position: absolute; top: 14px; left: 14px; }
+    .note { color: var(--mm-muted); font-size: 0.95rem; margin-top: 22px; }
+
+    /* Set */
+    .set { padding: 22px; display: grid; gap: 20px; align-items: center; border-color: rgba(236, 201, 126, 0.6); }
+    .set img { border-radius: 14px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); }
+    .set h3 { font-size: clamp(1.8rem, 5vw, 2.4rem); color: #fff; margin-bottom: 8px; }
+    .set p { color: var(--mm-muted); margin-bottom: 12px; }
+    .set .set-preis { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 18px; }
+    .set .set-neu { font-family: var(--mm-serif); font-size: 1.8rem; font-weight: 600; color: var(--mm-gold-100); }
+    .set .set-einzeln { color: var(--mm-muted); font-size: 1rem; }
+
+    /* Astro Magic */
+    .app { padding: 24px; display: grid; gap: 22px; align-items: center; }
+    .app img { width: min(220px, 60%); margin: 0 auto; border-radius: 26px; border: 1px solid var(--mm-line); box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5); }
+    .app h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+    .app p { color: var(--mm-muted); margin-bottom: 14px; }
+    .app .actions { margin-top: 6px; }
+
+    /* Newsletter (Formular und Ziel unverändert) */
+    .newsletter { padding: 26px 20px; max-width: 760px; margin: 0 auto; text-align: left; }
+    .newsletter h2 { margin-bottom: 10px; }
+    .newsletter p { color: var(--mm-muted); margin-bottom: 14px; }
+    .newsletter label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--mm-gold-100); }
+    .newsletter input[type="email"] {
+      width: 100%; min-height: 52px; margin-bottom: 12px; padding: 12px 16px;
+      border-radius: 14px; border: 1px solid var(--mm-line);
+      font: inherit; color: #1a1426; background: #fbf8ff;
     }
-    .newsletter h2, .newsletter p { color: #1a1426; }
-    .newsletter p { margin-bottom: 12px; }
-    .newsletter a { color: #412a8c; }
-    label { display: block; font-weight: 700; margin-bottom: 8px; }
-    input[type="email"] {
-      width: 100%; min-height: 48px; margin-bottom: 10px; padding: 12px 14px;
-      border-radius: 12px; border: 1px solid rgba(65, 42, 92, 0.25);
-      font: inherit; color: #1a1426; background: #fff;
+    .newsletter button[type="submit"] {
+      width: 100%; min-height: 52px; border: 0; border-radius: 999px; cursor: pointer;
+      background: var(--mm-gold-grad); color: var(--mm-gold-ink); font: inherit; font-weight: 700;
+      box-shadow: 0 12px 30px rgba(212, 168, 83, 0.3);
     }
-    button[type="submit"] {
-      width: 100%; min-height: 48px; border: 0; border-radius: 999px;
-      background: #2c2416; color: #f5efe3; font: inherit; font-weight: 700; cursor: pointer;
-    }
-    .hint { font-size: 0.9rem; color: #453855; }
+    .newsletter button[disabled] { opacity: 0.7; cursor: progress; }
+    .newsletter .hint { font-size: 0.88rem; margin-top: 12px; margin-bottom: 0; }
     .ok, .err { display: none; margin-top: 12px; padding: 12px; border-radius: 12px; }
     .ok { background: #eef6ea; color: #215c2e; }
     .err { background: #fbeaea; color: #7a1f1f; }
-    .more { text-align: center; padding-top: 8px; }
-    .more a {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 48px; padding: 10px 18px;
-      color: var(--gold-200); font-weight: 800; font-size: 1.05rem;
-    }
+
+    .more { text-align: center; padding: 8px 0 40px; }
+
     footer {
-      margin-top: 12px; padding: 28px 0 40px;
-      border-top: 1px solid var(--border);
-      color: var(--muted); font-size: 0.92rem; text-align: center;
+      padding: 36px 0 48px; border-top: 1px solid var(--mm-line-soft);
+      color: var(--mm-muted); font-size: 0.92rem; text-align: center;
+      background: rgba(11, 8, 32, 0.6);
     }
+    footer .brand { display: inline-block; margin-bottom: 14px; }
     footer p { margin-bottom: 8px; }
-    footer a { color: var(--gold-200); font-weight: 700; }
-    @media (min-width: 720px) {
-      .hero { padding-top: 64px; }
-      .cards { grid-template-columns: 1fr 1fr; align-items: stretch; }
-      .newsletter { padding: 28px; }
-      .buy { width: auto; min-width: 320px; padding-left: 28px; padding-right: 28px; }
-      .card .buy { width: 100%; }
+    footer a { color: var(--mm-gold-200); font-weight: 600; }
+    footer .ki-note { font-size: 0.8rem; opacity: 0.85; margin-top: 14px; }
+
+    /* Sanftes Einblenden, nur mit JS und ohne Bewegungswunsch-Sperre */
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+    .js .reveal.is-in { opacity: 1; transform: none; }
+    .js .hero-copy > * { animation: rise .9s ease both; }
+    .js .hero-copy > *:nth-child(2) { animation-delay: .08s; }
+    .js .hero-copy > *:nth-child(3) { animation-delay: .16s; }
+    .js .hero-copy > *:nth-child(4) { animation-delay: .24s; }
+    .js .hero-copy > *:nth-child(5) { animation-delay: .32s; }
+    .js .hero-copy > *:nth-child(6) { animation-delay: .40s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .js .hero-copy > * { animation: none; }
+      .work:hover, .btn-gold:hover { transform: none; }
+    }
+
+    @media (max-width: 420px) {
+      .brand { font-size: 1.12rem; letter-spacing: 0.1em; }
+      .head-cta { padding: 6px 12px; font-size: 0.8rem; }
+    }
+    @media (min-width: 640px) {
+      .works { grid-template-columns: 1fr 1fr; }
+      .nights { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 760px) {
+      .nav { display: flex; }
+      .hero { min-height: min(88vh, 860px); display: flex; align-items: center; }
+      .hero-media { position: absolute; inset: 0; aspect-ratio: auto; max-height: none; }
+      .hero-media img { object-position: 78% 30%; }
+      .hero-media::after {
+        background:
+          linear-gradient(90deg, rgba(11, 8, 32, 0.92) 0%, rgba(11, 8, 32, 0.72) 32%, rgba(11, 8, 32, 0.08) 62%, rgba(11, 8, 32, 0) 100%),
+          linear-gradient(180deg, rgba(11, 8, 32, 0) 70%, var(--mm-indigo-900) 100%);
+      }
+      .ki-hint { top: auto; bottom: 16px; right: 18px; }
+      .hero-copy { margin-top: 0; padding: 96px 0 110px; max-width: 560px; }
+      section.block { padding: 84px 0; }
+      .set { grid-template-columns: 1.1fr 1fr; padding: 32px; }
+      .app { grid-template-columns: 260px 1fr; padding: 36px; }
+      .app img { width: 100%; }
+      .newsletter { padding: 40px; }
+      .newsletter .row { display: flex; gap: 12px; }
+      .newsletter .row input[type="email"] { margin-bottom: 0; }
+      .newsletter .row button[type="submit"] { width: auto; padding: 0 28px; white-space: nowrap; }
+    }
+    @media (min-width: 1000px) {
+      .works { grid-template-columns: repeat(4, 1fr); }
+      .work-feature { grid-column: span 1; }
     }
   </style>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
-  <header>
+<body class="mm-stars">
+  <a class="mm-skip" href="#inhalt">Zum Inhalt springen</a>
+  <header class="site-head">
     <div class="wrap bar">
-      <a class="brand serif" href="/">✦ MIMI BLACK</a>
+      <a class="brand" href="/"><span>✦</span> MIMI BLACK</a>
+      <nav class="nav" aria-label="Seitenbereiche">
+        <a href="#naechte">Kalender</a>
+        <a href="#werke">Werke</a>
+        <a href="#astro-magic">Astro Magic</a>
+        <a href="/alle-produkte.html">Alle Produkte</a>
+      </nav>
+      <a class="head-cta" href="#anmeldung">Wunsch-Vorbereitung</a>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main id="inhalt">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media">
+        <img
+          src="assets/hero/mimiblack-astrologin-hero-1200w.webp"
+          srcset="assets/hero/mimiblack-astrologin-hero-800w.webp 800w, assets/hero/mimiblack-astrologin-hero-1200w.webp 1200w, assets/hero/mimiblack-astrologin-hero-1920w.webp 1920w"
+          sizes="(max-width: 759px) 230vw, 100vw"
+          width="1920" height="1080"
+          alt="KI-generierte Illustration: mystische Astrologin mit Astrolabium vor einem Sternenhimmel"
+          fetchpriority="high" decoding="async" />
+        <span class="ki-hint">Bild KI-generiert</span>
+      </div>
       <div class="wrap">
-        <p class="kicker">Rauhnächte 2026/27 · 25.12.2026 bis 06.01.2027</p>
-        <img class="hero-cover" src="assets/cover-2026-11/mimiblack-cover-rauhnacht-starter-800w.webp" width="800" height="1132" alt="Cover: 13 Wünsche in 15 Minuten, Rauhnacht Starter" />
-        <h1 class="serif">13 Wünsche in 15 Minuten: Rauhnacht Starter</h1>
-        <p class="dates">4,90 €</p>
-        <p class="note">Ein kurzes Ritual für den Einstieg. Danach kannst du mit dem Workbook oder dem Winterlicht Set weitergehen.</p>
-        <a class="buy" href="https://www.checkout-ds24.com/product/761337?cam=website&utm_campaign=post2sale_2026-11">Rauhnacht Starter, 4,90 €</a>
+        <div class="hero-copy">
+          <p class="kicker">✦ Sperrnächte &amp; Rauhnächte 2026/27</p>
+          <h1 id="hero-title">Wenn die Nächte länger werden, <em>wird es in dir still.</em></h1>
+          <p class="lead">Draußen knistert der Frost. Drinnen brennt eine Kerze. Vor dir liegt ein leerer Zettel.</p>
+          <p class="lead">Ab dem 25. November zählen die Sperrnächte, ab dem 25. Dezember die Rauhnächte. Zeit, aufzuschreiben, was du dir für 2027 wirklich wünschst.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="#naechte">Sperrnächte &amp; Rauhnächte</a>
+            <a class="btn btn-ghost" href="#werke">Werke ansehen</a>
+          </div>
+          <p class="hero-entry">Einstieg: <a href="https://www.checkout-ds24.com/product/761337?cam=website&utm_campaign=post2sale_2026-11">Rauhnacht Starter, 4,90 €</a></p>
+        </div>
       </div>
     </section>
 
-    <section aria-labelledby="was">
-      <div class="wrap prose">
-        <h2 class="serif" id="was">Rauhnächte und Sperrnächte</h2>
-        <p>Die <strong>Rauhnächte</strong> sind die zwölf Nächte vom 25. Dezember 2026 bis zum 6. Januar 2027. Zwischen Sonnenjahr und Mondjahr liegen diese Nächte. Auf den Seiten von Mimi Black steht jede Rauhnacht für einen Monat des neuen Jahres.</p>
-        <p>Die <strong>Sperrnächte</strong> liegen davor, vom 25. November bis zum 6. Dezember 2026. Auf den bestehenden Angebotsseiten sind sie die Brücke in die Rauhnächte, mit eigenen Seiten und den 13 Wunschzettel-Streifen.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="werke">
+    <section class="block" id="naechte" aria-labelledby="was">
       <div class="wrap">
-        <h2 class="serif" id="werke">Begleiter für diese Nächte</h2>
-        <div class="cards">
-          <article class="card">
-            <img src="assets/cover-2026-11/mimiblack-cover-rauhnacht-starter-800w.webp" width="800" height="1132" alt="Cover: 13 Wünsche in 15 Minuten, Rauhnacht Starter" />
-            <div>
-              <h3 class="serif">13 Wünsche in 15 Minuten: Rauhnacht Starter</h3>
-              <p>Ein kurzes Ritual für den Einstieg in die Rauhnächte, mit Fahrplan, Streifen und Tracker.</p>
-            </div>
-            <a class="buy" href="https://www.checkout-ds24.com/product/761337?cam=website&utm_campaign=post2sale_2026-11">Rauhnacht Starter, 4,90 €</a>
+        <p class="eyebrow reveal">Der Kalender</p>
+        <h2 id="was" class="reveal">Rauhnächte und Sperrnächte</h2>
+        <p class="intro reveal">Zwei Schwellen, je zwölf Nächte. Die einen führen durch das alte Jahr, die anderen in das neue.</p>
+        <div class="nights">
+          <article class="night glass reveal" aria-labelledby="sperr-title">
+            <p class="label">Davor</p>
+            <h3 id="sperr-title">Sperrnächte</h3>
+            <p class="range"><time datetime="2026-11-25">25.11.</time> – <time datetime="2026-12-06">06.12.2026</time></p>
+            <p>Die zwölf Nächte vor den Rauhnächten. Auf den Seiten von Mimi Black sind sie die Brücke in die Rauhnächte, mit eigenen Seiten und den 13 Wunschzettel-Streifen.</p>
+            <ol class="beads" aria-label="Zwölf Sperrnächte">
+              <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li>
+            </ol>
           </article>
-          <article class="card">
-            <img src="assets/cover-2026-11/mimiblack-cover-sperrnaechte-rauhnaechte-13-wuensche-800w.webp" width="800" height="1200" alt="Cover: Rauhnächte, 13-Wünsche-Workbook" />
-            <div>
-              <h3 class="serif">Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook</h3>
-              <p>24 Seiten: der rote Faden durch die 12 Sperrnächte und die 13 Wunschzettel-Streifen.</p>
-            </div>
-            <a class="buy" href="https://www.checkout-ds24.com/product/756278?cam=website&utm_campaign=post2sale_2026-11">Workbook, 19,90 €</a>
-          </article>
-          <article class="card">
-            <img src="assets/cover-2026-11/mimiblack-cover-hexen-kalender-astro-almanach-2027-800w.webp" width="800" height="1200" alt="Cover: Der große Hexen-Kalender und Astro-Almanach 2027" />
-            <div>
-              <h3 class="serif">Der große Hexen-Kalender &amp; Astro-Almanach 2027</h3>
-              <p>14 Seiten DIN A4: Mondphasen 2027, Sonnenwenden und das Kompendium der 12 Rauhnächte.</p>
-            </div>
-            <a class="buy" href="https://www.checkout-ds24.com/product/756175">Almanach – 12,90 €</a>
-          </article>
-          <article class="card set-card">
-            <img src="assets/cover-2026-11/mimiblack-cover-winterlicht-set-1200w.webp" width="1248" height="920" alt="Winterlicht Set: Sperrnächte Workbook und Hexen-Kalender und Astro-Almanach 2027" />
-            <div>
-              <h3 class="serif">Winterlicht Set</h3>
-              <p>Das Sperrnächte Workbook und der Hexen-Kalender und Astro-Almanach 2027 zusammen.</p>
-              <p class="set-preis"><strong class="set-neu">23,00 € mit Code WINTERSET</strong><span class="set-einzeln">einzeln 32,80 €</span></p>
-            </div>
-            <a class="buy" href="https://www.checkout-ds24.com/product/761342?voucher=WINTERSET&cam=website&utm_campaign=post2sale_2026-11">Winterlicht Set, 23,00 € mit Code WINTERSET</a>
-          </article>
-          <article class="card">
-            <img src="assets/cover-2026-11/mimiblack-cover-geheimnis-der-12-rauhnaechte-800w.webp" width="800" height="1200" alt="Cover: Das Geheimnis der Rauhnächte und dein 13. Wunsch" loading="lazy" />
-            <div>
-              <h3 class="serif">Das Geheimnis der Rauhnächte &amp; dein 13. Wunsch</h3>
-              <p>28 Seiten: Herkunft, alte Mythen und Rituale der Rauhnächte, dazu ein Workbook, das deinen 13. Wunsch durch alle zwölf Monate 2027 begleitet.</p>
-            </div>
-            <a class="buy" href="https://www.checkout-ds24.com/product/756314">Buch &amp; Workbook – 24,90 €</a>
+          <article class="night glass reveal" aria-labelledby="rauh-title">
+            <p class="label">Zwischen den Jahren</p>
+            <h3 id="rauh-title">Rauhnächte</h3>
+            <p class="range"><time datetime="2026-12-25">25.12.2026</time> – <time datetime="2027-01-06">06.01.2027</time></p>
+            <p>Die zwölf Nächte zwischen Sonnenjahr und Mondjahr. Auf den Seiten von Mimi Black steht jede Rauhnacht für einen Monat des neuen Jahres. Der 13. Wunsch gehört dir allein.</p>
+            <ol class="beads" aria-label="Zwölf Rauhnächte und der 13. Wunsch">
+              <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li class="wish" title="Der 13. Wunsch">13</li>
+            </ol>
+            <a class="more-link" href="/rauhnaechte.html">Mehr zu den Rauhnächten →</a>
           </article>
         </div>
-        <p class="note">Lieber auf Papier? Das Taschenbuch <a href="https://www.amazon.de/dp/B0HPZZQWP9" target="_blank" rel="noopener">„Die Rauhnächte: Zwölf Nächte für Klarheit, Träume und den 13. Wunsch“</a> von Mimi Black gibt es bei Amazon. · <a href="/rauhnaechte.html">Mehr zu den Rauhnächten</a> · <a href="/alle-produkte.html">Alle Produkte</a></p>
       </div>
     </section>
 
-    <section id="anmeldung" aria-labelledby="nl">
+    <div class="divider" aria-hidden="true"></div>
+
+    <section class="block" aria-labelledby="werke">
       <div class="wrap">
-        <form class="newsletter" id="nl-form" novalidate>
-          <h2 class="serif" id="nl">Wunsch-Vorbereitung</h2>
+        <p class="eyebrow reveal">Die Werke</p>
+        <h2 class="reveal" id="werke">Begleiter für diese Nächte</h2>
+        <p class="intro reveal">Für den Anfang reicht ein Zettel und eine Viertelstunde. Wer tiefer gehen will, nimmt das Workbook oder den Almanach dazu.</p>
+        <div class="works">
+          <article class="work glass work-feature reveal">
+            <img class="cover" src="assets/cover-2026-11/mimiblack-cover-rauhnacht-starter-800w.webp" width="800" height="1132" alt="Cover: 13 Wünsche in 15 Minuten, Rauhnacht Starter" loading="lazy" />
+            <div class="meta"><span class="chip">Einstieg</span><span class="chip">15 Minuten</span></div>
+            <div>
+              <h3>13 Wünsche in 15 Minuten: Rauhnacht Starter</h3>
+              <p>Ein kurzes Ritual für den Einstieg in die Rauhnächte, mit Fahrplan, Streifen und Tracker.</p>
+            </div>
+            <p class="price">4,90 €</p>
+            <a class="btn btn-gold btn-block" href="https://www.checkout-ds24.com/product/761337?cam=website&utm_campaign=post2sale_2026-11">Rauhnacht Starter, 4,90 €</a>
+          </article>
+          <article class="work glass reveal">
+            <img class="cover" src="assets/cover-2026-11/mimiblack-cover-sperrnaechte-rauhnaechte-13-wuensche-800w.webp" width="800" height="1200" alt="Cover: Rauhnächte, 13-Wünsche-Workbook" loading="lazy" />
+            <div class="meta"><span class="chip">24 Seiten</span></div>
+            <div>
+              <h3>Die 12 Sperrnächte 2026 / 13-Wünsche-Workbook</h3>
+              <p>Der rote Faden durch die 12 Sperrnächte und die 13 Wunschzettel-Streifen.</p>
+            </div>
+            <p class="price">19,90 €</p>
+            <a class="btn btn-gold btn-block" href="https://www.checkout-ds24.com/product/756278?cam=website&utm_campaign=post2sale_2026-11">Workbook, 19,90 €</a>
+          </article>
+          <article class="work glass reveal">
+            <img class="cover" src="assets/cover-2026-11/mimiblack-cover-hexen-kalender-astro-almanach-2027-800w.webp" width="800" height="1200" alt="Cover: Der große Hexen-Kalender und Astro-Almanach 2027" loading="lazy" />
+            <div class="meta"><span class="chip">14 Seiten DIN A4</span></div>
+            <div>
+              <h3>Der große Hexen-Kalender &amp; Astro-Almanach 2027</h3>
+              <p>Mondphasen 2027, Sonnenwenden und das Kompendium der 12 Rauhnächte.</p>
+            </div>
+            <p class="price">12,90 €</p>
+            <a class="btn btn-gold btn-block" href="https://www.checkout-ds24.com/product/756175">Almanach – 12,90 €</a>
+          </article>
+          <article class="work glass reveal">
+            <img class="cover" src="assets/cover-2026-11/mimiblack-cover-geheimnis-der-12-rauhnaechte-800w.webp" width="800" height="1200" alt="Cover: Das Geheimnis der Rauhnächte und dein 13. Wunsch" loading="lazy" />
+            <div class="meta"><span class="chip">28 Seiten</span></div>
+            <div>
+              <h3>Das Geheimnis der Rauhnächte &amp; dein 13. Wunsch</h3>
+              <p>Herkunft, alte Mythen und Rituale der Rauhnächte, dazu ein Workbook, das deinen 13. Wunsch durch alle zwölf Monate 2027 begleitet.</p>
+            </div>
+            <p class="price">24,90 €</p>
+            <a class="btn btn-gold btn-block" href="https://www.checkout-ds24.com/product/756314">Buch &amp; Workbook – 24,90 €</a>
+          </article>
+        </div>
+
+        <article class="set glass reveal" id="winterlicht-set" style="margin-top:28px;" aria-labelledby="set-title">
+          <img src="assets/cover-2026-11/mimiblack-cover-winterlicht-set-1200w.webp" width="1248" height="920" alt="Winterlicht Set: Sperrnächte Workbook und Hexen-Kalender und Astro-Almanach 2027" loading="lazy" />
+          <div>
+            <p class="eyebrow">Zusammen</p>
+            <h3 id="set-title">Winterlicht Set</h3>
+            <p>Das Sperrnächte Workbook und der Hexen-Kalender und Astro-Almanach 2027 zusammen. Eins für die Nächte jetzt, eins für das Jahr danach.</p>
+            <p class="set-preis"><strong class="set-neu">23,00 € mit Code WINTERSET</strong> <span class="set-einzeln">(einzeln 32,80 €)</span></p>
+            <a class="btn btn-gold" href="https://www.checkout-ds24.com/product/761342?voucher=WINTERSET&cam=website&utm_campaign=post2sale_2026-11">Winterlicht Set, 23,00 € mit Code WINTERSET</a>
+          </div>
+        </article>
+
+        <p class="note reveal">Lieber auf Papier? Das Taschenbuch <a href="https://www.amazon.de/dp/B0HPZZQWP9" target="_blank" rel="noopener">„Die Rauhnächte: Zwölf Nächte für Klarheit, Träume und den 13. Wunsch“</a> von Mimi Black gibt es bei Amazon. · <a href="/rauhnaechte.html">Mehr zu den Rauhnächten</a> · <a href="/alle-produkte.html">Alle Produkte</a></p>
+      </div>
+    </section>
+
+    <section class="block" id="astro-magic" aria-labelledby="app">
+      <div class="wrap">
+        <div class="app glass reveal">
+          <img src="assets/astro-magic/01-dein-ganzer-himmel-600w.webp" width="600" height="1300" alt="Bildschirmfoto der App Astro Magic: Geburtshoroskop" loading="lazy" />
+          <div>
+            <p class="eyebrow">Astro Magic</p>
+            <h2 id="app">Dein ganzer Himmel. In einer App.</h2>
+            <p>Westlich, Vedisch, Chinesisch und Human Design an einem Ort. Astro Magic berechnet dein Geburtshoroskop direkt auf deinem Gerät, mit Glücksort, Partnerhoroskop und Mondkalender.</p>
+            <div class="actions">
+              <a class="btn btn-gold" href="/app/">Web-App öffnen</a>
+              <a class="btn btn-ghost" href="/astro-magic/">Mehr zu Astro Magic</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="anmeldung" aria-labelledby="nl">
+      <div class="wrap">
+        <form class="newsletter glass reveal" id="nl-form" novalidate>
+          <p class="eyebrow">Bevor die Rauhnächte beginnen</p>
+          <h2 id="nl">Wunsch-Vorbereitung</h2>
           <p>Als Dankeschön für deine Anmeldung erhältst du ein 4-seitiges Heft, mit dem du in Ruhe herausfindest, was du dir für 2027 wirklich wünschst, noch bevor die Rauhnächte beginnen.</p>
           <label for="nl-email">E-Mail-Adresse</label>
-          <input id="nl-email" name="email" type="email" autocomplete="email" required placeholder="sarah.b@example.net" />
-          <button type="submit" id="nl-submit">Ja, bitte zusenden</button>
+          <div class="row">
+            <input id="nl-email" name="email" type="email" autocomplete="email" required placeholder="sarah.b@example.net" />
+            <button type="submit" id="nl-submit">Ja, bitte zusenden</button>
+          </div>
           <p class="hint">Du kannst dich jederzeit wieder abmelden. Es geht nur um Impulse zu den Rauhnächten von Mimi Black. Hinweise dazu findest du in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
-          <div class="ok" id="nl-ok">Fast geschafft! Bitte bestätige deine Anmeldung über den Link in der E-Mail, die wir dir gerade geschickt haben.</div>
-          <div class="err" id="nl-err"></div>
+          <div class="ok" id="nl-ok" role="status">Fast geschafft! Bitte bestätige deine Anmeldung über den Link in der E-Mail, die wir dir gerade geschickt haben.</div>
+          <div class="err" id="nl-err" role="alert"></div>
         </form>
       </div>
     </section>
 
-    <section aria-labelledby="app">
-      <div class="wrap prose">
-        <h2 class="serif" id="app">Astro Magic: Dein ganzer Himmel. In einer App.</h2>
-        <p>Westlich, Vedisch, Chinesisch und Human Design an einem Ort. Astro Magic berechnet dein Geburtshoroskop direkt auf deinem Gerät, mit Glücksort, Partnerhoroskop und Mondkalender.</p>
-        <p><a href="/astro-magic/">Mehr zu Astro Magic</a> · <a href="/app/">Web-App öffnen</a></p>
-      </div>
-    </section>
-
-    <p class="more wrap"><a href="/alle-produkte.html">Alle Produkte</a></p>
+    <p class="more wrap"><a class="btn btn-ghost" href="/alle-produkte.html">Alle Produkte</a></p>
   </main>
 
   <footer>
     <div class="wrap">
+      <a class="brand" href="/"><span>✦</span> MIMI BLACK</a>
       <p>Natalie Schwarze, handelnd unter „Mimi Black“<br />c/o Autorenglück #73704, Albert-Einstein-Straße 47, 02977 Hoyerswerda</p>
       <p><a href="mailto:mimiblack@agentmail.to">mimiblack@agentmail.to</a></p>
       <p><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="/widerruf.html">Widerruf</a></p>
+      <p class="ki-note">Das Titelbild ist eine KI-generierte Illustration und zeigt keine reale Person.</p>
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        for (var i = 0; i < items.length; i++) items[i].classList.add('is-in');
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      for (var j = 0; j < items.length; j++) io.observe(items[j]);
+    })();
+  </script>
   <script>
     (function () {
       var form = document.getElementById('nl-form');
