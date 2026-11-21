@@ -1,0 +1,61 @@
+/* Mimi Black · Optik-Schicht für Unterseiten (Redesign 2026-11-21)
+   Nur Optik: Hintergrund, Schriften, Glas- und Goldrand-Karten, Buttons.
+   Greift nur bei <body class="mm-sub">. Inhalte und Links bleiben unberührt. */
+body.mm-sub {
+  background:
+    radial-gradient(1100px 560px at 85% -5%, rgba(122, 63, 143, 0.38), transparent 62%),
+    radial-gradient(900px 520px at 0% 35%, rgba(74, 31, 92, 0.35), transparent 62%),
+    radial-gradient(800px 600px at 60% 100%, rgba(212, 168, 83, 0.10), transparent 60%),
+    linear-gradient(180deg, var(--mm-indigo-900) 0%, var(--mm-indigo-950) 100%) !important;
+  background-attachment: scroll !important;
+  color: var(--mm-text);
+}
+body.mm-sub h1, body.mm-sub h2, body.mm-sub h3 {
+  font-family: var(--mm-serif) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+body.mm-sub h1 {
+  background: linear-gradient(180deg, #ffffff 0%, var(--mm-gold-100) 70%, var(--mm-gold-300) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.mm-sub h1 .gold { -webkit-text-fill-color: var(--mm-gold-300); }
+body.mm-sub header,
+body.mm-sub header.top-bar {
+  background: rgba(11, 8, 32, 0.78) !important;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--mm-line) !important;
+}
+body.mm-sub section { border-bottom-color: var(--mm-line-soft); }
+
+/* Glas- und Goldrand-Karten */
+body.mm-sub .card,
+body.mm-sub .card-gold,
+body.mm-sub .card-amber,
+body.mm-sub .card-accent,
+body.mm-sub .product-card {
+  background: linear-gradient(160deg, rgba(40, 30, 92, 0.62), rgba(30, 14, 46, 0.62)) !important;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid var(--mm-line) !important;
+  border-radius: var(--mm-radius) !important;
+  box-shadow: 0 18px 44px rgba(5, 3, 18, 0.5), inset 0 1px 0 rgba(251, 236, 198, 0.10) !important;
+}
+body.mm-sub .card-gold { border-color: rgba(236, 201, 126, 0.6) !important; }
+body.mm-sub .product-card:hover { border-color: var(--mm-gold-300) !important; }
+
+/* Gold-Buttons einheitlich */
+body.mm-sub .btn:not(.btn-outline),
+body.mm-sub .btn-gold {
+  background: var(--mm-gold-grad) !important;
+  color: var(--mm-gold-ink) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 28px rgba(212, 168, 83, 0.32) !important;
+}
+body.mm-sub .kicker,
+body.mm-sub .hero-kicker {
+  border-color: var(--mm-line) !important;
+  background: rgba(236, 201, 126, 0.08) !important;
+  color: var(--mm-gold-200) !important;
+}
+body.mm-sub a:not([class]) { text-underline-offset: 3px; }

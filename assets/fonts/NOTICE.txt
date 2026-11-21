@@ -1,2 +1,2 @@
-Inter (SIL Open Font License 1.1) and Noto Serif (SIL Open Font License 1.1).
+Inter (SIL Open Font License 1.1), Noto Serif (SIL Open Font License 1.1) and Cormorant Garamond (SIL Open Font License 1.1, via Fontsource 5.3.0, latin subset).
 License text: https://openfontlicense.org
