@@ -19,6 +19,7 @@
   <link rel="icon" href="/assets/astro-magic/astro-magic-icon-192.png" />
   <link rel="apple-touch-icon" href="/assets/astro-magic/astro-magic-icon-192.png" />
   <link rel="stylesheet" href="/assets/astro-magic/astro-magic.css" />
+  <link rel="stylesheet" href="/astro-magic/rechner.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,6 +53,162 @@
         <p class="kicker">Astro Magic · von Mimi Black</p>
         <h1 class="serif">Dein ganzer Himmel.<br /><span class="accent">In einer App.</span></h1>
         <p class="lead">Westlich, Vedisch, Chinesisch und Human Design an einem Ort</p>
+      </div>
+    </section>
+
+    <section id="rechner" aria-labelledby="rechner-h">
+      <div class="wrap">
+        <div class="rechner-panel">
+          <h2 class="serif" id="rechner-h">Geburtsdaten berechnen</h2>
+          <p class="rechner-lead">Trag Name, Datum, Uhrzeit und Ort ein. Du siehst Sonne, Mond, Aszendent und die weiteren Systeme.</p>
+          <form id="rechnerForm" novalidate>
+            <div class="calc-controls">
+              <div class="field field-name">
+                <label for="inpName">Name</label>
+                <input type="text" id="inpName" name="name" autocomplete="off" maxlength="80" placeholder="Dein Name" />
+              </div>
+              <div class="field field-date">
+                <label for="inpDate">Geburtsdatum</label>
+                <div class="date-line">
+                  <input type="text" id="inpDate" name="date" inputmode="text" autocomplete="off" placeholder="12.03.1990" aria-describedby="dateHint" />
+                  <button type="button" id="btnDatePick">Kalender</button>
+                  <input type="date" id="inpDatePick" class="date-native" tabindex="-1" aria-hidden="true" />
+                </div>
+              </div>
+              <div class="field field-time">
+                <label for="inpTime">Geburtszeit</label>
+                <input type="text" id="inpTime" name="time" inputmode="text" autocomplete="off" placeholder="14:30 oder 1430" aria-describedby="timeHint" />
+              </div>
+              <div class="field field-city">
+                <label for="inpCity">Geburtsort</label>
+                <select id="inpCity" name="city">
+                  <option value="52.5200,13.4050,1">Berlin, UTC+1</option>
+                  <option value="48.1351,11.5820,1">München, UTC+1</option>
+                  <option value="53.5511,9.9937,1">Hamburg, UTC+1</option>
+                  <option value="50.9375,6.9603,1">Köln, UTC+1</option>
+                  <option value="48.2082,16.3738,1">Wien, UTC+1</option>
+                  <option value="47.3769,8.5417,1">Zürich, UTC+1</option>
+                  <option value="38.9067,1.4206,1">Ibiza, UTC+1</option>
+                  <option value="51.5074,-0.1278,0">London, UTC+0</option>
+                  <option value="40.7128,-74.0060,-5">New York, UTC-5</option>
+                  <option value="21.3069,-157.8583,-10">Honolulu, UTC-10</option>
+                  <option value="35.6762,139.6503,9">Tokio, UTC+9</option>
+                  <option value="-33.8688,151.2093,10">Sydney, UTC+10</option>
+                </select>
+              </div>
+              <div class="field field-action">
+                <button type="submit" id="btnCalc">Neu berechnen</button>
+              </div>
+              <div class="field field-ayanamsa">
+                <label for="inpAyanamsa">Vedisches Ayanamsa</label>
+                <select id="inpAyanamsa" name="ayanamsa">
+                  <option value="lahiri">Lahiri, Chitra Paksha</option>
+                  <option value="raman">B. V. Raman</option>
+                  <option value="krishnamurti">Krishnamurti, KP</option>
+                </select>
+              </div>
+            </div>
+            <p class="field-hint" id="dateHint">Datum zum Beispiel 12.03.1990, 12.3.1990 oder 1990-03-12. Uhrzeit zum Beispiel 14:30, 14.30, 14 30, 9:05 oder 1430. <span id="timeHint">Die Ortsliste nennt die Zeitverschiebung, ohne extra Sommerzeit.</span></p>
+          </form>
+          <p id="calcError" class="calc-error" role="alert"></p>
+          <div class="preset-bar">
+            <button type="button" class="chip" data-preset="herbst">Beispielprofil, 31.10.1990, Berlin</button>
+            <button type="button" class="chip" data-preset="sonnenwende">Wintersonnenwende, 21.12.1988, München</button>
+            <button type="button" class="chip" data-preset="nord">Norddeutschland, 15.05.1995, Hamburg</button>
+            <button type="button" id="btnHawaii" aria-pressed="false">Hawaii Vergleich</button>
+          </div>
+
+          <div id="rechnerErgebnis" hidden>
+            <p id="big3Summary" aria-live="polite"></p>
+            <div class="profile-bar">
+              <div class="profile-user">
+                <div class="avatar-circle" id="profAvatar" aria-hidden="true">✶</div>
+                <div>
+                  <p class="profile-kicker">Dein Ergebnis</p>
+                  <div id="profTitle">Dein Horoskop</div>
+                </div>
+              </div>
+              <div class="big-three-btns">
+                <button type="button" class="big3-btn is-active" id="btnBigSun" aria-pressed="true">
+                  <span class="big3-label">Sonne</span>
+                  <span class="big3-val" id="big3Sun"></span>
+                </button>
+                <button type="button" class="big3-btn" id="btnBigMoon" aria-pressed="false">
+                  <span class="big3-label">Mond</span>
+                  <span class="big3-val" id="big3Moon"></span>
+                </button>
+                <button type="button" class="big3-btn" id="btnBigAsc" aria-pressed="false">
+                  <span class="big3-label">Aszendent</span>
+                  <span class="big3-val" id="big3Asc"></span>
+                </button>
+              </div>
+            </div>
+            <div id="big3Drawer" class="big3-drawer">
+              <div class="drawer-head">
+                <h3 class="serif" id="big3DrawerTitle"></h3>
+                <button type="button" id="btnBigClose">Schließen</button>
+              </div>
+              <p id="big3DrawerText"></p>
+            </div>
+            <p id="hawaiiBanner" hidden></p>
+            <p id="ayanamsaInfo"></p>
+            <div class="wheels-grid">
+              <article class="wheel-card">
+                <span class="system-tag">Westlich, Placidus</span>
+                <h3 class="serif">Tropischer Tierkreis, Zeithäuser</h3>
+                <p class="wheel-summary" id="sumPlacidus"></p>
+                <div id="svgPlacidus"></div>
+              </article>
+              <article class="wheel-card">
+                <span class="system-tag">Westlich, Whole Sign</span>
+                <h3 class="serif">Tropischer Tierkreis, Ganzzeichen</h3>
+                <p class="wheel-summary" id="sumWholeSign"></p>
+                <div id="svgWholeSign"></div>
+              </article>
+              <article class="wheel-card">
+                <span class="system-tag">Vedisch, Jyotish</span>
+                <h3 class="serif">Siderischer Tierkreis nach Lahiri</h3>
+                <p class="wheel-summary" id="sumVedic"></p>
+                <div id="svgVedic"></div>
+              </article>
+              <article class="wheel-card">
+                <span class="system-tag">Human Design</span>
+                <h3 class="serif">Tore, bewusst und unbewusst</h3>
+                <p class="wheel-summary" id="sumHD"></p>
+                <div id="boxHD"></div>
+              </article>
+              <article class="wheel-card">
+                <span class="system-tag">Chinesisches Horoskop</span>
+                <h3 class="serif">Tier, Elemente und Säulen</h3>
+                <p class="wheel-summary" id="sumBaZi"></p>
+                <div id="boxBaZi"></div>
+              </article>
+            </div>
+            <div id="vergleich" class="table-wrap">
+              <h3 class="serif table-title">Positionen und Häuser im Vergleich</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Punkt</th>
+                    <th scope="col">Tropisch</th>
+                    <th scope="col">Placidus</th>
+                    <th scope="col">Whole Sign</th>
+                    <th scope="col">Vedisch</th>
+                    <th scope="col">Haus vedisch</th>
+                    <th scope="col">Unterschied</th>
+                  </tr>
+                </thead>
+                <tbody id="compTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <p class="rechner-note">Die Berechnung läuft in deinem Browser und bleibt auf deinem Gerät.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero hero-follow">
+      <div class="wrap">
         <p class="sub">Astro Magic berechnet dein Geburtshoroskop direkt auf deinem Gerät und zeigt es dir in vier Traditionen. Dazu kommen dein Glücksort auf der Weltkarte, das Partnerhoroskop, der Mondkalender und dein Tag heute.</p>
         <a class="btn" href="/app/">Web-App öffnen</a>
         <a class="btn ghost" href="#funktionen">Was die App kann</a>
@@ -140,6 +297,7 @@
       <p><a href="/impressum.html">Impressum</a> · <a href="/app/datenschutz/">Datenschutz der App</a> · <a href="/datenschutz.html">Datenschutz der Website</a> · <a href="/app/support/">Hilfe und Kontakt</a> · <a href="/alle-produkte.html">Bücher und Kalender</a></p>
     </div>
   </footer>
+  <script src="/astro-magic/rechner.js"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "59fc6afdaa084ba5b5e2a14014d5b205"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

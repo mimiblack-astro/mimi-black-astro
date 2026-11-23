@@ -1,0 +1,329 @@
+/* Rechner auf der Astro-Magic-Seite.
+   Liegt über dekorativen Schichten. Die Optik-Schicht aus PR #29
+   setzt Sternenstaub auf ::before/::after mit pointer-events: none und z-index: -1.
+   Felder bleiben zusätzlich selbst anklickbar. */
+section.hero:not(.hero-follow) { padding-top: 20px; padding-bottom: 0; }
+section.hero:not(.hero-follow) .kicker { margin-bottom: 6px; }
+section.hero:not(.hero-follow) h1 { margin-bottom: 6px; }
+section.hero.hero-follow { padding-top: 8px; }
+#rechner {
+  position: relative;
+  z-index: 2;
+  padding-top: 8px;
+  padding-bottom: 16px;
+}
+#rechner h2 { font-size: clamp(1.35rem, 4vw, 1.8rem); margin-bottom: 8px; }
+#rechner .rechner-panel {
+  position: relative;
+  z-index: 2;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 16px 14px 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+#rechner .rechner-lead,
+#rechner .field-hint,
+#rechner .rechner-note {
+  color: var(--muted);
+  text-align: center;
+  margin: 0 auto 18px;
+  max-width: 680px;
+}
+#rechner .field-hint,
+#rechner .rechner-note {
+  text-align: left;
+  margin: 6px 0 0;
+  font-size: 0.88rem;
+  max-width: none;
+}
+#rechner .rechner-note { margin-top: 14px; text-align: center; }
+#rechner .calc-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+  margin-top: 8px;
+}
+#rechner .field-name,
+#rechner .field-city,
+#rechner .field-ayanamsa,
+#rechner .field-action { grid-column: 1 / -1; }
+#rechner .field-action { align-self: end; }
+#rechner .field label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--pinkSoft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+#rechner input,
+#rechner select,
+#rechner button {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+#rechner input[type="text"],
+#rechner select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(7, 9, 15, 0.92);
+  color: var(--cream);
+  color-scheme: dark;
+  font: inherit;
+  font-size: 16px;
+}
+#rechner .date-line {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  position: relative;
+}
+#rechner .date-line input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+}
+#btnDatePick {
+  flex: 0 0 auto;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(7, 9, 15, 0.92);
+  color: var(--cream);
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+#rechner .date-native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+#rechner input[aria-invalid="true"] {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 1px var(--pink);
+}
+#rechner input:focus-visible,
+#rechner select:focus-visible,
+#rechner button:focus-visible {
+  outline: 3px solid var(--pinkSoft);
+  outline-offset: 2px;
+}
+#rechner .field-action { margin-top: 4px; }
+#btnCalc {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--grad);
+  color: #0b0e17;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#btnCalc:hover { filter: brightness(1.06); }
+#rechner .calc-error {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(232, 85, 154, 0.14);
+  border: 1px solid rgba(232, 85, 154, 0.5);
+  color: var(--cream);
+}
+#rechner .calc-error:empty { display: none; }
+#rechner .preset-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+}
+#rechner .chip,
+#btnHawaii,
+#btnBigClose {
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--cream);
+  font: inherit;
+  font-size: 0.92rem;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+#rechner .chip.is-active,
+#btnHawaii.is-active {
+  border-color: var(--pink);
+  background: rgba(232, 85, 154, 0.2);
+}
+#rechner .profile-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(7, 9, 15, 0.45);
+}
+#rechner .profile-user { display: flex; gap: 12px; align-items: center; }
+#rechner .avatar-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grad);
+  color: #0b0e17;
+  font-family: "Noto Serif", Georgia, serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+#rechner .profile-kicker {
+  margin: 0;
+  color: var(--pinkSoft);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+#profTitle { font-weight: 600; }
+#rechner .big-three-btns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  width: 100%;
+}
+#rechner .big3-btn {
+  min-height: 48px;
+  text-align: left;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(232, 85, 154, 0.08);
+  color: var(--cream);
+  padding: 10px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+#rechner .big3-btn.is-active { border-color: var(--pink); background: rgba(232, 85, 154, 0.22); }
+#rechner .big3-label {
+  display: block;
+  color: var(--pinkSoft);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#rechner .big3-val { display: block; font-weight: 600; font-size: 1.05rem; }
+#big3Summary {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  line-height: 1.35;
+  text-align: center;
+  margin: 18px 0 8px;
+}
+#rechner .big3-drawer {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(11, 14, 23, 0.72);
+}
+#rechner .drawer-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+#rechner .drawer-head h3 { margin: 0; font-size: 1.2rem; text-align: left; }
+#big3DrawerText { margin: 10px 0 0; }
+#hawaiiBanner {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(94, 234, 212, 0.5);
+  background: rgba(94, 234, 212, 0.1);
+}
+#ayanamsaInfo { margin-top: 12px; color: var(--muted); font-size: 0.92rem; }
+#rechner .wheels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+#rechner .wheel-card {
+  background: rgba(7, 9, 15, 0.45);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 12px 16px;
+  text-align: center;
+  min-width: 0;
+}
+#rechner .wheel-card h3 { margin: 8px 0; font-size: 1.12rem; }
+#rechner .system-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--pinkSoft);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#rechner .wheel-summary { color: var(--muted); font-size: 0.92rem; margin: 0 0 8px; }
+#rechner .wheel-card svg { max-width: 310px; height: auto; display: block; margin: 0 auto; }
+#rechner .sys-pill-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  text-align: left;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.92rem;
+}
+#rechner .sys-pill-row strong { font-weight: 600; }
+#rechner .table-wrap { overflow-x: auto; margin-top: 18px; -webkit-overflow-scrolling: touch; }
+#rechner table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 0.92rem; }
+#rechner th,
+#rechner td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.08); vertical-align: top; }
+#rechner th { color: var(--pinkSoft); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; }
+#rechner h3.table-title { text-align: left; font-size: 1.25rem; margin: 0 0 8px; }
+@media (min-width: 800px) {
+  #rechner .rechner-panel { padding: 22px 22px 26px; }
+  #rechner .calc-controls { grid-template-columns: 1fr 1fr 1fr; }
+  #rechner .field-name,
+  #rechner .field-city,
+  #rechner .field-action,
+  #rechner .field-ayanamsa { grid-column: auto; }
+  #rechner .field-action,
+  #rechner .field-ayanamsa { grid-column: span 1; }
+  #rechner .big-three-btns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  #rechner .field-date,
+  #rechner .field-time { grid-column: 1 / -1; }
+  #rechner .rechner-panel { padding: 12px 12px 14px; }
+  #rechner .rechner-lead { margin-bottom: 8px; }
+  #rechner .field label { margin-bottom: 3px; }
+  #rechner .calc-controls { gap: 8px; }
+  #rechner input[type="text"],
+  #rechner select,
+  #btnDatePick,
+  #btnCalc { min-height: 44px; }
+}
+@media (max-width: 389px) {
+  #rechner .chip,
+  #btnHawaii { width: 100%; }
+}
