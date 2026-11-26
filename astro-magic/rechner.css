@@ -1,4 +1,4 @@
-/* Rechner auf der Astro-Magic-Seite.
+/* Rechner auf der Cosmocode-Seite.
    Liegt über dekorativen Schichten. Die Optik-Schicht aus PR #29
    setzt Sternenstaub auf ::before/::after mit pointer-events: none und z-index: -1.
    Felder bleiben zusätzlich selbst anklickbar. */
