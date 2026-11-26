@@ -275,16 +275,19 @@
     };
   }
 
-  function parseBirthTime(raw) {
+  function parseBirthTime(raw, loose) {
     if (raw == null) return null;
     let s = String(raw).trim().toLowerCase();
     s = s.replace(/uhr/g, " ");
+    s = s.replace(/,/g, ":");
     s = s.replace(/\s+/g, " ").trim();
     s = s.replace(/[.\s]+$/g, "").replace(/^[.\s]+/g, "");
     s = s.replace(/\./g, ":");
     s = s.replace(/(\d)\s*h\s*/g, "$1:");
     s = s.replace(/(\d)\s+(\d)/g, "$1:$2");
-    s = s.replace(/:+/g, ":").replace(/:$/g, "");
+    s = s.replace(/:+/g, ":");
+    const trailingColon = /:$/.test(s);
+    s = s.replace(/:$/g, "");
 
     let h;
     let m;
@@ -293,10 +296,17 @@
       h = Number(hm[1]);
       m = Number(hm[2]);
       if (hm[3] != null && Number(hm[3]) > 59) return null;
-    } else if (/^\d{3,4}$/.test(s)) {
-      const digits = s.padStart(4, "0");
-      h = Number(digits.slice(0, 2));
-      m = Number(digits.slice(2, 4));
+    } else if (/^\d{4}$/.test(s)) {
+      h = Number(s.slice(0, 2));
+      m = Number(s.slice(2, 4));
+    } else if (/^\d{3}$/.test(s)) {
+      // 930 erst im losen Modus, damit 143 beim Tippen nicht zu 1:43 wird.
+      if (!loose) return null;
+      h = Number(s[0]);
+      m = Number(s.slice(1));
+    } else if (/^\d{1,2}$/.test(s) && (loose || trailingColon)) {
+      h = Number(s);
+      m = 0;
     } else {
       return null;
     }
@@ -364,7 +374,7 @@
   let lastCalcResult = null;
   let activeBig3Tab = "sun";
 
-  const TIME_ERROR = "Diese Uhrzeit kann ich nicht lesen. Schreib sie zum Beispiel als 14:30, 14.30, 14 30, 9:05 oder 1430.";
+  const TIME_ERROR = "Diese Uhrzeit kann ich nicht lesen. Schreib sie zum Beispiel als 14:30, 14.30, 14,30, 14 30, 9:05, 1430 oder 14.";
   const DATE_ERROR = "Dieses Datum kann ich nicht lesen. Schreib es zum Beispiel als 12.03.1990, 12.3.1990 oder 1990-03-12. Der Kalender daneben geht auch.";
 
   function el(id) { return document.getElementById(id); }
@@ -524,7 +534,7 @@
     const dateRaw = el("inpDate").value;
     const timeRaw = el("inpTime").value;
     const dateIso = parseBirthDate(dateRaw);
-    const timeNorm = parseBirthTime(timeRaw);
+    const timeNorm = parseBirthTime(timeRaw, true);
     const problems = [];
     setInvalid("inpDate", !dateIso);
     setInvalid("inpTime", !timeNorm);
@@ -658,7 +668,7 @@
       if (!el("rechnerErgebnis").hidden) recalculateAll();
     });
     el("inpTime").addEventListener("blur", () => {
-      const norm = parseBirthTime(el("inpTime").value);
+      const norm = parseBirthTime(el("inpTime").value, true);
       if (norm) {
         el("inpTime").value = norm;
         setInvalid("inpTime", false);
